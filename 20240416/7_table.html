@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td>홍길동</td>
+        <td>98</td>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>80</td>
+      </tr>
+    </table>
+
+    <table border="1">
+      <tr>
+        <th>영화제목</th>
+        <th>연도</th>
+        <th>감독</th>
+        <th>평가</th>
+      </tr>
+      <tr>
+        <td>라이프 오브 파이</td>
+        <td>2013</td>
+        <td>이안</td>
+        <td>8.68</td>
+      </tr>
+      <tr>
+        <td>레미제라블</td>
+        <td>2012</td>
+        <td>톰후퍼</td>
+        <td>8.28</td>
+      </tr>
+      <tr>
+        <td>장고: 분노의 추적자</td>
+        <td>2012</td>
+        <td>타란티노</td>
+        <td>8.29</td>
+      </tr>
+    </table>
+
+    <table border="1">
+      <tr>
+        <td rowspan="2">홍길동</td>
+        <td>98</td>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>80</td>
+      </tr>
+    </table>
+    <!--행을 병합할때는 열을 지워야 표가 완성 -->
+    <table border="1">
+      <tr>
+        <td colspan="2">홍길동</td>
+        <td>98</td>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>80</td>
+      </tr>
+    </table>
+    <!-- 열을 병합할때는 행을 다음 행들의 열을 지워야 완성 -->
+    <table border="1">
+      <tr>
+        <td>1열</td>
+        <td>2열</td>
+        <td>3열</td>
+      </tr>
+      <tr>
+        <td>1행1열</td>
+        <td>1행2열</td>
+        <td>1행3열</td>
+      </tr>
+      <tr>
+        <td>2행1열</td>
+        <td>2행2열</td>
+        <td>2행3열</td>
+      </tr>
+      <tr>
+        <td>3행1열</td>
+        <td>3행2열</td>
+        <td>3행3열</td>
+      </tr>
+    </table>
+  </body>
+</html>
