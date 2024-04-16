@@ -18,6 +18,9 @@
     </table>
 
     <table border="1">
+        <caption>&lt;최근에 본 영화들&gt;
+        </caption>
+        <!-- caption 무조건 테이블 안쪽 젤위에 기입 -->
       <tr>
         <th>영화제목</th>
         <th>연도</th>
@@ -66,27 +69,92 @@
       </tr>
     </table>
     <!-- 열을 병합할때는 행을 다음 행들의 열을 지워야 완성 -->
-    <table border="1">
-      <tr>
-        <td>1열</td>
-        <td>2열</td>
-        <td>3열</td>
-      </tr>
-      <tr>
-        <td>1행1열</td>
-        <td>1행2열</td>
-        <td>1행3열</td>
-      </tr>
-      <tr>
-        <td>2행1열</td>
-        <td>2행2열</td>
-        <td>2행3열</td>
-      </tr>
-      <tr>
-        <td>3행1열</td>
-        <td>3행2열</td>
-        <td>3행3열</td>
-      </tr>
-    </table>
+    <p><table border="1">
+        <tr>
+          <td>1행1열</td>
+          <td>1행2열</td>
+          <td>1행3열</td>
+        </tr>
+        <tr>
+          <td>2행1열</td>
+          <td>2행2열</td>
+          <td>2행3열</td>
+        </tr>
+        <tr>
+          <td>3행1열</td>
+          <td>3행2열</td>
+          <td>3행3열</td>
+        </tr>
+        <tr>
+          <td>4행1열</td>
+          <td>4행2열</td>
+          <td>4행3열</td>
+        </tr>
+      </table></p>
+    <p><table border="1">
+        <tr>
+          <td>1행1열</td>
+          <td>1행2열</td>
+          <td >1행3열</td>
+        </tr>
+        <tr>
+          <td rowspan="2">2행1열<br>3행1열</td>
+          <td>2행2열</td>
+          <td>2행3열</td>
+        </tr>
+        <tr>
+          
+          <td>3행2열</td>
+          <td>3행3열</td>
+        </tr>
+        <tr>
+          <td colspan="3">4행1열 4행2열 4행3열</td>
+        </tr>
+      </table></p>
+
+<p><table border="1">
+    <tr>
+      <td colspan="2"><img src="/resources/img/Hamster.jpg" alt="햄스터" width="160" height="100"></td>
+      
+    </tr>
+    <tr>
+      <th>햄스터</th>
+      <th>1살</th>
+    </tr>
+  </table></p>
+      
+  <table border="1">
+    <tr>
+        <td colspan="2"></td>
+        <!-- <td></td> -->
+        <td colspan="2"></td>
+        <!-- <td></td> -->
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+        <!-- <td></td>
+        <td></td>
+        <td></td> -->
+        <td colspan="2"></td>
+        <!-- <td></td> -->
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+        <!-- <td></td>
+        <td></td>
+        <td></td> -->
+        <td colspan="2" rowspan="2"></td>
+        <!-- <td></td> -->
+    </tr>
+    <tr><td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <!-- <td></td>
+        <td></td> -->
+    </tr>
+  </table>
   </body>
 </html>
