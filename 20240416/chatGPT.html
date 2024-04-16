@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>한국 강수량 그래프</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <h1>한국 강수량 그래프</h1>
+    <canvas id="rainfallChart" width="800" height="400"></canvas>
+
+    <script>
+      // 강수량 데이터
+      const rainfallData = {
+        labels: ["서울", "부산", "대구", "인천"],
+        datasets: [
+          {
+            label: "2020년",
+            data: [1200, 1500, 1000, 1100],
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+          {
+            label: "2021년",
+            data: [1100, 1400, 950, 1000],
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      // 그래프 생성
+      const ctx = document.getElementById("rainfallChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: rainfallData,
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
