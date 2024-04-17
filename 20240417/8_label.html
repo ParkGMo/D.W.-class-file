@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="proc_form.jsp">
+      <fieldset style="width: 100px">
+        <legend>&lt;성별&gt;</legend>
+        <label for="male">남성</label>
+        <input type="radio" name="gender" id="male" value="male" /> <br />
+        <label for="female">여성</label>
+        <input type="radio" name="gender" id="female" value="female" /> <br />
+        <input type="submit" value="제출" />
+      </fieldset>
+    </form>
+    <!-- radio는 중복선택불가 -> name이 같으면 둘 중 하나만 선택 -->
+    <!-- "id"는 지정하는 것, 지정하고! -> "for"은 텍스트를 눌러도 선택이 가능하다 -->
+    <fieldset style="width: 200px">
+      <legend>&lt;Labtop&gt;</legend>
+      <label for="Samsung">삼성노트북</label>
+      <input type="checkbox" id="Samsung" name="notebook" /><br />
+      <label for="LG">LG노트북</label>
+      <input type="checkbox" id="LG" name="notebook" /><br />
+      <label for="Apple">맥북</label>
+      <input type="checkbox" id="Apple" name="notebook" /><br />
+      <label for="Asus">에이수스노트북</label>
+      <input type="checkbox" id="Asus" name="notebook" /><br />
+      <input type="submit" value="제출" />
+    </fieldset>
+    <!--"For" 와 "id"를 연결해줌 -->
+    <!-- value값은 웹F12에서 네트워트 head에서 확인 가능하다 -->
+  </body>
+</html>

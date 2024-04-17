@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="gerid.jsp" name="imput" method="get">
+      사용자 아이디:
+      <input type="text" name="user" /> <br />
+      이메일 :<input type="email" name="email" required placeholder="ID" />
+      <br />
+      전화번호 :
+      <input
+        type="tel"
+        name="tel"
+        required
+        pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}"
+        title="010-1234-1234"
+      />
+      <!-- 패턴의 대괄호와 중괄호는 정규식이라한다. -->
+      <!-- required 양식에 맞추지않으면 수정하라고 시킴 -->
+      <!-- placeholder는 미리보기 식으로 작성을 하면 지워진다. -->
+      <br />
+      <input type="submit" value="send" />
+      <input type="reset" value="초기화" /><br />
+      <input type="submit" value="제출" />
+    </form>
+    <br />
+    <form enctype="multipart/form-data">
+      <input type="file" accept="image/jpeg,image/gif" />
+      <input type="file" accept="image" />
+      <!-- image, hwp 등등 특정하거나 모든파일 가능 -->
+      <!-- 대부분 multipart/form-data으로 파일을 전송한다.  -->
+      <input type="hidden" value="hiddenvalue" />
+    </form>
+
+    <button onclick="alert('안녕하세요')">눌러보세요!</button>
+    <!-- input은 value에 내용기입, button태그사이에 기입 -->
+    <form action="getfeedback.jsp" name="input" method="get">
+      고객의 의견 <br />
+      <textarea name="feedback" cols="50" rows="3"></textarea>
+    </form>
+
+    이메일 :<input type="email" name="email" required /> <br />
+    전화번호 :
+  </body>
+</html>

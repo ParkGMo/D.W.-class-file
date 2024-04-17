@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+    <td>
+        <th>ID</th>
+        <tr><input type="text" placeholder="아이디 10글자 이내" /></tr>
+        <tr><button>중복확인</button></tr>
+    </td>
+    <td>
+        <th>비밀번호</th>
+        <tr ><input type="text" placeholder="영문, 숫자, 특수문자, 포함 8자 이상"></tr>
+        <tr></tr>
+    </td>
+    <td>
+        <th>비밀번호 확인</th>
+        <tr></tr>
+        <tr></tr>
+    </td>
+    <td>
+        <th>Email</th>
+        <tr></tr>
+        <tr></tr>
+    </td>
+    </table>
+    <table>
+    <tr>
+        <th>ID</th>
+        <td><input type="text" placeholder="아이디 10글자 이내" /></td>
+        <td><button>중복확인</button></td>
+    </tr>
+    <tr>
+        <th>비밀번호</th>
+        <td colspan="2"><input type="text" placeholder="영문, 숫자, 특수문자, 포함 8자 이상"></td>
+        
+    </tr>
+    <tr>
+        <th>비밀번호 확인</th>
+        <td colspan="2"><input
+            type="text" placeholder=""/></td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td><input type="email" required /></td>
+        <td><form>
+            <select name="email">
+              <option value="empty">직접입력</option>
+              <option value="Google">google.com</option>
+              <option value="Naver">Naver.com</option>
+              <option value="Daum">Daum.net</option>
+              <option value="Gmail">Gmail.com</option>
+            </select>
+          </form></td>
+    </tr>
+    </table>
+  </body>
+</html>
