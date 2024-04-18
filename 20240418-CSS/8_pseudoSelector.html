@@ -7,29 +7,37 @@
   </head>
   <style>
     a:link {
-      color: blue;
+      color: white;
+      background-color: green;
+      /* text-decoration: none; */
     }
     /* 예시 주소를 누르기전  */
     a:visited {
-      color: green;
+      color: blue;
+      background-color: yellow;
+      text-decoration: none;
     }
     /* 예시 주소를 눌렀던  */
     a:hover {
       color: red;
     }
-    /* link나 visited 뒤에 온다. */
+    /* link나 visited 뒤에 온다. 커서를 가져다가 대면*/
     a:active {
       color: pink;
     }
-    /* hover 뒤에 온다. */
+    /* hover 뒤에 온다. 눌렀을 때 */
   </style>
   <body>
     <!-- 
         의사(가상)선택자 : HTML요소를 직접 선택하지 않고, 
         요소의 상태에 따라 선택하여 스타일을 적용할때 사용한다.
+        ":" 콜론은 상태에 관한 명령
      -->
     <a href="http://www.netflix.com" title="넷플릭스 페이지로 이동합니다."
       >눈물의 여왕 보러가기</a
+    ><br />
+    <a href="http://www.tving.com" title="티빙 페이지로 이동합니다."
+      >KBO 보러가기</a
     >
   </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    p.data {
+      text-align: right;
+      color: indigo;
+      height: 100px;
+      background-color: yellow;
+      line-height: 3;
+    }
+    /* 
+    line-hight는 줄간격 
+    line-hight는 크기에따라 기준이 다르므로 상대적으로 작성한다. 그래서 단위X 
+    line-hight 1은 글자의 기본크기와 같다. 
+    */
+    p.poet {
+      color: blue;
+      letter-spacing: 10px;
+      word-spacing: 10px;
+    }
+    /* spacing의 letter는 글자간격 word는 띄어씌기간격, 음수도 가능 */
+
+    p.indent {
+      text-indent: 30px;
+    }
+    /* text-indent = 들여쓰기 */
+
+    div > span {
+      text-align: center;
+      color: red;
+    }
+    /*인라인 요소는 영역이 없어서 정렬은 이루어지지 않는다., span빼고 하면 가능*/
+
+    #dir {
+      background-color: black;
+      color: white;
+      direction: rtl;
+    }
+    /* rtl은 오른쪽 부터, ltr은 왼쪽부터 */
+
+    h1.deco {
+      text-decoration: underline wavy navy;
+    }
+
+    p.transform {
+      /* text-transform: uppercase; */
+      /* text-transform: lowercase; */
+      text-transform: capitalize;
+    }
+
+    p.shadow {
+      font-size: 3rem;
+      text-shadow: 5px 5px 5px orange;
+    }
+    /* text-shadow: x축, y축, 그림자의 블러(흐리게) */
+  </style>
+  <body>
+    <h1>CSS 텍스트 정렬 예제</h1>
+    <p class="data">2024년 4월 18일</p>
+    <!-- span.date {
+      text-align: right;
+      color: indigo;
+    } -->
+    <!-- <span class="date">2024년 4월 18일</span> -->
+    <!-- 인라인 요소는 영역이 없어서 정렬은 이루어지지 않는다. -->
+    <p class="data">2024년 4월 18일<br />2024년 4월 18일</p>
+    <p class="poet">삷이 그대를 속일지라도 슬퍼하거나 노여워하지 말라.</p>
+    <p class="indent">참고 푸시킨의 시</p>
+    <div>
+      <span>정렬이 될까요?</span>
+    </div>
+    <p id="dir">텍스트가 오른쪽부터 작성됩니다.</p>
+
+    <h1 class="deco">텍스트 장식의 예입니다.</h1>
+    <p class="transform">text_transform is uppercase.</p>
+    <p class="transform">text_transform IS uppercase.</p>
+    <p class="shadow">Text_shadow 처리!!</p>
+  </body>
+</html>
