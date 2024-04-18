@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "BMEULJIRO";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+h1,
+p {
+  font-family: "BMEULJIRO";
+}
+/* 글꼴
+serif : 문자 삐침이 있는 글꼴 
+sans-serif : 문자 삐침이 없는 글꼴
+monospace : 동일한 너비의 글꼴
+cursive : 손으로 쓴거 같은 글꼴
+fanstasy : 화려한 글꼴
+*/
+span {
+  font-size: 2em;
+  color: red;
+}
+em {
+  font-size: 1.5em;
+  color: blue;
+}
+h1 {
+  border-bottom: 1px solid gray;
+  color: red;
+}
+body {
+  font-size: large;
+  background-color: rgb(255, 255, 255);
+}
