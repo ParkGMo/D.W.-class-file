@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body em {
+      color: red;
+    }
+    /* body의 후손인 em을 선택 즉 밑에 2개의 em을 선택 */
+    body > h1 {
+      color: blue;
+    }
+    /* body의 후손인 h1을 선택 즉 밑에 마지막 h1이 선택 */
+    div {
+      padding: 20px;
+    }
+    body > div {
+      border: 3px solid red;
+    }
+    body > div > div {
+      border: 3px solid yellow;
+    }
+    body > div > div >div {
+      border: 3px solid blue;
+    }
+    /* div > div {
+      border: 3px solid yellow;
+    }
+    div > div > div {
+      border: 3px solid blue;
+    } */
+
+    /* body > h1, em{color: brown;} - ","도 가능*/
+  </style>
+  </style>
+  <body>
+    <div>
+      <h1>이 제목은 <em>매우</em>중요합니다.</h1>
+    </div>
+    <h1>이 제목은 <em>매우</em>중요합니다.</h1>
+    <!-- 
+        자손관계(부모태그 및 모든 요소)는 부모태그에서 띄워주고 자식태그
+        자식관계(부모태그 직계 요소)는 부모태그에서 ">"적어주고 자식태그
+        ex) <body>의 자손은 <div><h1><em>
+            <body>의 자식은 <div><h1> -> 왼쪽 실선의 한칸 안쪽을 보면 편하다.
+            
+     -->
+    <div>
+      첫번째 div
+      <div>
+        두번째 div
+        <div>세번째 div</div>
+      </div>
+      <div>
+        두번째 div
+        <div>세번째 div</div>
+      </div>
+    </div>
+  </body>
+</html>
