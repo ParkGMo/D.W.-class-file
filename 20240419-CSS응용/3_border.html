@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Border</title>
+  </head>
+  <style>
+    p.width {
+      border-style: solid;
+      border-width: 10px 3px 10px 3px;
+      /* 10px 3px - 상하 와 좌우 */
+      /* 10px 3px 10px 3px - 상 우 하 좌=시계방향 */
+      /* thin < medium < thick  etc... */
+      border-radius: 25px;
+    }
+    div.radius {
+      width: 300px;
+      height: 300px;
+      border: 5px solid darkgray;
+      border-radius: 50%;
+      /* radius : 40px 20px 40px 20x (평행)/40px 20px 40px 20x (수직) */
+      text-align: center;
+      background-image: url("/resources/img/cat\ wallpaper1.jpg");
+      background-size: 160%;
+      background-position: 57% center;
+    }
+    div#radius {
+      width: 300px;
+      height: 300px;
+      border: 5px solid;
+      border-radius: 50%;
+      /* radius : 40px 20px 40px 20x (평행)/40px 20px 40px 20x (수직) */
+      text-align: center;
+      background-image: url("/resources/img/cat\ wallpaper.jpg");
+      background-size: 160%;
+      background-position: 50% center;
+    }
+    div.shadow {
+      width: 330px;
+      height: 50px;
+      background-color: aqua;
+      box-shadow: 20px 10px 5px 1px #666666;
+      /* box-shadow: 20px(X축) 10px(y축) 5px(흐려짐) 1px(빛의 방향) #666666; inset(안쪽으로 생김)*/
+      /* box-shadow: (offset-X offset-Y  blur)-필수   spread      color(필수)   inset*/
+    }
+    /* border: 3px solid red; */
+  </style>
+  <body>
+    <p style="border-style: none">none</p>
+    <p style="border-style: dotted">dotterd</p>
+    <p style="border-style: dashed">dashed</p>
+    <p style="border-style: solid">solid</p>
+    <p style="border-style: double">double</p>
+    <p style="border-style: groove">groove</p>
+    <p style="border-style: ridge">ridge</p>
+    <p style="border-style: inset">inset</p>
+    <p style="border-style: outset">outset</p>
+    <!-- <p style="border-style: hidden">hidden</p>
+    <p style="border-style: inherit">inherit</p>
+    <p style="border-style: unset">unset</p> -->
+    <p class="width">border-width 확인</p>
+    <div class="radius">border-radius 확인</div>
+    <div id="radius">border-radius 확인</div>
+    <br />
+    <div class="shadow"></div>
+  </body>
+</html>
