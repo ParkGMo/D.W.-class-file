@@ -9,16 +9,83 @@
     ul {
       border-top: 1px solid red;
       border-bottom: 1px solid red;
-      /* padding: 10px 0; */
-      list-style-type: decimal-leading-zero;
+      padding: 10px 0;
+      list-style-type: none;
     }
+    /* list-style-image: url("../resources/img/sound\ icon.png");*/
     /* ul은 패딩영역에 생긴다. */
+    ul li {
+      display: inline;
+      text-transform: uppercase;
+      padding: 5px;
+      letter-spacing: 5px;
+    }
+    ul {
+      text-align: center;
+    }
+    ul li a {
+      text-decoration: none;
+      color: black;
+      font-size: large;
+    }
+    ul li a:hover {
+      text-decoration: underline;
+      color: red;
+      border: 3px solid red;
+      font-weight: bold;
+    }
+    /* li 정렬은 공간이 없으므로 ul에다가 정렬을 해야 이동한다. */
   </style>
   <body>
     <ul>
-      <li>아메리카노</li>
-      <li>아이스티</li>
-      <li>자몽허니블랙티</li>
+      <li>
+        <img
+          src="/resources/img/apple.png"
+          width="14"
+          height="15"
+        />&nbsp;아메리카노
+      </li>
+      <li>
+        <img
+          src="/resources/img/cherry.png"
+          width="15"
+          height="15"
+        />&nbsp;아이스티
+      </li>
+      <li>
+        <img
+          src="/resources/img/nut.png"
+          width="15"
+          height="15"
+        />&nbsp;토피넛라떼
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href=""
+          >| <img src="/resources/img/home.png" width="15" height="15" /> Home
+          |</a
+        >
+      </li>
+      <li>
+        <a href=""
+          >| <img src="/resources/img/bold.png" width="15" height="15" /> Blog
+          |</a
+        >
+      </li>
+      <li>
+        <a href=""
+          >| <img src="/resources/img/about.png" width="15" height="15" /> About
+          |</a
+        >
+      </li>
+      <li>
+        <a href=""
+          >|
+          <img src="/resources/img/contact.png" width="15" height="15" />
+          Contact |</a
+        >
+      </li>
     </ul>
   </body>
 </html>
