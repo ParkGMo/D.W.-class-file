@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div table,
+    td,
+    th {
+      border: 2px solid rebeccapurple;
+    }
+    div table {
+      border-collapse: separate;
+      border-spacing: 20px 30px;
+      /* X축 Y축->20px, 칸 거리-> 30px */
+      width: 100%;
+      text-align: center;
+      /* 
+      table에 정렬을 했는데 모든칸 글자에 왜 정렬이 이루어졌는가? 
+       ->table의 tr td th 모두 상속된 속성이다. 
+       -> tr td th에 따로 부여해도 상관없다.
+      */
+    }
+    div th {
+      height: 50px;
+      vertical-align: top;
+      /* 수직정렬 "vertical-align" */
+    }
+    div td {
+      height: 50px;
+      vertical-align: bottom;
+    }
+    div caption {
+      caption-side: bottom;
+    }
+    /* caption은 무조건 위에 표현되지만 CSS에서는 아래로 이동이 가능하다., 따로 p테그로 제작 가능함으로 굳이... */
+    #list {
+      font-family: "Trebuchet MS", sans-serif;
+      width: 100%;
+    }
+    #list td,
+    #list th {
+      border: 1px dotted gray;
+      text-align: center;
+    }
+    #list th {
+      color: white;
+      background-color: blue;
+    }
+    #list tr.alt td {
+      background-color: yellow;
+    }
+  </style>
+  <body>
+    <div>
+      <table class="table">
+        <caption>
+          VIP 고객 리스트
+        </caption>
+        <tr>
+          <th>이름</th>
+          <th>이메일</th>
+        </tr>
+        <tr>
+          <td>김철수</td>
+          <td>chul@google.com</td>
+        </tr>
+        <tr>
+          <td>김영희</td>
+          <td>young@google.com</td>
+        </tr>
+      </table>
+    </div>
+    <!-- inherit : 어떤 값이든 가능하지만 부모요소가 있어야한다. -->
+    <br />
+    <table id="list">
+      <tr>
+        <th>이름</th>
+        <th>이메일</th>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>chul@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김영희</td>
+        <td>young@google.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김수진</td>
+        <td>sujin@google.com</td>
+      </tr>
+    </table>
+    <!--  
+        td:nth-child(2n) -> 0 2 4 6 8 
+        td:nth-child(2n+1) -> 1 3 5 7 9
+        td:nth-child(2n+2) -> 2 4 6 8 
+    -->
+  </body>
+</html>
