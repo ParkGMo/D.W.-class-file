@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    ul {
+      /* text-align: center; -> flex로 가능 */
+      display: flex;
+      list-style: none;
+      border: 5px solid royalblue;
+      padding: 0;
+      flex-direction: row;
+      height: 800px;
+      /* justify-content: flex-start; */
+      /* justify-content: flex-end; */
+      /* justify-content: center; */
+      /*justify-content: space-between;*/ /*양끝 붙이고 남은 내용을 같은 공간으로 배치*/
+      /*justify-content: space-around;*/ /*모든 요소의 양쪽이 동일한 여백 배치*/
+      justify-content: space-evenly; /*모든 요소의 간격이 동일하게 배치*/
+    }
+    /* 주축은 justify-content, 교차축은 align-items: 값은 같음 (+ 교차축은 stretch값) */
+  </style>
+  <body>
+    <ul>
+      <li>거북이</li>
+      <li>호랑이</li>
+      <li>다람쥐</li>
+      <li>고라니</li>
+      <li>코끼리</li>
+    </ul>
+  </body>
+</html>
