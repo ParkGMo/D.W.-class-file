@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>flex-align</title>
   </head>
   <style>
     * {
@@ -19,12 +19,15 @@
       border: 5px solid royalblue;
       padding: 0;
       /* flex-direction: row; */
+      flex-wrap: wrap;
       height: 800px;
       justify-content: space-evenly;
       /* align-items: flex-start; */
       /* align-items: flex-end; */
       align-items: center;
       /* align-items: stretch;*/ /*기본값 */
+      align-content: center;
+      /*  align-content가 2줄이상이면 사용*/
     }
     /* 주축은 justify-content, 교차축은 align-items: 값은 같음 (+ 교차축은 stretch값) */
     li {
@@ -43,6 +46,22 @@
   </style>
   <body>
     <ul>
+      <li id="li1">거북이</li>
+      <li id="li2">호랑이</li>
+      <li id="li3">다람쥐</li>
+      <li id="li4">고라니</li>
+      <li id="li5">코끼리</li>
+      <!-- align-content 확인용 -->
+      <li id="li1">거북이</li>
+      <li id="li2">호랑이</li>
+      <li id="li3">다람쥐</li>
+      <li id="li4">고라니</li>
+      <li id="li5">코끼리</li>
+      <li id="li1">거북이</li>
+      <li id="li2">호랑이</li>
+      <li id="li3">다람쥐</li>
+      <li id="li4">고라니</li>
+      <li id="li5">코끼리</li>
       <li id="li1">거북이</li>
       <li id="li2">호랑이</li>
       <li id="li3">다람쥐</li>
