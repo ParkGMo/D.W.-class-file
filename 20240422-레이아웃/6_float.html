@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float</title>
+  </head>
+  <style>
+    img.a {
+      float: left;
+    }
+    /* p {
+      display: inline-block;
+    } */
+    /* div {
+      display: inline-block;
+    } */
+    div {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+    .one {
+      background-color: aqua;
+    }
+    .two {
+      background-color: cornflowerblue;
+      /* clear: both; */
+    }
+    .three {
+      background-color: blue;
+    }
+    .four {
+      background-color: darkblue;
+    }
+  </style>
+  <body>
+    <!-- <img
+      class="a"
+      src="../resources/img/cat wallpaper1.jpg"
+      width="160"
+      height="120"
+    />
+    <p>
+      생활이 그대를 속일지라도 슬퍼하거나 노여워 말라 설움의 날을 참고 견디면
+      멀지않아 기쁨의 날이 오리니 현재는 언제나 슬플것 마음은 미래에 사는 것
+      모른것은 순간에 지나가고 그리고 자나간 것은 속 그리워 하게 되느니라.
+    </p> -->
+
+    <div class="one left">박스 #1</div>
+    <div class="two">박스 #2</div>
+    <div class="three">박스 #3</div>
+    <div class="four">박스 #4</div>
+    <!-- 
+        left를 달면 박스#1이 평면이지만 위로 올라온다. 그래서 박스#2는 박스#1 밑으로 가야하지만
+        보이지 않으므로 다시 위치로 간다 그러므로 박스#2랑 박스#3이 겹쳐진다.
+     -->
+    <!-- .two{clear: both;}를 작성하면 겹치지 않고 보인다. -->
+
+    <div class="one left">박스 #1</div>
+    <div class="two left">박스 #2</div>
+    <div class="three left">박스 #3</div>
+    <div class="four left">박스 #4</div>
+    <div class="one right">박스 #1</div>
+    <div class="two right">박스 #2</div>
+    <div class="three right">박스 #3</div>
+    <div class="four right">박스 #4</div>
+  </body>
+</html>

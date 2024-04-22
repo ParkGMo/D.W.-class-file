@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>absolute positioning</title>
+  </head>
+  <style>
+    #one {
+      background-color: cyan;
+      width: 300px;
+      height: 200px;
+      position: relative; /*옮길 수 없어서 값을 주어도 움직이지 X*/
+      left: 100px;
+      top: 100px;
+    }
+    #two {
+      background-color: magenta;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      /* 8px 이동은 #one기준으로 움직인 것이 아니기때문에 body 위치에서 이동
+      , 조상요소중에서 가장 가까운 기준을 삼는다.*/
+      /* if #one 기준으로 움직이려면 #one의 relative position을 잡아주어야한다.*/
+    }
+    #three {
+      background-color: yellow;
+      width: 200px;
+      height: 50px;
+      position: absolute;
+      left: 200px;
+      top: 200px;
+    }
+    /*만약 #one 과 # two가 absolute이면, #three의 static은 가장 위와 왼쪽으로 이동하게된다. */
+  </style>
+  <body>
+    <div id="one">
+      <div id="two">
+        block #2 <br />
+        position: absolute;
+      </div>
+    </div>
+    <div id="three"></div>
+  </body>
+</html>

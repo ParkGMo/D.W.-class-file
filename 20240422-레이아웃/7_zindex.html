@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>z-index</title>
+  </head>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      margin: 200px;
+    }
+    #box1 {
+      background-color: sienna;
+      position: absolute;
+      z-index: 1;
+    }
+    #box2 {
+      background-color: brown;
+      position: absolute;
+      left: 50px;
+      top: 50px;
+      /* z-index: ; */
+    }
+    #box3 {
+      background-color: darkred;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      z-index: -1;
+    }
+    /* position 정하고  z-index 설정해야한다. */
+    /* static 상태에서는 z-index 설정이 무의미하다. */
+    /* z-index는 숫자가 높을 수록 가장 가깝게 나타난다. */
+
+    img {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: -1;
+      opacity: 0.6;
+    }
+    /*  z-index이 없으면 기본 position에 영향을 받지 않아 absolute가 먼저 보인다.*/
+    /* opacity(불투명도) 0(투명)<값<1(불투명) 요소의 불투명도를 선택 */
+  </style>
+  <body>
+    <div id="box1">box #1</div>
+    <div id="box2">box #2</div>
+    <div id="box3">box #3</div>
+    <!-- 기본적으로 마지막 box3이 제일 위로 올라간다. -->
+
+    <img src="../resources/img/Hamster.jpg" width="200" height="150" />
+    <p>요소의 z-index가 -1이므로 다른 요소의 뒤에 위치한다.</p>
+  </body>
+</html>
