@@ -17,7 +17,7 @@
       height: 300px;
       padding: 0;
       display: flex;
-      text-align: center;
+      /* text-align: center; */
       justify-content: space-between;
       align-items: center;
       flex-wrap: nowrap;
@@ -25,13 +25,22 @@
     p {
       background-color: navajowhite;
       border: 1px solid black;
-      margin: 50px 0px 50px 0px;
+      margin: 0px;
       display: flex;
-      width: 600px;
+      /* width: 600px; */
+      flex-grow: 1;
       height: 50px;
       /* flex-direction: row; */
       justify-content: center;
       align-items: center;
+    }
+    p:nth-child(1) {
+      display: flex;
+      align-self: flex-start;
+    }
+    p:nth-child(3) {
+      display: flex;
+      align-self: flex-end;
     }
     #ex2 {
       border: 2px solid red;

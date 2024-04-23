@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0px;
+    }
+    #wrapper {
+      display: flex;
+      /* flex-grow: 1; */
+      flex-direction: column;
+      /* border: 2px solid black; */
+      height: 100%;
+      /* 부모의 영역을 기준으로 하고 있으므로 화면 전체를 지정해주어야 전체로 커진다.*/
+    }
+    #main {
+      background-color: pink;
+      display: flex;
+      flex-grow: 3;
+    }
+    #header {
+      background-color: yellow;
+      display: flex;
+      flex-grow: 1;
+    }
+    #nav {
+      background-color: red;
+      display: inline-block;
+      display: flex;
+      flex-grow: 1;
+    }
+    #content {
+      background-color: blue;
+      display: inline-block;
+      display: flex;
+      flex-grow: 3;
+    }
+    #footer {
+      background-color: aqua;
+      display: flex;
+      flex-grow: 1;
+    }
+
+    #h1 {
+      background-color: gold;
+      display: flex;
+      flex-grow: 1;
+    }
+    #h2 {
+      background-color: yellowgreen;
+      display: flex;
+      flex-grow: 5;
+    }
+    #h3 {
+      background-color: green;
+      display: flex;
+      flex-grow: 1;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <div id="h1">1</div>
+        <div id="h2">2</div>
+        <div id="h3">3</div>
+      </div>
+      <div id="main">
+        <div id="nav">nav</div>
+        <div id="content">content</div>
+      </div>
+      <div id="footer">footer</div>
+    </div>
+  </body>
+</html>

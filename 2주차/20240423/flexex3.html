@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexEx3</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    header {
+      background-color: #bbd3e2;
+      border-radius: 10px;
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+    }
+    h1,
+    h5 {
+      margin: 4px;
+    }
+    #h1 {
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #h5 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #div2 {
+      display: flex;
+      flex-grow: 5;
+    }
+    #link1 {
+      background-color: #c4ded3;
+      margin: 5px;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      flex-grow: 1;
+    }
+    #link2 {
+      display: flex;
+      flex-direction: column;
+    }
+    li:nth-child(1) {
+      color: white;
+    }
+    li:nth-child(2) {
+      color: yellow;
+    }
+    li:nth-child(3) {
+      color: yellow;
+    }
+    img {
+      padding: 0px;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+    #p1 {
+      font-weight: bold;
+    }
+
+    #content {
+      background-color: #f8edcb;
+      margin: 5px;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    #content2 {
+      border: 2px dotted #ffbf00;
+      border-radius: 10px;
+      margin: 0;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: flex-end; */
+    }
+    p {
+      margin: 10px 0px 10px 0px;
+    }
+    footer {
+      background-color: #b3b3b3;
+      border-radius: 10px;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
+  </style>
+  <body>
+    <header>
+      <h1 id="h1">My Blog Page</h1>
+      <h5 id="h5">시멘틱 태그로 만들어진 페이지입니다.</h5>
+    </header>
+    <div id="div1">
+      <div id="div2">
+        <div id="link1">
+          <div id="link2">Links</div>
+          <div id="link2">
+            <ul>
+              <li>w3schools</li>
+              <li>Naver</li>
+              <li>Daum</li>
+            </ul>
+          </div>
+          <div id="link2">
+            <img
+              src="/resources/img/spongbob.jpg"
+              width="150"
+              height="100"
+            /><br />스폰지밥
+          </div>
+          <div id="link2"></div>
+        </div>
+        <div id="content">
+          <div id="content2">
+            <p id="p1">Semantic Tags</p>
+            <p id="p2">
+              시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의마나
+              목적을 명확하게 알려주는 요소이다. 레이아수을 만들때 쓰는 것.
+              의미가 있는 요소라면 div보다는 시멘틱 태그를 사용해준다.
+            </p>
+          </div>
+          <div id="content2">
+            <p id="p1">div와 span</p>
+            <p id="p2">
+              div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데
+              사용되는 태그이다. span요소는 인라인 요솔서 텍스트를 위한
+              컨테이너로 사용할 수 있다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>Copyright (c)2024 Park</footer>
+  </body>
+</html>
