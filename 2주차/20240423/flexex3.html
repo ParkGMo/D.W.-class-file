@@ -22,7 +22,7 @@
     }
     header {
       background-color: #bbd3e2;
-      border-radius: 10px;
+      border-radius: 30px;
       margin: 5px;
       display: flex;
       flex-direction: column;
@@ -32,6 +32,10 @@
     h1,
     h5 {
       margin: 4px;
+    }
+    h5 {
+      font-weight: 300;
+      font-size: x-small;
     }
     #h1 {
       font-weight: bold;
@@ -44,21 +48,24 @@
       justify-content: center;
       align-items: center;
     }
-    #div2 {
+    #div1 {
       display: flex;
       flex-grow: 5;
     }
     #link1 {
       background-color: #c4ded3;
       margin: 5px;
-      padding: 10px;
-      border-radius: 10px;
+      padding: 20px;
+      border-radius: 30px;
       font-weight: bold;
-      flex-grow: 1;
+      flex-grow: 3;
     }
     #link2 {
       display: flex;
       flex-direction: column;
+    }
+    .link1 {
+      font-size: large;
     }
     li:nth-child(1) {
       color: white;
@@ -75,40 +82,67 @@
     ul {
       display: flex;
       flex-direction: column;
+      list-style: circle;
     }
     #p1 {
       font-weight: bold;
     }
 
-    #content {
+    #content1 {
       background-color: #f8edcb;
       margin: 5px;
-      padding: 10px;
-      border-radius: 10px;
+      padding: 15px;
+      border-radius: 30px;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-evenly;
+      flex-grow: 1;
     }
     #content2 {
       border: 2px dotted #ffbf00;
-      border-radius: 10px;
-      margin: 0;
+      border-radius: 30px;
+      padding: 10px;
+      height: 150px;
       padding: 5px;
       display: flex;
       flex-direction: column;
-      /* justify-content: flex-end; */
+      justify-content: space-evenly;
     }
     p {
-      margin: 10px 0px 10px 0px;
+      margin: 10px 0px 10px 10px;
+    }
+    #p1 {
+      font-size: large;
     }
     footer {
       background-color: #b3b3b3;
-      border-radius: 10px;
+      border-radius: 30px;
       margin: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-grow: 1;
+    }
+    #a1:visited {
+      color: white;
+      text-decoration: none;
+    }
+    #a1:link {
+      color: white;
+      text-decoration: none;
+    }
+    #a2:visited {
+      color: yellow;
+      text-decoration: none;
+    }
+    #a2:link {
+      color: yellow;
+      text-decoration: none;
+    }
+    .a3 {
+      text-align: center;
+      font-size: small;
+      font-weight: 400;
     }
   </style>
   <body>
@@ -117,45 +151,53 @@
       <h5 id="h5">시멘틱 태그로 만들어진 페이지입니다.</h5>
     </header>
     <div id="div1">
-      <div id="div2">
-        <div id="link1">
-          <div id="link2">Links</div>
-          <div id="link2">
-            <ul>
-              <li>w3schools</li>
-              <li>Naver</li>
-              <li>Daum</li>
-            </ul>
-          </div>
-          <div id="link2">
-            <img
-              src="/resources/img/spongbob.jpg"
-              width="150"
-              height="100"
-            /><br />스폰지밥
-          </div>
-          <div id="link2"></div>
+      <div id="link1">
+        <div id="link2" class="link1">Links</div>
+        <div id="link3">
+          <ul>
+            <li>
+              <a href="/2주차/20240423/flexex2.html" target="_blank" id="a1"
+                >w3schools</a
+              >
+            </li>
+            <li>
+              <a href="https://www.naver.com" target="_blank" id="a2">Naver</a>
+            </li>
+            <li>
+              <a href="https://www.daum.net" target="_blank" id="a2">Daum</a>
+            </li>
+          </ul>
         </div>
-        <div id="content">
-          <div id="content2">
-            <p id="p1">Semantic Tags</p>
-            <p id="p2">
-              시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의마나
-              목적을 명확하게 알려주는 요소이다. 레이아수을 만들때 쓰는 것.
-              의미가 있는 요소라면 div보다는 시멘틱 태그를 사용해준다.
-            </p>
-          </div>
-          <div id="content2">
-            <p id="p1">div와 span</p>
-            <p id="p2">
-              div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데
-              사용되는 태그이다. span요소는 인라인 요솔서 텍스트를 위한
-              컨테이너로 사용할 수 있다.
-            </p>
-          </div>
+        <div id="link2">
+          <img src="/resources/img/spongbob.jpg" width="150" height="100" />
+        </div>
+        <div id="link2" class="a3">스폰지밥</div>
+      </div>
+      <div id="content1">
+        <div id="content2">
+          <p id="p1">Semantic Tags</p>
+          <p id="p2">
+            시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의마나 목적을
+            명확하게 알려주는 요소이다. 레이아수을 만들때 쓰는 것. 의미가 있는
+            요소라면 div보다는 시멘틱 태그를 사용해준다.
+          </p>
+        </div>
+        <div id="content2">
+          <p id="p1">div와 span</p>
+          <p id="p2">
+            div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데
+            사용되는 태그이다. span요소는 인라인 요솔서 텍스트를 위한 컨테이너로
+            사용할 수 있다.
+          </p>
         </div>
       </div>
     </div>
     <footer>Copyright (c)2024 Park</footer>
+    <!-- 
+        레이아웃(flex) 배치 : 크기 분할 방향 등등 
+        -> 속성(flex) 배치 : 가운데배치, 비율 등
+        -> 내용 작성 : border도 함께
+        -> 글이나 사진조절 : 글자 크기 굵기 등등
+    -->
   </body>
 </html>

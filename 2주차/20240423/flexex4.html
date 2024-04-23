@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexEx4</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      display: flex;
+      margin: 5px;
+      flex-direction: column;
+    }
+    header {
+      background-color: black;
+      border: 2px solid white;
+      border-radius: 5px;
+      color: white;
+      font-size: x-large;
+      font-weight: bold;
+      display: flex;
+      flex-grow: 3;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+    }
+    nav {
+      background-color: black;
+      border: 2px solid white;
+      border-radius: 5px;
+
+      font-weight: bold;
+      text-transform: uppercase;
+      color: whitesmoke;
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+      /* justify-content: center; */
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    #div1 {
+      display: flex;
+      flex-grow: 5;
+      justify-content: space-between;
+    }
+    #side1 {
+      background-color: rgb(100, 100, 100);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
+      flex-shrink: 0;
+    }
+    #content {
+      border: 1px solid black;
+      font-size: x-small;
+      display: flex;
+      margin: 0;
+      padding: 5px;
+      flex-grow: 1;
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: baseline;
+    }
+    #content2 {
+      display: flex;
+      justify-content: baseline;
+    }
+
+    #side2 {
+      background-color: rgb(100, 100, 100);
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
+      /* justify-content: space-around; */
+      flex-shrink: 0;
+    }
+
+    ul {
+      padding-left: 3px;
+      padding-top: 20px;
+      font-weight: 300;
+      font-size: small;
+      margin: 0;
+      height: 5%;
+    }
+    li {
+      border: 1px solid black;
+      padding: 5px 3px 5px 5px;
+      list-style: none;
+    }
+    #side4 {
+      font-size: x-small;
+    }
+    footer {
+      background-color: black;
+      border: 2px solid white;
+      border-radius: 5px;
+      font-size: x-small;
+      color: white;
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+    }
+    a {
+      margin: 0;
+    }
+    #nav2:link {
+      color: white;
+      text-decoration: none;
+    }
+    #nav2:visited {
+      color: white;
+      text-decoration: none;
+    }
+    #side3:link {
+      color: white;
+      text-decoration: none;
+    }
+    #side3:visited {
+      color: white;
+      text-decoration: none;
+    }
+    #li:link {
+      color: white;
+      text-decoration: none;
+    }
+    #li:visited {
+      color: white;
+      text-decoration: none;
+    }
+    #a1:link {
+      color: blue;
+      text-decoration: underline;
+    }
+    #a1:visited {
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <header>Web Shopping</header>
+    <nav id="nav1">
+      <a href="" id="nav2" class="nav2">home</a>
+      <a href="" id="nav2" class="nav2">Shopping about</a>
+      <a href="" id="nav2" class="nav2">news</a>
+      <a href="" id="nav2" class="nav2">my account</a>
+      <a href="" id="nav2" class="nav2">contacts</a>
+    </nav>
+    <div id="div1">
+      <aside id="side1">
+        <strong> 카테고리 </strong>
+        <ul id="side3" class="side3">
+          <li><a href="" id="li">의류</a></li>
+          <li><a href="" id="li">음악</a></li>
+          <li><a href="" id="li">영화</a></li>
+          <li><a href="" id="li">컴퓨터</a></li>
+          <li><a href="" id="li">스포츠/레저</a></li>
+          <li><a href="" id="li">가구/인테리어</a></li>
+          <li><a href="" id="li">식품</a></li>
+        </ul>
+      </aside>
+      <p id="content">
+        <img
+          src="../../resources/img/computer 1.jpg"
+          width="150px"
+          id="content2"
+        />
+        <br />
+        i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해 주셨는데요.
+        뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다. 그래픽카드는 RGB와
+        블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER EX GAMER BLACK으로 감성과
+        성능 모두 만족스러울 시스템을 완성시켰습니다.
+        <br />
+        <br />
+        <br />
+        <button style="width: 150px; height: 20px" id="button">
+          쇼핑카트에 추가하기
+        </button>
+      </p>
+      <p id="content">
+        <img
+          src="../../resources/img/computer 2.jpg"
+          width="150px"
+          id="content2"
+        />
+        <br />
+        CPU는 인텔 코어i5-14세대 14400 (랩터레이크 리프레시)입니다. 10코어
+        16스레드로 다코어를 요구하는 작업 효율과 최대 4.7GHz 클럭으로 다양한
+        작업 환경에서 매끄러운 퍼포먼스를 선보여 높은 만족도를 제공하는
+        프로세서입니다. 메인보드는 ASRock B760M Pro RS D5 에즈윈 최고의 효율과
+        더불어 강력한 퍼포먼스를 제공한다.
+        <br />
+        <br />
+        <br />
+        <button style="width: 150px; height: 20px" id="button">
+          쇼핑카트에 추가하기
+        </button>
+      </p>
+      <p id="content">
+        <img
+          src="../../resources/img/computer 3.jpg"
+          width="150px"
+          id="content2"
+        />
+        <br />
+        CPU는 인텔 코어i7-14세대 14700KF (랩터레이크 리프레시)입니다. 20코어
+        28스레드, 최대 클럭 5.6GHz의 강력한 성능을 갖춘 14세대 인텔 i7
+        프로세서입니다. 이전 세대 동급 제품 대비 증가된 코어와 캐시를 통해 보다
+        빠른 성능을 지연 없이 경험하실 수 있습니다. 그래픽카드는 MSI 지포스 RTX
+        4090 슈프림 X D6X 24GB 트라이프로져3S입니다.
+        <br />
+        <br />
+        <br />
+        <button style="width: 150px; height: 20px" id="button">
+          쇼핑카트에 추가하기
+        </button>
+      </p>
+      <aside id="side2">
+        <strong>Shopping Cart</strong>
+        <p id="side4">현재 쇼핑카트에 물품이 없습니다.</p>
+        <p id="side4"><a href="">쇼핑카트 보기</a></p>
+        <strong>Log In</strong>
+        <p id="side4">아이디 <input type="text" style="width: 100px" /></p>
+        <p id="side4">
+          패스워드 <input type="password" style="width: 100px" />
+        </p>
+        <p id="button">
+          <button style="width: 60px; height: 20px">로그인</button>
+          <button style="width: 60px; height: 20px">초기화</button>
+        </p>
+        <p id="a1">
+          <a href="">회원가입</a>
+          <a href="">비밀번호 분실</a>
+        </p>
+      </aside>
+    </div>
+    <footer>2024. 04. 23 DW아카데미 042-123-4567</footer>
+  </body>
+</html>
