@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>loginpage</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    /* wrapper */
+    #wrapper {
+      background-color: rgb(0, 0, 50);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* /wrapper */
+    /* header */
+    #header {
+      color: orange;
+      font-size: larger;
+      font-weight: bold;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    #header h3 {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* /header */
+    /* main */
+    #main {
+      background-color: #fefefe3f;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .lgititle {
+      color: orange;
+      font-size: x-large;
+      font-weight: bold;
+    }
+    .ip {
+      width: 100%;
+    }
+    input {
+      padding-left: 10%;
+      width: 100%;
+    }
+    .idtext {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5% 10%;
+    }
+    #idicon {
+      color: orange;
+      padding: 0px 0px 0px 0px;
+      position: relative;
+      right: -10%;
+    }
+    .ptext {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5% 10%;
+    }
+    #picon {
+      color: orange;
+      padding: 0px 0px 0px 0px;
+      position: relative;
+      right: -10%;
+    }
+    .find span {
+      color: orange;
+    }
+    .find span:link {
+      color: coral;
+      text-decoration: none;
+    }
+    .find span:visited {
+      color: coral;
+      text-decoration: none;
+    }
+    .find span:hover {
+      color: coral;
+      text-decoration: none;
+    }
+    .find span:active {
+      color: coral;
+      text-decoration: none;
+    }
+    /* /main */
+    /* /footer */
+    footer {
+      background-color: rgb(0, 0, 50);
+    }
+
+    /* /footer */
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h3>F.C</h3>
+        <!-- <h3>f.c</h3> -->
+      </div>
+      <div id="main">
+        <div class="lgititle"><span>Log in</span></div>
+        <from class="ip">
+          <div class="id">
+            <div class="idtext">
+              <i id="idicon" class="fas fa-at"></i>
+              <input type="text" placeholder="Your Email" />
+            </div>
+          </div>
+          <div class="password">
+            <div class="ptext">
+              <i id="picon" class="fas fa-lock"></i>
+              <input type="password" placeholder="Your password" />
+            </div>
+          </div>
+        </from>
+        <form class="submit">
+          <button style="width: 100px; height: 25px">submit</button>
+        </form>
+        <div class="find">
+          <a href="#"><span>forgot your password</span></a>
+        </div>
+      </div>
+      <div id="footer"></div>
+    </div>
+  </body>
+</html>
