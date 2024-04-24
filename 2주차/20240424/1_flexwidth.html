@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex의 width 값</title>
+  </head>
+  <style>
+    body > div {
+      border: 5px solid red;
+      display: flex;
+      height: 800px;
+    }
+    .aside {
+      background-color: aqua;
+      /* flex-grow: 1; */
+      width: 20%;
+    }
+    .center {
+      background-color: yellow;
+      display: flex;
+      /* flex-grow: 5; */
+      width: 60%;
+      flex-wrap: wrap;
+    }
+    /* 내용이 많다면 flex-shrink주더라도 레이아웃 할당이 되지 않는다. width와 heigth에게 %를 넣어주면된다. */
+    /* 고정시키려면 width,height주고, 유연하게 하려면 flex*/
+  </style>
+  <body>
+    <div>
+      <div class="aside"></div>
+      <div class="center">
+        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+      </div>
+      <div class="aside"></div>
+    </div>
+  </body>
+</html>

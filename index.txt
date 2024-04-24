@@ -1,9 +1,56 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>나의 웹 페이지</title>
-	</head>
-	<body>
-		<p>안녕하세요. 웹 프로그래밍 </p>
-	</body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header"></div>
+      <ul id="nav"></ul>
+      <div id="main"></div>
+      <div id="footer"></div>
+    </div>
+  </body>
 </html>
+
+https://flexboxfroggy.com/#ko 레이아웃연습
+
+스타일 적용 우선순위
+        1. important(9999999999999점)
+        2. inling style(1000점)
+        3. ID 선택자(100점)
+        4. class 선택자 (10점)
+        5. Tag 선택자(1점)
+        6. *(전체)선택자(0점)
+        같은 점수는 마지막 선택자를 선택 
+
+a:link{}
+a:visited{}
+a:hover{}
+a:active{}
+
+* {box-sizing: border-box;}
+html,body {width: 100%; height: 100%;}
+
+<div id="wrapper">
+    <div id="header"></div>
+    <ul id="nav"></ul>
+    <div id="main"></div>
+    <div id="footer"></div>
+</div>

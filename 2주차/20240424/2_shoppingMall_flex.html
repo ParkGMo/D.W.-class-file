@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping mall</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    /* 공통스타일 */
+    ul {
+      padding: 0;
+      list-style: none;
+      font-size: small;
+      color: wheat;
+    }
+    /* /공통스타일 */
+    /* wrapper */
+    #wrapper {
+      border: 2px solid orange;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* /wrapper */
+    /* header */
+    #header {
+      background-color: #ffd65c;
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* text-transform: uppercase; */
+    }
+    #header > img {
+      width: 2.5%;
+      vertical-align: text-bottom;
+      margin: 8px;
+    }
+    #header > span {
+      font-weight: bolder;
+      font-size: larger;
+    }
+    /* /header */
+    /* nav */
+    #nav {
+      background-color: #d1b3e0;
+      height: 10%;
+      margin: 0;
+      font-weight: bold;
+      font-size: small;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    /* #nav > li > a {
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.3em;
+    } */
+    #nav > li > a:link {
+      color: white;
+      text-decoration: none;
+      /* letter-spacing: 0.3em; */
+    }
+    #nav > li > a:visited {
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.3em;
+    }
+    #nav > li > a:hover {
+      color: white;
+      text-decoration: underline;
+      font-size: medium;
+      letter-spacing: 0.2em;
+    }
+    /* #nav > li > a:active {
+        color: white;
+        text-decoration: underline;
+        font-size: medium;
+        letter-spacing: 0.2em;
+    } */
+
+    /* /nav */
+    /* main */
+    #main {
+      background-color: aqua;
+      height: 70%;
+      display: flex;
+    }
+    .aside {
+      background-color: #faebeb;
+      width: 15%;
+    }
+    .aside li {
+      background-color: #e6b3b3;
+      border: 1px solid palevioletred;
+      padding: 8% 8%;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #e6b3b3;
+    }
+    .aside li:last-of-type {
+      border: 1px solid palevioletred;
+    }
+    .aside li a:link {
+      color: white;
+      text-decoration: none;
+      /* letter-spacing: 0.3em; */
+    }
+    .aside li a:visited {
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.2em;
+    }
+    .aside li a:hover {
+      text-decoration: underline;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+
+    #content {
+      background-color: #fafafa;
+      width: 70%;
+      display: flex;
+      padding: 1%;
+      gap: 1%;
+    }
+    /* gap: item간의 간격 */
+    .item {
+      width: 33%;
+      border: 1px solid #e5e5e5;
+    }
+    .item span {
+      font-size: x-small;
+    }
+    .item button {
+      font-weight: bold;
+      font-size: small;
+    }
+
+    /* /main */
+    /* footer */
+    #footer {
+      background-color: #ccccf2;
+      height: 10%;
+    }
+
+    /* /footer */
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <img src="../../resources/img/apple.png" />
+        <span>Shopping Mall</span>
+      </div>
+      <ul id="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">shopping about</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Contract</a></li>
+      </ul>
+      <div id="main">
+        <div class="aside">
+          <h3>카테고리</h3>
+          <ul>
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레져</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div id="content">
+          <div class="item">
+            <a>
+              <img src="../../resources/img/computer 1.jpg" width="100%" />
+              <!-- div에 이미지를 배경에 넣어도 된다. -->
+              <span
+                >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+                주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+                그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER
+                EX GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+                완성시켰습니다.</span
+              ></a
+            ><button>쇼핑카트에 추가하기</button>
+          </div>
+          <div class="item">
+            <a
+              ><img src="../../resources/img/computer 2.jpg" width="100%" />
+              <span
+                >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+                주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+                그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER
+                EX GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+                완성시켰습니다.</span
+              ></a
+            ><button>쇼핑카트에 추가하기</button>
+          </div>
+          <div class="item">
+            <a
+              ><img src="../../resources/img/computer 3.jpg" width="100%" />
+              <span
+                >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+                주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+                그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER
+                EX GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+                완성시켰습니다.</span
+              ></a
+            ><button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+        <div class="aside"></div>
+      </div>
+      <div id="footer"></div>
+    </div>
+  </body>
+</html>
