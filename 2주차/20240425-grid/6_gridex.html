@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 1fr 3fr 1fr;
+      grid-template-areas:
+        "header header"
+        "aside main"
+        "footer footer";
+      gap: 8px;
+    }
+    #header {
+      grid-area: header;
+      background-color: gold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #aside {
+      grid-area: aside;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: palevioletred;
+    }
+    #main {
+      grid-area: main;
+      background-color: beige;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #footer {
+      grid-area: footer;
+      background-color: brown;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">header</div>
+      <div id="aside">aside</div>
+      <div id="main">main</div>
+      <div id="footer">footer</div>
+    </div>
+  </body>
+</html>

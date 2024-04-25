@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid-alignment</title>
+  </head>
+  <style>
+    @font-face {
+      font-family: "SBAggroB";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+        format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: SBAggroB;
+    }
+    .container1 {
+      padding: 0;
+      margin: 0px;
+      list-style-type: none;
+      border: 5px solid teal;
+      height: 500px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      /* justify-items: start; */
+      /* 
+      stretch:기본값 (항상 행열 길이만큼 늘어나있다.)
+      size를 주어지지 않는다면 -> start, end, center를 주면 text크기만큼  줄어든다.
+      */
+    }
+    .container2 {
+      padding: 0;
+      margin: 0px;
+      list-style-type: none;
+      border: 5px solid teal;
+      height: 500px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      /* align-items: center; */
+      justify-items: center;
+      /* 
+      stretch:기본값 (항상 행열 길이만큼 늘어나있다.)
+      size를 주어지지 않는다면 -> start, end, center를 주면 text크기만큼  줄어든다.
+      */
+    }
+    .container1 > li:nth-child(1) {
+      align-self: end;
+    }
+    .container2 > li:nth-child(3) {
+      justify-self: start;
+    }
+    .container3 {
+      padding: 0;
+      margin: 0px;
+      list-style-type: none;
+      border: 5px solid teal;
+      height: 500px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      /* align-items: start;
+      justify-items: end; */
+    }
+    .container3 > .item1 {
+      justify-self: start;
+      align-self: start;
+    }
+    .container3 > .item2 {
+      justify-self: center;
+      align-self: center;
+    }
+    .container3 > .item3 {
+      justify-self: end;
+      align-self: end;
+    }
+    .container3 > #item1 {
+      justify-self: start;
+    }
+    .container3 > #item2 {
+      justify-self: center;
+    }
+    .container3 > #item3 {
+      justify-self: end;
+    }
+    .container4 {
+      padding: 0;
+      margin: 0px;
+      list-style-type: none;
+      border: 5px solid teal;
+      height: 500px;
+
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+      grid-template-rows: 80px 80px 80px;
+      align-content: center;
+      justify-content: center;
+    }
+    li {
+      background-color: beige;
+      border: 3px solid tomato;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <ul class="container1">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+    <ul class="container2">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+    <ul class="container3">
+      <li id="item1" class="item1">1</li>
+      <li id="item2" class="item1">2</li>
+      <li id="item3" class="item1">3</li>
+      <li id="item1" class="item2">4</li>
+      <li id="item2" class="item2">5</li>
+      <li id="item3" class="item2">6</li>
+      <li id="item1" class="item3">7</li>
+      <li id="item2" class="item3">8</li>
+      <li id="item3" class="item3">9</li>
+    </ul>
+    <ul class="container4">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+  </body>
+</html>

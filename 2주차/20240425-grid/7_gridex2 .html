@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @font-face {
+      font-family: "SBAggroB";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+        format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+      font-family: SBAggroB;
+      margin: 10px;
+    }
+    body {
+      margin: 0;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-rows: 1fr 4fr 1fr;
+      grid-template-areas:
+        " header"
+        " main"
+        "footer";
+      gap: 8px;
+    }
+    #main {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      grid-template-areas: " aside1 aside2";
+      gap: 8px;
+      /* align-content: space-between; */
+    }
+    #aside2 {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        " content1"
+        " content2";
+      gap: 8px;
+    }
+    #header {
+      border-radius: 10px;
+      grid-area: header;
+      background-color: gold;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #main {
+      grid-area: main;
+      background-color: beige;
+    }
+    #aside1 {
+      border-radius: 10px 10px 0px 0px;
+      grid-area: aside1;
+      background-color: palevioletred;
+      padding: 20px;
+    }
+    #aside2 {
+      border-radius: 10px 10px 0px 0px;
+      grid-area: aside2;
+      padding: 20px;
+      background-color: darkgreen;
+      align-items: center;
+    }
+    #content1 {
+      border-radius: 10px;
+      height: 80%;
+      padding: 10px;
+      grid-area: content1;
+      background-color: rgba(255, 255, 255, 0.699);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    #content2 {
+      border-radius: 10px;
+      height: 80%;
+      padding: 10px;
+      grid-area: content2;
+      background-color: rgba(255, 255, 255, 0.699);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    h3 {
+      margin: 5;
+    }
+    #footer {
+      border-radius: 10px;
+      grid-area: footer;
+      background-color: brown;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h1>My Blog Page</h1>
+        <p>시멘틱 태그로 만들어진 페이지입니다.</p>
+      </div>
+      <div id="main">
+        <div id="aside1">
+          <h3>Link</h3>
+          <ul>
+            <li>
+              <a href="/2주차/20240423/flexex2.html" target="_blank" id="a1"
+                >w3schools</a
+              >
+            </li>
+            <li>
+              <a href="https://www.naver.com" target="_blank" id="a2">Naver</a>
+            </li>
+            <li>
+              <a href="https://www.daum.net" target="_blank" id="a2">Daum</a>
+            </li>
+          </ul>
+          <div>
+            <img src="/resources/img/spongbob.jpg" width="150" height="100" />
+          </div>
+        </div>
+        <div id="aside2">
+          <div id="content1">
+            <h3>Semantic Tags</h3>
+            <span
+              >시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의마나
+              목적을 명확하게 알려주는 요소이다. 레이아수을 만들때 쓰는 것.
+              의미가 있는 요소라면 div보다는 시멘틱 태그를 사용해준다.</span
+            >
+          </div>
+          <div id="content2">
+            <h3>div와 span</h3>
+            <span
+              >div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데
+              사용되는 태그이다. span요소는 인라인 요솔서 텍스트를 위한
+              컨테이너로 사용할 수 있다.</span
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer"><span>Copyright (c)2024 Park</span></div>
+    </div>
+  </body>
+</html>
