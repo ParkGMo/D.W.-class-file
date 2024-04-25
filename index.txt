@@ -31,6 +31,16 @@
 
 https://flexboxfroggy.com/#ko 레이아웃연습
 
+@font-face {
+      font-family: "SBAggroB";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+        format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+font-family: SBAggroB;
+
 스타일 적용 우선순위
         1. important(9999999999999점)
         2. inling style(1000점)
