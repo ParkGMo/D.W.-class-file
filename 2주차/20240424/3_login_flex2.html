@@ -10,6 +10,13 @@
     href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
   />
   <style>
+    @font-face {
+      font-family: "BMEULJIRO";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff")
+        format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
     * {
       box-sizing: border-box;
     }
@@ -21,6 +28,7 @@
     }
     body {
       margin: 0;
+      font-family: BMEULJIRO;
     }
     /* wrapper */
     #wrapper {
@@ -68,6 +76,10 @@
     input {
       padding-left: 10%;
       width: 100%;
+      background-color: black;
+      color: white;
+      border: 1px solid orange;
+      border-radius: 8px;
     }
     .idtext {
       display: flex;
@@ -76,10 +88,11 @@
       margin: 5% 10%;
     }
     #idicon {
+      font-size: small;
       color: orange;
       padding: 0px 0px 0px 0px;
       position: relative;
-      right: -10%;
+      right: -9%;
     }
     .ptext {
       display: flex;
@@ -88,22 +101,23 @@
       margin: 5% 10%;
     }
     #picon {
+      font-size: small;
       color: orange;
       padding: 0px 0px 0px 0px;
       position: relative;
-      right: -10%;
+      right: -9%;
     }
     .find span {
       color: orange;
     }
-    .find span:link {
+    /* .find span:link {
       color: coral;
       text-decoration: none;
     }
     .find span:visited {
       color: coral;
       text-decoration: none;
-    }
+    } */
     .find span:hover {
       color: coral;
       text-decoration: none;
@@ -112,6 +126,19 @@
       color: coral;
       text-decoration: none;
     }
+    .submit button {
+      background-color: orange;
+      font-weight: bold;
+    }
+    .submit button:hover {
+      background-color: coral;
+      text-decoration: none;
+    }
+    .submit button:active {
+      background-color: coral;
+      text-decoration: none;
+    }
+
     /* /main */
     /* /footer */
     footer {
@@ -132,13 +159,13 @@
           <div class="id">
             <div class="idtext">
               <i id="idicon" class="fas fa-at"></i>
-              <input type="text" placeholder="Your Email" />
+              <input type="text" placeholder="Your Email" required />
             </div>
           </div>
           <div class="password">
             <div class="ptext">
               <i id="picon" class="fas fa-lock"></i>
-              <input type="password" placeholder="Your password" />
+              <input type="password" placeholder="Your password" required />
             </div>
           </div>
         </from>
@@ -146,7 +173,7 @@
           <button style="width: 100px; height: 25px">submit</button>
         </form>
         <div class="find">
-          <a href="#"><span>forgot your password</span></a>
+          <a href="#"><span>Forgot your password?</span></a>
         </div>
       </div>
       <div id="footer"></div>

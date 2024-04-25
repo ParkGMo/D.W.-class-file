@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid-Template</title>
+  </head>
+  <style>
+    /*
+    display: grid; 
+     */
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    .container {
+      padding: 0;
+      margin: 50px;
+      list-style-type: none;
+      border: 5px solid teal;
+      height: 600px;
+      text-align: center;
+
+      display: grid;
+      /* grid-template-columns: 100px 100px; */
+      /* 두개의 열이 100px이다. 나머지는 할당되지 않는다.추가 auto는 나머지를 할당한다. */
+      /* grid-template-rows: 100px 100px; */
+      /* grid-template-rows: auto; *10
+      /* 두개의 행만 100px이고 나머지는 균등 분배이다. */
+
+      /* grid-template-columns: 10% 20% 20%;
+      grid-template-rows: 10% 20% 20%; */
+      /* %는 크기에 따라변한다 - 상대수치 */
+
+      /* 
+      column은 지정한 개수에 맞추어 사이즈지정, 
+      row는 지정한 개수를 넘으면 나머지를 채운다
+       */
+
+      /* grid-template-columns: 1fr 2fr;
+      grid-template-rows: 1fr 2fr 1fr; */
+      /* 1fr = 1프렉션 : 비율의 단위 */
+      /* fr는 전체 길이에 item갯수만큼 할당, fr앞 숫자는 비율만큼 할당 */
+      /* !!row fr단위에서 단위개수를 넘는 item은 글자의 사이즈이다.!! */
+      /* 
+      grid-template-columns: 1fr 3fr 2fr 1fr 3fr 2fr 1fr 3fr 2fr;
+      grid-template-columns: repeat(3, 1fr 3fr 2fr); */
+      /*2개가 같은 값이다.*/
+
+      grid-template-columns: repeat(2, 1fr 3fr 2fr);
+      grid-template-rows: 1fr 2fr 1fr;
+      /* 단위 개수가 item 개수보다 많으면 비어있는 단위을 포함하여 할당된다.*/
+
+      grid-template-columns: repeat(2, 1fr 3fr 2fr);
+      grid-template-rows: repeat(2, 2fr 1fr);
+    }
+    li {
+      background-color: beige;
+      border: 3px solid tomato;
+      border-radius: 8px;
+    }
+  </style>
+  <body>
+    <!-- 
+        grid-template-columns
+        grid-template-rows 
+        grid-column&row
+        몇분할로 나눌것!
+    -->
+    <!-- 
+        grid-template-areas
+        grid-area
+        영역에 대한 이름
+     -->
+    <ul class="container">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+  </body>
+</html>
