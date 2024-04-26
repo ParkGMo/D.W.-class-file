@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GridEx1</title>
+  </head>
+  <style>
+    @font-face {
+      font-family: "SBAggroB";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+        format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: SBAggroB;
+      padding: 1%;
+      letter-spacing: 1.2px;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 2fr 1fr 8fr 1fr;
+      grid-template-areas:
+        "header header header header header"
+        "nav nav nav nav nav"
+        "aside1 main1 main2 main3 aside2"
+        "footer footer footer footer footer";
+      gap: 0.5%;
+    }
+    #header {
+      text-transform: uppercase;
+      grid-area: header;
+      color: white;
+      background-color: black;
+      border: 2px solid white;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #header > img {
+      width: 25px;
+      padding: 1px;
+      margin-right: 7px;
+      margin-bottom: 4px;
+      background-color: white;
+      border-radius: 30%;
+    }
+    #nav {
+      text-transform: uppercase;
+      grid-area: nav;
+      margin: 0px;
+      color: white;
+      background-color: black;
+      border-radius: 10px;
+      border: 2px solid white;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+    #aside1 {
+      grid-area: aside1;
+      color: white;
+      background-color: black;
+      border: 2px solid white;
+      border-radius: 20px 20px 0px 0px;
+      padding: 10%;
+    }
+    #aside1 ul {
+      list-style: none;
+      padding: 5%;
+    }
+    #aside1 ul li {
+      border: 1px dotted white;
+      border-bottom: 0;
+      padding: 5%;
+    }
+    #aside1 ul li:nth-last-child(1) {
+      border: 1px dotted white;
+    }
+
+    #main1 {
+      grid-area: main1;
+      color: black;
+      border: 2px solid black;
+      display: flex;
+    }
+    #main2 {
+      grid-area: main2;
+      color: black;
+      border: 2px solid black;
+      display: flex;
+    }
+    #main3 {
+      grid-area: main3;
+      color: black;
+      border: 2px solid black;
+      display: flex;
+    }
+    .item {
+      display: grid;
+      grid-template-rows: 3fr 3fr 1fr;
+      grid-template-areas:
+        "img"
+        "desc"
+        "btn";
+    }
+    .img-section {
+      grid-area: img;
+      /* height: 35%; */
+    }
+    .desc-section {
+      grid-area: desc;
+    }
+    .desc-section > a > span {
+      font-size: small;
+    }
+    .btn-section {
+      grid-area: btn;
+      display: flex;
+      justify-content: end;
+    }
+    .btn-section > button {
+      width: 100%;
+      font-family: SBAggroB;
+      font-size: large;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    #aside2 {
+      grid-area: aside2;
+      padding: 10%;
+      color: white;
+      background-color: black;
+      border-radius: 20px 20px 0px 0px;
+      border: 2px solid white;
+    }
+    #aside2 > .cart {
+      font-size: small;
+    }
+    #aside2 > .id {
+      margin: 8px 0px 5px 0px;
+    }
+    #footer {
+      grid-area: footer;
+      color: white;
+      background-color: black;
+      border-radius: 10px;
+      border: 2px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    li > a:link {
+      color: white;
+      text-decoration: none;
+    }
+    li > a:visited {
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.2em;
+    }
+    li > a:hover {
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+    form > a:link {
+      color: beige;
+      text-decoration: line;
+    }
+    form > a:visited {
+      text-decoration: line;
+      color: beige;
+    }
+    form > a:hover {
+      text-decoration: line;
+      color: burlywood;
+      font-weight: bold;
+    }
+    form > p > a:link {
+      color: beige;
+      text-decoration: line;
+    }
+    form > p > a:visited {
+      text-decoration: line;
+      color: beige;
+    }
+    form > p > a:hover {
+      text-decoration: line;
+      color: burlywood;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <img src="../../resources/img/apple.png" />
+        <h2>Web Shopping</h2>
+      </div>
+      <ul id="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">shopping about</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Contract</a></li>
+      </ul>
+      <div id="aside1">
+        <h2>카테고리</h2>
+        <ul>
+          <li><a href="#">컴퓨터</a></li>
+          <li><a href="#">의류</a></li>
+          <li><a href="#">음악</a></li>
+          <li><a href="#">영화</a></li>
+          <li><a href="#">스포츠/레져</a></li>
+          <li><a href="#">가구/인테리어</a></li>
+          <li><a href="#">식품</a></li>
+        </ul>
+      </div>
+      <div id="main1">
+        <div class="item">
+          <div
+            style="
+              background-image: url(../../resources/img/computer\ 1.jpg);
+              background-size: 100%;
+              background-position: top;
+              background-repeat: no-repeat;
+            "
+            class="img-section"
+          ></div>
+          <div class="desc-section">
+            <a>
+              <span
+                >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+                주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+                그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER
+                EX GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+                완성시켰습니다.</span
+              ></a
+            >
+          </div>
+          <div class="btn-section">
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+      </div>
+      <div id="main2">
+        <div class="item">
+          <div
+            style="
+              background-image: url(../../resources/img/computer\ 2.jpg);
+              background-size: 100%;
+              background-position: top;
+              background-repeat: no-repeat;
+            "
+            class="img-section"
+          ></div>
+          <div class="desc-section">
+            <a>
+              <span
+                >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+                주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+                그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER
+                EX GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+                완성시켰습니다.</span
+              ></a
+            >
+          </div>
+          <div class="btn-section">
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+      </div>
+      <div id="main3">
+        <div class="item">
+          <div
+            style="
+              background-image: url(../../resources/img/computer\ 3.jpg);
+              background-size: 100%;
+              background-position: top;
+              background-repeat: no-repeat;
+            "
+            class="img-section"
+          ></div>
+          <div class="desc-section">
+            <a>
+              <!-- <img src="../../resources/img/computer 1.jpg" width="100%" /> -->
+              <!-- div에 이미지를 배경에 넣어도 된다. -->
+              <span
+                >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+                주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+                그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER
+                EX GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+                완성시켰습니다.</span
+              ></a
+            >
+          </div>
+          <div class="btn-section">
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+      </div>
+      <form id="aside2">
+        <h2>Shopping Cart</h2>
+        <p class="cart">현재 쇼핑카트에 물품이 없습니다.</p>
+        <a href="#">쇼핑카트 보기</a>
+        <br /><br />
+        <h2>Log In</h2>
+        <span>아이디</span>
+        <p class="id"><input type="text" /></p>
+        <span>비밀번호</span>
+        <p class="id"><input type="password" /></p>
+        <input type="submit" value="회원가입" />
+        <input type="reset" value="초기화" />
+        <p>
+          <a href="#">회원가입</a>
+          <a href="#">비밀번호 분실</a>
+        </p>
+      </form>
+      <div id="footer">2024. 04. 23 DW아카데미 042-123-4567</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+"기본 CSS 설정": {
+		"scope": "html",
+		"prefix": "bss",
+		"body": [
+			"<style>",
+			"  * {",
+			"     box-sizing: border-box;",
+			"  }",
+			"  body {",
+			"     margin: 0;",
+			"  }",
+			"  html, body, #wrapper {",
+			"     width: 100%;",
+			"     height: 100%;",
+			"  }",
+			"</style>",
+		],
+		"description": "기본 스타일 셋팅"
+	}
+
+관리>사용자코드조각>html>html.jason>복붙

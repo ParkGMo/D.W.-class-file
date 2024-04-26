@@ -29,7 +29,7 @@
     }
     #wrapper {
       display: grid;
-      grid-template-rows: 1fr 4fr 1fr;
+      grid-template-rows: 2fr 6fr 1fr;
       grid-template-areas:
         " header"
         " main"
@@ -60,45 +60,62 @@
       justify-content: center;
       align-items: center;
     }
+    #header > p {
+      margin: 0;
+    }
     #main {
       grid-area: main;
-      background-color: beige;
+      /* background-color: beige; */
     }
     #aside1 {
-      border-radius: 10px 10px 0px 0px;
+      border-radius: 10px;
       grid-area: aside1;
       background-color: palevioletred;
-      padding: 20px;
+      padding: 30px;
     }
+    ul > li {
+      color: white;
+    }
+    li > a:hover {
+      color: white;
+    }
+
     #aside2 {
-      border-radius: 10px 10px 0px 0px;
+      border-radius: 10px;
       grid-area: aside2;
-      padding: 20px;
-      background-color: darkgreen;
+      padding: 3%;
+      background-color: beige;
       align-items: center;
     }
     #content1 {
+      border: dotted;
       border-radius: 10px;
       height: 80%;
       padding: 10px;
       grid-area: content1;
-      background-color: rgba(255, 255, 255, 0.699);
+      background-color: #9ed7c2;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
     }
+    #content1 > h3 {
+      margin: 2%;
+      font-size: x-large;
+    }
     #content2 {
+      border: dotted;
       border-radius: 10px;
       height: 80%;
       padding: 10px;
       grid-area: content2;
-      background-color: rgba(255, 255, 255, 0.699);
+      background-color: #9ed7c2;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
     }
-    h3 {
-      margin: 5;
+    #content2 > h3 {
+      margin: 2%;
+      font-size: x-large;
     }
     #footer {
       border-radius: 10px;
@@ -140,7 +157,7 @@
             <h3>Semantic Tags</h3>
             <span
               >시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의마나
-              목적을 명확하게 알려주는 요소이다. 레이아수을 만들때 쓰는 것.
+              목적을 명확하게 알려주는 요소이다. 레이아웃을 만들때 쓰는 것.
               의미가 있는 요소라면 div보다는 시멘틱 태그를 사용해준다.</span
             >
           </div>
