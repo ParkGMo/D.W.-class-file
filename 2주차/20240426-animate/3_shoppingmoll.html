@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-rows: repeat(
+        1,
+        1fr minmax(65px, auto) 6fr minmax(65px, auto)
+      );
+      gap: 1%;
+    }
+    #header {
+      background-color: #ffd65c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #header div {
+      width: 3%;
+      height: 50%;
+    }
+    #header span {
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(96, 30, 158, 0.712);
+    }
+    #nav {
+      background-color: #d1b3e0;
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10%, auto));
+      align-items: center;
+      justify-items: center;
+      justify-content: space-evenly;
+    }
+    li {
+      color: white;
+      font-weight: 600;
+    }
+    li a {
+      color: inherit;
+      text-decoration: none;
+    }
+    #main {
+      display: grid;
+      grid-template-columns: 1fr 4fr 1fr;
+      gap: 1%;
+    }
+    .aside {
+      background-color: #faebeb;
+      padding: 5%;
+    }
+    #category {
+      background-color: #e6b3b3;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    #category li {
+      padding: 5%;
+      border-bottom: 1px solid #d1a3a3;
+      cursor: pointer;
+    }
+    #category li:hover {
+      background-color: #a17f7f;
+    }
+    #category li:nth-child(1) {
+      border-bottom: 1px solid #d1a3a3;
+    }
+
+    #content {
+      background-color: #fafafa;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(150px, auto));
+      padding: 2%;
+      gap: 1%;
+    }
+    .item {
+      border: 1px solid #e5e5e5;
+      padding: 5%;
+      display: grid;
+      grid-template-rows: 5fr 4fr 1fr;
+      gap: 1%;
+      /* align-items: center; */
+    }
+    .item a {
+      color: black;
+      text-decoration: none;
+    }
+    .item a:hover {
+      text-decoration: underline;
+    }
+    .item-desc {
+      align-self: center;
+    }
+    .item button {
+      width: 100%;
+      height: 100%;
+      background-color: plum;
+      border: 1px solid purple;
+    }
+    #footer {
+      background-color: #ccccf2;
+    }
+  </style>
+  <div id="wrapper">
+    <div id="header">
+      <div
+        style="
+          background-image: url(../../resources/img/nut.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        "
+      ></div>
+      <span>PEANUT Moll</span>
+    </div>
+    <ul id="nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Shopping about</a></li>
+      <li><a href="#">NEWS</a></li>
+      <li><a href="#">My Account</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div id="main">
+      <div id="aside1" class="aside">
+        <h3>카테고리</h3>
+        <ul id="category">
+          <li><a href="#">데스크탑</a></li>
+          <li><a href="#">노트북</a></li>
+          <li><a href="#">모니터</a></li>
+          <li><a href="#">마우스</a></li>
+          <li><a href="#">키보드</a></li>
+          <li><a href="#">스피커</a></li>
+          <li><a href="#">악세사리</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        <div class="item">
+          <div
+            style="
+              background-image: url(../../resources/img/computer\ 1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+            class="item_desc"
+          ></div>
+          <div class="item_desc">
+            <a href="#"
+              >i7 14700F 프로세서는 고성능 제품답게 3열 수랭 쿨러와 세팅해
+              주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+              그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER EX
+              GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+              완성시켰습니다.</a
+            >
+          </div>
+          <div class="item_desc"><button>쇼핑카트에 추가하기</button></div>
+        </div>
+        <div class="item">
+          <div
+            style="
+              background-image: url(../../resources/img/computer\ 1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+            class="item_desc"
+          ></div>
+          <div class="item_desc">
+            <a href="#"
+              >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+              주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+              그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER EX
+              GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+              완성시켰습니다.</a
+            >
+          </div>
+          <div class="item_desc"><button>쇼핑카트에 추가하기</button></div>
+        </div>
+        <div class="item">
+          <div
+            style="
+              background-image: url(../../resources/img/computer\ 1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+            class="item_desc"
+          ></div>
+          <div class="item_desc">
+            <a href="#"
+              >i7 14700F 프로세서는 고성능 제품답게3열 수랭 쿨러와 세팅해
+              주셨는데요. 뛰어난 안목으로 시스템의 밸런스를 잘 맞춰주셨습니다.
+              그래픽카드는 RGB와 블랙의 멋이 조화로운 GALAX RTX 4070 Ti SUPER EX
+              GAMER BLACK으로 감성과 성능 모두 만족스러울 시스템을
+              완성시켰습니다.</a
+            >
+          </div>
+          <div class="item_desc"><button>쇼핑카트에 추가하기</button></div>
+        </div>
+      </div>
+      <div id="aside2" class="aside">
+        <h2>Shopping Cart</h2>
+        <p class="cart">현재 쇼핑카트에 물품이 없습니다.</p>
+        <a href="#">쇼핑카트 보기</a>
+        <br /><br />
+        <h2>Log In</h2>
+        <span>아이디</span>
+        <p class="id"><input type="text" /></p>
+        <span>비밀번호</span>
+        <p class="id"><input type="password" /></p>
+        <input type="submit" value="회원가입" />
+        <input type="reset" value="초기화" />
+        <p>
+          <a href="#">회원가입</a>
+          <a href="#">비밀번호 분실</a>
+        </p>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </div>
+  <body></body>
+</html>
