@@ -49,11 +49,11 @@
       opacity: 0;
       transition: 0.3s ease-in-out;
     }
-    /* 
+    /*
     "+" : 인접형제 선택자(가까운거 하나)
     "~" : 일반형제 선택자(여러개가능)
      */
-    figure:hover + span {
+    figure:hover ~ span {
       bottom: -30px;
       opacity: 1;
     }
@@ -100,6 +100,65 @@
     }
     .hover05 figure:hover img {
       animation: flash 1s;
+    }
+    /* .hover06 div { */
+    /* background-image: linear-gradient(
+        45deg,
+        red 25%,
+        yellow 25% 50%,
+        red 50% 75%,
+        yellow 75%
+      ); */
+    /* (red 20% -> ~ 20%, yellow 80%) 80% ~ -> 가운데 빈곳은 그라데이션
+      180deg가 기본값 */
+    /* background-size: 50px 50px;
+      background-repeat: no-repeat;
+    } */
+
+    #absolDiv {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+      transform: skewX(-25deg);
+      opacity: 0.7;
+      left: -75%;
+      top: 0px;
+    }
+    @keyframes shine {
+      to {
+        left: 125%;
+      }
+    }
+    .hover06 figure:hover + div {
+      animation: shine 0.75s;
+    }
+    /* .hover06 figure {
+      position: relative;
+    } */
+    /* ":: -> 가상요소 선택시 - 특수문자나 효과를 넣기위해" */
+    .hover06 figure::before {
+      content: ""; /* 가상요소에서 content는 필수이다.*/
+      position: absolute;
+      top: 0;
+      left: -75%;
+      display: block;
+      width: 50%;
+      height: 100%;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+      transform: skewX(-25deg);
+      z-index: 2;
+    }
+    .hover06 figure:hover::before {
+      animation: shine 0.75s;
     }
   </style>
   <body>
@@ -191,6 +250,31 @@
         </div>
         <div>
           <figure><img src="https://picsum.photos/300/200?image=18" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+      <h2>Shine</h2>
+      <div class="column hover06">
+        <!-- <div></div> -->
+        <div>
+          <figure>
+            <img src="https://picsum.photos/300/200?image=20" />
+          </figure>
+          <!-- <div id="absolDiv"></div> -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure>
+            <img src="https://picsum.photos/300/200?image=24" />
+          </figure>
+          <!-- <div id="absolDiv"></div> -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure>
+            <img src="https://picsum.photos/300/200?image=29" />
+          </figure>
+          <!-- <div id="absolDiv"></div> -->
           <span>Hover</span>
         </div>
       </div>

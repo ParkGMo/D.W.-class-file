@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      padding: 1rem;
+    }
+    a {
+      display: inline-block;
+      font-size: 22px;
+      padding: 20px 60px;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-3d {
+      position: relative;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    }
+    /* class 사이에 "."은 둘다 있어야 적용된다. */
+    .btn-3d.green {
+      background-color: #82c8a0;
+      box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+        0px 5px 0 0 rgba(126, 194, 155, 0.7), 0px 5px 0 1px rgba(0, 0, 0, 0.4),
+        0px 5px 8px 1px rgba(0, 0, 0, 0.5);
+    }
+    .btn-3d.green:hover {
+      background-color: #82c49d;
+    }
+    .btn-3d.green:active {
+      background-color: #82c49d;
+      box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+        0px 0px 0 1px rgba(0, 0, 0, 0.4);
+    }
+    .btn-3d:active {
+      top: 9px;
+    }
+    .orange {
+      background-color: #ffaa40;
+    }
+    .btn-fade.orange:hover {
+      background-color: #ff8340;
+    }
+    .purple {
+      background-color: #a74982;
+    }
+    .btn-border.purple {
+      box-shadow: 0 0 0 0 #6d184b;
+    }
+    .btn-border.purple:hover {
+      box-shadow: 0 0 0 5px #6d184b;
+    }
+    .skyblue {
+      background-color: #4ec0e9;
+    }
+    @keyframes clickMe {
+      5%,
+      50% {
+        transform: scale(1);
+      }
+      10% {
+        transform: scale(0.9);
+      }
+      15% {
+        transform: scale(1.15);
+      }
+      20% {
+        transform: scale(1.15) rotate(-5deg);
+      }
+      25% {
+        transform: scale(1.15) rotate(5deg);
+      }
+      30% {
+        transform: scale(1.15) rotate(-3deg);
+      }
+      35% {
+        transform: scale(1.15) rotate(2deg);
+      }
+      40% {
+        transform: scale(1.15) rotate(0deg);
+      }
+      /* 50%{ transform: scale(1);} */
+    }
+    .clickme:hover {
+      animation: clickMe 3s infinite;
+    }
+    .purpleblue {
+    }
+    .gradient {
+      background-color: #e0e5ec00;
+      position: relative;
+      overflow: hidden;
+    }
+    .gradient::after {
+      content: "";
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      left: -80%;
+      top: -80%;
+      z-index: -1;
+      border-radius: 50%;
+      background-image: linear-gradient(315deg, #1fd1f9 40%, #b621fe 80%);
+    }
+    /* .gradient:hover::after { */
+    .gradient:hover::after {
+      transform: rotate(180deg) scale(2);
+      transition: 2s ease-in-out;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="content">
+        <h2>3D button</h2>
+        <a href="#" class="btn-3d green">button</a>
+      </div>
+      <div class="content">
+        <h2>Fade button</h2>
+        <a href="#" class="btn-fade orange">Fade</a>
+      </div>
+      <div class="content">
+        <h2>Border button</h2>
+        <a href="#" class="btn-border purple">Border</a>
+      </div>
+      <div class="content">
+        <h2>Click me button</h2>
+        <a href="#" class="clickme skyblue">Click me</a>
+      </div>
+      <div class="content">
+        <h2>Gradient button</h2>
+        <a href="#" class="gradient purpleblue">Gradient</a>
+      </div>
+    </div>
+  </body>
+</html>
