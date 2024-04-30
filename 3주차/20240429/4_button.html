@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Buttons</title>
   </head>
   <style>
     * {
@@ -103,12 +103,12 @@
     .clickme:hover {
       animation: clickMe 3s infinite;
     }
-    .purpleblue {
-    }
     .gradient {
       background-color: #e0e5ec00;
       position: relative;
       overflow: hidden;
+      box-shadow: 2px 2px 2px 0px rgba(255, 255, 255, 0.5) inset,
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     }
     .gradient::after {
       content: "";
@@ -116,18 +116,132 @@
       justify-content: center;
       align-items: center; */
       position: absolute;
-      width: 300%;
-      height: 300%;
-      left: -80%;
-      top: -80%;
+      width: 400%;
+      height: 400%;
+      left: -150%;
+      top: -150%;
       z-index: -1;
       border-radius: 50%;
-      background-image: linear-gradient(315deg, #1fd1f9 40%, #b621fe 80%);
+      background-image: linear-gradient(315deg, #1fd1f9 40%, #b621fe 60%);
     }
+    /* background-color: transparent; -> 배경을 투명하게 */
     /* .gradient:hover::after { */
     .gradient:hover::after {
-      transform: rotate(180deg) scale(2);
-      transition: 2s ease-in-out;
+      transform: rotate(360deg);
+      transition: 1s ease-in-out;
+    }
+    .black {
+      background-color: black;
+      position: relative;
+      width: 200px;
+      text-align: center;
+    }
+    .slidespan {
+      color: black;
+      position: absolute;
+      margin: 0;
+      left: 10px;
+      top: 910px;
+      transform: rotate(270deg);
+    }
+    .slide:hover {
+      transform: translate(13%, 0);
+      transition: 0.3s linear;
+    }
+    .openbtn {
+      border: 2px solid #4dbde5;
+      color: #4dbde5;
+      overflow: hidden;
+      position: relative;
+      transition: 0.3s linear;
+    }
+    .openbtn::before {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      background-color: #4dbde5;
+      /* background-image: url(../../resources/img/stars.jpg); */
+      transform: scaleX(0);
+      transition: 0.2s linear;
+      z-index: -1;
+    }
+    .openbtn:hover::before {
+      transform: scaleX(1);
+    }
+    .openbtn:hover {
+      color: white;
+    }
+    .borderdiv1 {
+      width: 205px;
+      height: 69px;
+      overflow: hidden;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .borderclass1 {
+      background-color: white;
+      color: black;
+      text-align: center;
+      position: relative;
+      border: 2px solid brown;
+      width: 200px;
+      height: 64px;
+    }
+    .borderclass1::before {
+      content: "";
+      display: inline-block;
+      background-color: brown;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .borderclass1:hover::before {
+      transform: rotate(360deg) scale(1.1) skew(-180deg, 90deg);
+      transition: 0.7s linear;
+    }
+    .borderdiv2 {
+      width: 205px;
+      height: 69px;
+      overflow: hidden;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .borderclass2 {
+      background-color: white;
+      color: black;
+      text-align: center;
+      position: relative;
+      border: 2px solid brown;
+      width: 200px;
+      height: 64px;
+    }
+    .borderclass2::before {
+      content: "";
+      display: inline-block;
+      background-color: brown;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .borderclass2:hover::before {
+      transform: rotate(180deg) scale(1.1) skew(90deg, 270deg);
+      transition: 0.7s linear;
     }
   </style>
   <body>
@@ -151,6 +265,24 @@
       <div class="content">
         <h2>Gradient button</h2>
         <a href="#" class="gradient purpleblue">Gradient</a>
+      </div>
+      <div class="content">
+        <h2>Slide button</h2>
+        <span class="slidespan">slide!</span
+        ><a href="#" class="slide black">Slide</a>
+      </div>
+      <div class="content">
+        <h2>Open button</h2>
+        <a href="#" class="openbtn">Open</a>
+      </div>
+      <div class="content">
+        <h2>Border button</h2>
+        <div class="borderdiv1">
+          <a href="#" class="borderclass1">Border</a>
+        </div>
+        <div class="borderdiv2">
+          <a href="#" class="borderclass2">Border</a>
+        </div>
       </div>
     </div>
   </body>

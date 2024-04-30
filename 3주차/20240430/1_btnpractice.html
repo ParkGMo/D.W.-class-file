@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button practice</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+      padding-left: 1%;
+    }
+    a {
+      display: inline-block;
+      font-size: 22px;
+      padding: 20px 60px;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .fillbtn {
+      border: 2px solid #4dbde5;
+      color: #4dbde5;
+      overflow: hidden;
+      position: relative;
+      transition: 0.3s linear;
+    }
+    .fillbtn::before {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      top: 100%;
+      left: 0;
+      position: absolute;
+      background-color: #4dbde5;
+      transform: scaley(0);
+      transition: 0.2s linear;
+      z-index: -1;
+    }
+    .fillbtn:hover::before {
+      transform: scaley(5);
+    }
+    .fillbtn:hover {
+      color: white;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      25% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
+      75% {
+        transform: scale(1.2);
+        opacity: 0.3;
+      }
+      100% {
+        transform: scale(1.3);
+        opacity: 0.1;
+      }
+    }
+    @keyframes pulseback {
+      from {
+        box-shadow: 0 0 0 0 #4dbde5;
+      }
+      to {
+        box-shadow: 0 0 0 3ex transparent;
+      }
+    }
+    /* -> 그림자로도 가능 */
+    .pulsebtn {
+      background-color: #4dbde5;
+      position: relative;
+      /* box-shadow: 5px 5px 2px 0 gray; */
+    }
+    .pulsebtn::before {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      background-color: #4dbde5;
+      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.8;
+      z-index: -1;
+    }
+    .pulsebtn:hover::before {
+      animation: pulse 0.5s;
+    }
+    .pulsebtn:hover {
+      transform: scale(1.1);
+      transition: 0.2s ease-in;
+    }
+    .linediv {
+      width: 200px;
+      height: 69px;
+      overflow: hidden;
+      /* border-radius: 6px; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .linebtn {
+      background-color: white;
+      color: #4dbde5;
+      border-radius: 0;
+      text-align: center;
+      position: relative;
+      width: 200px;
+      height: 64px;
+    }
+
+    /* .linebtn::before,.linebtn::after -> top과 bottom해서 가능 */
+    /* .linebtn::before,
+    .linebtn::after {
+      content: "";
+      display: inline-block;
+      background-color: #4dbde5;
+      border-radius: 15px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transform: scaleX(0);
+    }
+    .linebtn::before {
+      top: 0;
+    }
+    .linebtn::after {
+      bottom: 0;
+    }
+    .linebtn:hover::before,
+    .linebtn:hover::after {
+      transform: scaleX(1.2);
+    } */
+
+    .linebtn::before {
+      content: "";
+      display: inline-block;
+      background-color: #4dbde5;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transform: scaleX(0);
+    }
+    .linebtn:hover::before {
+      transform: scaleY(1.5);
+      transition: 0.5s linear;
+    }
+    .linediv:hover {
+      letter-spacing: 3px;
+      transition: 0.3s linear;
+    }
+
+    /* paint-Button */
+    .paintbtn {
+      background-color: white;
+      color: #4dbde5;
+      border-radius: 6px;
+      border: 2px solid #4dbde5;
+      text-align: center;
+      position: relative;
+      width: 200px;
+      height: 64px;
+    }
+    /* /paint-Button */
+    #div1 {
+      width: 200px;
+      height: 150px;
+      background-image: linear-gradient(
+        45deg,
+        white 10%,
+        #4dbde5 20% 30%,
+        white 40% 50%,
+        #4dbde5 60% 70%,
+        white 80% 90%,
+        #4dbde5 100%
+      );
+      background-size: 100%;
+      background-repeat: repeat;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="content">
+        <h2>Fill Up button</h2>
+        <a href="#" class="fillbtn">Fill Up</a>
+      </div>
+      <div class="content">
+        <h2>Pulse button</h2>
+        <a href="#" class="pulsebtn">Pulse</a>
+      </div>
+      <div class="content">
+        <h2>Line button</h2>
+        <div class="linediv"><a href="#" class="linebtn">Line</a></div>
+      </div>
+      <div class="content">
+        <h2>Paint button</h2>
+        <a href="#" class="paintbtn">Paint</a>
+      </div>
+      <div id="div1"></div>
+    </div>
+  </body>
+</html>
