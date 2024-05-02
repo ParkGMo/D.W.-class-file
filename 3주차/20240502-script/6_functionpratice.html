@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수 연습</title>
+  </head>
+  <style>
+    p {
+      font-size: 2rem;
+      color: blue;
+      background-color: yellow;
+      font-weight: 800;
+      width: 20%;
+      height: 20%;
+    }
+
+    .result {
+      font-size: 3rem;
+      color: red;
+      background-color: yellow;
+      font-weight: 800;
+      width: 20%;
+      height: 20%;
+    }
+  </style>
+  <body>
+    <script>
+      // 1. 입력값을 전달받아 경고창을 띄워주는 함수를 작성하세요.
+
+      function showAlert(param = "No Text!!") {
+        alert(param);
+      }
+      // 2. 두개의 숫자를 입력받아 나머지를 화면에 출력 함수를 작성하세요.
+      function calculate(num1 = 0, num2 = 0) {
+        let result = 0;
+        result = num1 % num2;
+        document.write(`<p>${result}</p>`);
+        document.write(`<div class='result'>${result}</div>`);
+      }
+
+      showAlert();
+      calculate(30, 7);
+
+      // function name(a = 0, b = 0) {
+      //   let num1 = 0;
+      //   num1 = a % b;
+      //   return num1;
+      // }
+      // let result = (2, 8);
+      // name(result);
+      // document.write(result);
+      //   alert(result);
+    </script>
+  </body>
+</html>

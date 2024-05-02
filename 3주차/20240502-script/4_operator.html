@@ -66,9 +66,49 @@
       result = null > 0; // false
       result = null == 0; // false
       result = null >= 0; // true
+      // 동등 연산자와 기타 비교 연산자의 동작 방식이 다르기 때문에
+      //   (1)과(3) 에서는 null이 숫자형으로 변환돼 0이 된다.
+      //  그런데 동등 연산자는 피연산자가 undefined 이거나 null일 때 형변환 하지 않는다.
+      // undefined와 null 을 비교하는 경우에만 true를 반환하고 그 외의 경우는 false를 반환한다.
 
-      alert(result);
-      //   alert(a+b);
+      //   alert(result);
+
+      //증감 연산자
+      let counter = 2;
+      //   console.log(counter); // 2
+      //   counter = counter + 1; - 밑 2줄과 같다.
+      //   counter += 1;
+      //   counter++;
+      //   console.log(counter); // 3
+
+      result = counter;
+      //후의형 : 증가, 감소 전의  기존 값을 반환한다.
+      counter++; // counter 가 들어가고 +1
+      counter--;
+      //전위형 : 증가, 감소 후의 새로운 값을 반환한다.
+      ++counter; // counter가 +1되고 들어간다.
+      --counter;
+      //  전위형, 후의형 모두 단일로 쓰일 때 사용한다.
+
+      let c = counter++;
+      result = c;
+
+      console.log(1 + true + false + 2 + "문자열"); //4 문자열 (순서대로 진행)
+      console.log(a + b + 3); // 18
+      console.log(str1 + "number is"); // my number is
+      console.log("my number id" + a); // my number id5
+
+      /*
+        ''+1+0 -> 10
+        ''-1+0 -> -1 (falsy -1 + 0)
+        true+false -> 1
+        6/'3'-> 2
+        "2"*"3"-> 6
+      */
+
+      alert("alert 함수 입니다.");
+
+      console.log(`result : (${result})`);
     </script>
   </body>
 </html>
