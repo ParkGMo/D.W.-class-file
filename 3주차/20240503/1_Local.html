@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Region Variable(지역, 전역변수)</title>
+  </head>
+  <body>
+    <script>
+      let num = 0; // 전역변수
+      // scope
+      function showAlert() {
+        let message; // 지역변수, '{}'블록내에 변수
+        alert(num);
+        sum = 0; // 키워드가 없어도 오류X 그러나 지역에서부터 전역까지 찾다가 없으면 전역변수에 자리를 만든다.(유연)
+
+        //'=0'은 선언이 되었을때 초기화 , 선언이X 다면 할당
+      }
+
+      alert(window.sum); // 블록내에서 임의로 만들어진 변수는 전역변수 밖에서 만들어지기 때문에 Window.을 붙인다.
+
+      alert(message);
+      // 지역변수에서 전역변수로 사용 불가능
+      // 전역변수에서 지역변수로 사용 가능
+
+      // 함수 선언식
+      function showAlert() {}
+
+      //함수 표현식(선호)
+      const func = function () {};
+    </script>
+  </body>
+</html>

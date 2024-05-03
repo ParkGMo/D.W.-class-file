@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문</title>
+  </head>
+  <body>
+    <script>
+      //   let year = 2024;
+      let year = 0;
+      year = +prompt("올해는 몇년도 입니까??"); // 문자열로 받는다. 그래서 switch case를 일치하기위해 앞에 + 하여 숫자형으로 전환
+      console.log(year);
+
+      // (if)만약 ()이라면 {}를 수행한다.
+      //   if (year == 2020) {
+      //     alert("현재 년도는 2020년 입니다.");
+      //   }
+
+      //   if (year == 2024) {
+      //     alert("현재 년도는 2024년 입니다.");
+      //   }
+
+      // falsy : 0 ,"" ,null ,undefined, NaN ...
+
+      //   if (year == 2023) {
+      //     alert("현재 년도는 2023년 입니다.");
+      //   } else if (year == 2024) {
+      //     alert("현재 년도는 2024년 입니다.");
+      //   } else if (year == 2022) {
+      //     alert("현재 년도는 2022년 입니다.");
+      //   } else {
+      //     alert("잘못 입력하셨습니다.");
+      //   }
+
+      //  if()를 제외한 나머지를 else{}라 하고 단독으로 사용X
+      // else가 복수면 else if(){} 사용 (중복가능)
+
+      // switch의 case는 동등비교(==)가 아닌 일치비교(===)를 한다.
+      switch (year) {
+        case 2022:
+          alert("현재 년도는 2022년 입니다.");
+          break;
+        case 2023:
+          alert("현재 년도는 2023년 입니다.");
+          break;
+        case 2024:
+          alert("현재 년도는 2024년 입니다.");
+          break;
+        case 2025:
+          alert("현재 년도는 2025년 입니다.");
+          break;
+        default:
+          alert("잘못 입력하셨습니다.");
+          break;
+      }
+
+      //   switch (key) {
+      //     case value:
+      //       break;
+      //     default:
+      //       break;
+      //   }
+      //break: case실행후 다음 case를 실행하는 것을 막아준다.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가위바위보</title>
+  </head>
+  <body>
+    <script>
+      //가위 : 1, 바위 : 10, 보 :11
+
+      // 이기는 경우 : 가위1 - 보 11, 보11 - 바위 10, 바위10 - 가위 1:
+      // 지는 경우 : 가위 1 - 바위 10, 바위 10 - 보 11, 보 11 - 가위 1:
+      // 비기는 경우 : 가위 - 가위 2, 바위 - 바위 4 , 보 - 보 8 : if (1==2)
+      let player1, player2;
+      let p1 = 0;
+      let p2 = 0;
+      let P1 = 0;
+      let P2 = 0;
+      let result;
+      let sum = 0;
+
+      //1. 1번 사용자에게 가위 바위 보를 입력받는다.
+      player1 = prompt("player 1은 가위, 바위 , 보를 적으시오");
+      //   p1 = player1 == 가위;
+
+      //2. 2번 사용자에게 가위 바위 보를 입력받는다.
+      player2 = prompt("player2는 가위, 바위 , 보를 적으시오");
+
+      //3. 1번, 2번 사용자의 가위 바위 보를 비교한다.
+      switch (player1) {
+        case "가위":
+          p1 = 1;
+          break;
+        case "바위":
+          p1 = 10;
+          break;
+        default:
+          p1 = 11;
+
+          break;
+      }
+      switch (player2) {
+        case "가위":
+          p2 = 1;
+          break;
+        case "바위":
+          p2 = 10;
+          break;
+        default:
+          p2 = 11;
+
+          break;
+      }
+
+      sum = p1 + p2;
+      P1 = p1 > p2;
+      P2 = p1 < p2;
+      //   alert(`${sum}`);
+      // p1 1 11 p2
+      // p1 10 1 p2
+      // p1 11 10 p2
+
+      // p1 10 1 p2
+      // p1 1 10 p2
+      // p1 1 11 p2
+
+      switch (sum) {
+        case 2:
+          result = "비겼습니다.";
+          break;
+        case 20:
+          result = "비겼습니다.";
+          break;
+        case 22:
+          result = "비겼습니다.";
+          break;
+      }
+      switch (P1) {
+        case true:
+          result = "Player1이 이김 ㅋ";
+          break;
+        case 20:
+          result = "비겼습니다.";
+          break;
+        case 22:
+          result = "비겼습니다.";
+          break;
+      }
+      document.write(result);
+      //4. 결과를 화면에 출력한다.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 100~91 : A, 90~81 : B, 80~71 : C, 70~61 : D, 60~51 : F
+      //   let grade, result;
+      /* if (91 < grade < 100)
+      if (91 <= grade && 100>= grade ) 둘다 true 여야 true가 된다.            "&&" : AND 연산자
+      if (91 <= grade || 100>= grade ) 둘 중 하나이상 true이면 true가 된다.    "||" : OR 연산자,
+      OR 연산자는 앞에 true를 받으면 뒤에 조건은 보지 않는다. -> 위치가 중요하다.
+      */
+
+      // grade 변수에 값을 대입하기 위해 grade 변수를 써주고,
+      // 대입하기 위해 라고 했으니 대입 연산자인 "="를 써주고,
+      // 값을 대입한다고 했는데 어떤값이냐? 사용자에게 입력받는 값,
+      // 그럼 사용자에게 값은 어떻게 입력받냐? => prompt 사용한다.
+
+      //   grade = +prompt("성적을 입력하시오.");
+
+      // 대입된 상태의 grade를 가지고  grade가 어느 점수 구간에 해당되는지 알아낸다.
+      // 어떻게 알아내냐? ==> if 문을 사용하자.
+      // if문에서 점수 구간을 확인하려면 1<grade<100 가 안되기 때문에
+      // && 혹은 || 연산자를 써야한다.
+
+      //   if (91 <= grade && 100 >= grade) {
+      //     result = "A";
+      //   } else if (81 <= grade && 90 >= grade) {
+      //     result = "B";
+      //   } else if (71 <= grade && 80 >= grade) {
+      //     result = "C";
+      //   } else if (61 <= grade && 70 >= grade) {
+      //     result = "D";
+      //   } else if (51 <= grade && 60 >= grade) {
+      //     result = "F";
+      //   } else {
+      //     result = "낙제";
+      //   }
+      //   document.write(`<h1>${result}</h1)`);
+
+      // 0. 변수 선언
+      // let grade;
+
+      // 1. 사용자에게 점수를 입력받는다.
+
+      // 2. 입력받은 점수를 바탕으로 성적 구간이 될 수 있는 값을 도출
+
+      let grade = 0;
+      let result;
+      grade = +prompt("성적을 입력하시오.");
+
+      let grade1 = parseInt(grade / 10);
+
+      switch (grade1) {
+        case 10:
+        case 9:
+          result = "A";
+          break;
+        case 8:
+          result = "B";
+          break;
+        case 7:
+          result = "C";
+          break;
+        case 6:
+          result = "D";
+          break;
+        default:
+          result = "F";
+          break;
+      }
+      //   switch (grade) {
+      //     case 100 >= grade && 91 <= grade:
+      //       result = "A";
+      //       break;
+      //     case 90 >= grade && 81 <= grade:
+      //       result = "B";
+      //       break;
+      //     case 80 >= grade && 71 <= grade:
+      //       result = "C";
+      //       break;
+      //     case 70 >= grade && 61 <= grade:
+      //       result = "D";
+      //       break;
+      //     case 60 >= grade && 51 <= grade:
+      //       result = "F";
+      //       break;
+      //     default:
+      //       result = "낙제";
+      //       break;
+      //   }
+
+      document.write(`<h1>${result}</h1)`);
+
+      // 3. 도출된 값을 switch 문을 통해 성적을 구한다.
+
+      // 4. 결과를 화면에 출력한다.
+    </script>
+  </body>
+</html>

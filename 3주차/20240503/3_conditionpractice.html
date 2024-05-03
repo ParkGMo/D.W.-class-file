@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>If 문제</title>
+  </head>
+  <body>
+    <script>
+      //0.변수 선언
+      let num1 = 0;
+      let num2 = 0;
+      let x = 0;
+
+      //1. 첫번째 숫자를 입력 받을 프롬프트를 띄운다.
+      num1 = +prompt("첫번째 숫자를 입력하세요!");
+
+      //   if (num1) {
+      //   } else if ("") {
+      //     alert("숫자를 입력하여주세요!");
+      //   } else {
+      //     alert("숫자를 입력하여주세요!");
+      //   }
+      if (num1) {
+      } else if ("") {
+        location.reload();
+      } else {
+        location.reload();
+      }
+
+      //2. 두번째 숫자를 입력 받을 프롬프트를 띄운다.
+      num2 = +prompt("두번째 숫자를 입력하세요!");
+      //   if (num2) {
+      //   } else if ("") {
+      //     alert("숫자를 입력하여주세요!");
+      //   } else {
+      //     alert("숫자를 입력하여주세요!");
+      //   }
+      if (num2) {
+      } else if ("") {
+        location.reload();
+      } else {
+        location.reload();
+      }
+
+      //3. 연산자를 입력 받을 프롬프트를 띄운다. , 연산자 == 문자형
+      x = prompt("+, -, *, /, % 중 하나");
+
+      //4. 연산자를 확인한 조건문 안에서 계산 결과를 도출한다.
+      switch (x) {
+        case "+":
+          document.write(`${num1}  ${x}  ${num2} = ${num1 + num2}`);
+          break;
+        case "-":
+          document.write(`${num1}  ${x}  ${num2} = ${num1 - num2}`);
+          break;
+        case "*":
+          document.write(`${num1}  ${x}  ${num2} = ${num1 * num2}`);
+          break;
+        case "/":
+          document.write(`${num1}  ${x}  ${num2} = ${num1 / num2}`);
+          break;
+        case "%":
+          document.write(`${num1}  ${x}  ${num2} = ${num1 % num2}`);
+          break;
+        default:
+          // document.write(`${num1}  ${x}  ${num2} = ${num1 % num2}`);
+          location.reload();
+          break;
+      }
+
+      //5. 화면에 출력한다.
+    </script>
+  </body>
+</html>
