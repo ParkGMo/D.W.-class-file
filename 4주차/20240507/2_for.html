@@ -71,18 +71,55 @@
       document.write(`<h1>1 ~ 100까지의 홀수들의 합 = ${sum1} </h1>`);
 
       //중첩반복문(nested Loop)
-      let i = 0;
-      if (i % 2 == 0) {
-        if (i == 2) {
-          alert("i는 2 입니다.");
-        } else {
-          alert("i는 2가 아닙다.");
-        }
-      }
+      // let i = 0;
+
+      // if (i % 2 == 0) {
+      //   if (i == 2) {
+      //     alert("i는 2 입니다.");
+      //   } else {
+      //     alert("i는 2가 아닙다.");
+      //   }
+      // }
+
+      document.write(`<hr>`);
 
       for (i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {}
+        document.write(`<h1 style="color: red;"> i 반복문 ${i} 시작</h1>`);
+        // i가 0일때 j 는 0~9까지
+        // i가 1일때 j 는 0~9까지 ...
+        // -> { for (let j = 0; j < 10; j++)}가 "i++"로 간다.
+        for (let j = 0; j < 10; j++) {
+          document.write(`<h1 style="color: blue;"> j 반복문 ${j} 시작</h1>`);
+          // i가 0일때 j 는 0일때 k가 0~9까지
+          // i가 0일때 j 는 1일때 k가 0~9까지 ...
+          //  { for (let k = 0; k < 10; k++)}가  j++로 가고,
+          //  { for (let j = 0; j < 10; j++)}가  i++로 간다.
+          for (let k = 0; k < 10; k++) {}
+          document.write(`<h1> j 반복문 ${j} 끝</h1>`);
+        }
+        document.write(`<h1> i 반복문 ${i} 끝</h1>`);
       }
+
+      document.write(`<hr>`);
+
+      // 구구단 원하는 단까지
+
+      for (let i = 2; i <= 9; i++) {
+        for (let j = 1; j <= 9; j++) {
+          document.write(`<h1>${i} X ${j} = ${i * j} </h1>`);
+        }
+        document.write(`<hr style="border-bottom: 1px solid red;">`);
+      }
+
+      // 짝수 구구단
+      // for (let i = 2; i <= 9; i++) {
+      //   if (i % 2 == 0) {
+      //     for (let j = 1; j <= 9; j++) {
+      //       document.write(`<h1>${i} X ${j} = ${i * j} </h1>`);
+      //     }
+      //     document.write(`<hr style="border-bottom: 1px solid red;">`);
+      //   }
+      // }
     </script>
   </body>
 </html>
