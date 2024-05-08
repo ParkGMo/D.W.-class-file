@@ -20,6 +20,31 @@
       //   }
       // }
 
+      function num1(a, b) {
+        let i, j, c;
+        for (i = a; i <= b; i++) {
+          for (j = a; j <= i; j++) {
+            document.write(`<span> * </span>`);
+          }
+          document.write(`<br>`);
+        }
+        for (let i = a; i <= b; i++) {
+          for (let j = a; j < b - i; j++) {
+            document.write(`<span> * </span>`);
+          }
+          document.write(`<br>`);
+        }
+        return c;
+      }
+
+      let result = num1(0, 10);
+      result = num1(0, 9);
+      result = num1(0, 8);
+      result = num1(0, 7);
+      result = num1(0, 6);
+      result = num1(0, 5);
+      result = num1(0, 4);
+
       // for (let i = 0; i <= 10; i++) {
       //   document.write(`<br>`);
       //   for (let j = 1; j < i + 1; j++) {
@@ -59,16 +84,15 @@
       //   }
       // }
 
-     for(let i = 2; i <= 10000; i=i*i) {
-       document.write(`${i} X ${i} = ${i*i} <br>`);
-      }
-      
-      for(let i = 1; i <= 15; i++) {
-        if(i%2==1){
-        document.write(`${5*i + 2} <br>`);
-        }
-      }
-     
+      // for (let i = 2; i <= 10000; i = i * i) {
+      //   document.write(`${i} X ${i} = ${i * i} <br>`);
+      // }
+
+      // for (let i = 1; i <= 15; i++) {
+      //   if (i % 2 == 1) {
+      //     document.write(`${5 * i + 2} <br>`);
+      //   }
+      // }
     </script>
   </body>
 </html>

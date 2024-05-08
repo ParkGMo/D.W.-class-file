@@ -72,6 +72,46 @@
           document.write(`<span> * </span>`);
         }
       }
+
+      //     *
+      //    **
+      //   ***
+      //  ****
+      // *****
+      for (let i = 0; i <= 5; i++) {
+        for (let j = 0; j < 5 - i; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (let j = 0; j < i; j++) {
+          document.write(`<span> * </span>`);
+        }
+        for (let j = 0; j < i + 5; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        document.write(`<br>`);
+      }
+
+      function num1(a, b) {
+        let i, j, c;
+        for (i = a; i <= b; i++) {
+          for (j = a; j < b - i; j++) {
+            document.write(
+              `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+            );
+          }
+          for (j = a; j < i; j++) {
+            document.write(`<span> * </span>`);
+          }
+          document.write(`<br>`);
+        }
+        return c;
+      }
+      let result = num1(0, 5);
+      result = num1(0, 10);
     </script>
   </body>
 </html>
