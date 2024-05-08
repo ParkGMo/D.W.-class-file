@@ -12,10 +12,10 @@
       //     document.write(`<h1> ${i+i} </h1>`);
       //   }
 
-      let x = 4;
-      for (let i = 2; i <= x * 5; i += 2) {
-        document.write(`<h1> ${i} </h1>`);
-      }
+      // let x = 4;
+      // for (let i = 2; i <= x * 5; i += 2) {
+      //   document.write(`<h1> ${i} </h1>`);
+      // }
       // for (3개의 식) -> 3개 모두 연산을 할 수 있다.
 
       // 별찍기
@@ -27,12 +27,12 @@
       // *****
       // -> 별 5번 -> 개행 5번
 
-      //   for (let i = 0; i < 5; i++) {
-      //     document.write(`<br>`);
-      //     for (let j = 0; j < 5; j++) {
-      //       document.write(`<span> * </span>`);
-      //     }
-      //   }
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+          document.write(`<span> * </span>`);
+        }
+        document.write(`<br>`);
+      }
 
       //*
       //**
@@ -41,37 +41,37 @@
       //*****
       // 개행 5번, 별 개수 1~5개,
 
-      for (let i = 0; i <= 10; i++) {
-        document.write(`<br>`);
-        for (let j = 0; j < i + 1; j++) {
+      for (let i = 0; i <= 5; i++) {
+        for (let j = 0; j < i; j++) {
           document.write(`<span> * </span>`);
         }
-      }
-      for (let i = 0; i <= 10; i++) {
         document.write(`<br>`);
-        for (let j = 0; j <= 9 - i; j++) {
-          document.write(`<span> * </span>`);
-        }
       }
+      // for (let i = 0; i <= 10; i++) {
+      //   document.write(`<br>`);
+      //   for (let j = 0; j <= 9 - i; j++) {
+      //     document.write(`<span> * </span>`);
+      //   }
+      // }
 
-      for (let i = 0; i <= 10; i++) {
-        document.write(`<br>`);
-        for (let j = 1; j < i + 1; j++) {
-          document.write(`&nbsp &nbsp `);
-        }
-        for (let k = 0; k < 1; k++) {
-          document.write(`<span> * </span>`);
-        }
-      }
-      for (let i = 0; i <= 9; i++) {
-        document.write(`<br>`);
-        for (let j = 0; j < 9 - i; j++) {
-          document.write(`&nbsp &nbsp `);
-        }
-        for (let k = 0; k < 1; k++) {
-          document.write(`<span> * </span>`);
-        }
-      }
+      // for (let i = 0; i <= 10; i++) {
+      //   document.write(`<br>`);
+      //   for (let j = 1; j < i + 1; j++) {
+      //     document.write(`&nbsp &nbsp `);
+      //   }
+      //   for (let k = 0; k < 1; k++) {
+      //     document.write(`<span> * </span>`);
+      //   }
+      // }
+      // for (let i = 0; i <= 9; i++) {
+      //   document.write(`<br>`);
+      //   for (let j = 0; j < 9 - i; j++) {
+      //     document.write(`&nbsp &nbsp `);
+      //   }
+      //   for (let k = 0; k < 1; k++) {
+      //     document.write(`<span> * </span>`);
+      //   }
+      // }
 
       //     *
       //    **
@@ -79,18 +79,21 @@
       //  ****
       // *****
       for (let i = 0; i <= 5; i++) {
-        for (let j = 0; j < 5 - i; j++) {
-          document.write(
-            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
-          );
+        // 공백 4 3 2 1 0
+        //  i   1 2 3 4 5
+        //  k   1 2 3 4 5
+
+        //  i       k
+        //  1    4 3 2 1
+        //  2     4 3 2
+        //  3      4 3
+        //  4       4
+        //  5
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp;`);
         }
         for (let j = 0; j < i; j++) {
           document.write(`<span> * </span>`);
-        }
-        for (let j = 0; j < i + 5; j++) {
-          document.write(
-            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
-          );
         }
         document.write(`<br>`);
       }
@@ -98,7 +101,7 @@
       function num1(a, b) {
         let i, j, c;
         for (i = a; i <= b; i++) {
-          for (j = a; j < b - i; j++) {
+          for (j = b; j > i; j--) {
             document.write(
               `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
             );
@@ -111,7 +114,117 @@
         return c;
       }
       let result = num1(0, 5);
-      result = num1(0, 10);
+      // result = num1(0, 10);
+
+      // *****
+      // ****
+      // ***
+      // **
+      // *
+
+      for (let i = 0; i <= 5; i++) {
+        document.write(`<br>`);
+        for (let j = 0; j <= 4 - i; j++) {
+          document.write(`<span> * </span>`);
+        }
+      }
+
+      // *****
+      //  ****
+      //   ***
+      //    **
+      //     *
+      for (let i = 0; i <= 5; i++) {
+        document.write(`<br>`);
+        for (let j = 0; j <= i; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (let j = 0; j <= 4 - i; j++) {
+          document.write(`<span> * </span>`);
+        }
+      }
+
+      //      *
+      //     ***
+      //    *****
+      //   *******
+      //  *********
+      // ***********
+      //  *********
+      //   *******
+      //    *****
+      //     ***
+      //      *
+      for (i = 0; i <= 5; i++) {
+        document.write(`<br>`);
+        for (let j = 5; j > i; j--) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (let k = 0; k < i; k++) {
+          document.write(`<span> * </span>`);
+        }
+        for (let j = 0; j < i + 1; j++) {
+          document.write(`<span> * </span>`);
+        }
+      }
+      for (let i = 0; i <= 4; i++) {
+        document.write(`<br>`);
+        for (let j = 0; j <= i; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (let j = 0; j <= 3 - i; j++) {
+          document.write(`<span> * </span>`);
+        }
+
+        for (let j = 0; j <= 4 - i; j++) {
+          document.write(`<span> * </span>`);
+        }
+      }
+      for (i = 0; i <= 5; i++) {
+        document.write(`<br>`);
+        for (let j = 5; j > i; j--) {
+          document.write(`<span > * </span>`);
+        }
+        for (let k = 0; k < i; k++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (let j = 0; j < i + 1; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (let j = 0; j <= 4 - i; j++) {
+          document.write(`<span> * </span>`);
+        }
+      }
+      for (let i = 0; i <= 4; i++) {
+        document.write(`<br>`);
+        for (let j = 0; j <= i; j++) {
+          document.write(`<span> * </span>`);
+        }
+        for (let j = 0; j <= 3 - i; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+
+        for (let j = 0; j <= 4 - i; j++) {
+          document.write(
+            `<span style="color: rgba(255, 255, 255, 0);"> * </span>`
+          );
+        }
+        for (j = 0; j <= i; j++) {
+          document.write(`<span> * </span>`);
+        }
+      }
     </script>
   </body>
 </html>

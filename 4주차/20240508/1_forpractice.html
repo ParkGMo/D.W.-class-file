@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1부터 사용자가 입력한 숫자까지의 합을 더해서 화면에 출력하세요.
+
+      // 1. 사용자에게 값(숫자)를 입력받는다.
+      let num = +prompt(`숫자를 입력하세요.`);
+
+      // 2. 반복문을 사용하여 1부터 사용자가 입력한 숫자까지 합을 한다.
+      let sum = 0; // 외부에서 선언을 해야 계산된 값이 축적된다.
+
+      for (let i = 1; i <= num; i++) {
+        sum += i;
+      }
+      //   let i =0
+      //   while(i <= num) {
+      //     sum += i;
+      //     i++
+      //   }
+
+      // 3. 계산된 합을 화면에 출력한다.
+      document.write(
+        `<h2> 1 에서부터 입력한 숫자까지의 합은 = ${sum} 입니다.</h2>`
+      );
+    </script>
+  </body>
+</html>
