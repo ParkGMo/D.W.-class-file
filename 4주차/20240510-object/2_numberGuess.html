@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <h1>Number Guess</h1>
+   <p>1부터 100 사이의 정수를 입력하세요.</p>
+   <input type="text" id="number" value="1~100"/>
+   <button onclick="clickFn()"> 숫자 추측</button>
+   <p id="message"></p>
+</body>
+<script>
+   // 0. 변수선언
+   let randomnum = 0; 
+   const input = document.querySelector("#number"); // CSS selector 모두 가능, 태그는 비선호
+   // querySelector는 태그 요소에 접근시킴
+   const pTag = document.querySelector("#message");
+   let resSter = "";
+   const MAX_COUNT = 5;
+   let couunt = 0;
+
+   // 1. 랜덤숫자를 추출한다.(1 ~ 100)
+   // document.write(`<h1>${parseInt(Math.random() * 100) + 1}</h1>`);
+
+   function getrandom (n) {
+      return parseInt(Math.random() * 100) + 1;
+   }
+
+   randomnum = getrandom(); 
+   // 2. 사용자가 input 창에 입력한 숫자를 가져온다.
+   // 2.1 input 요소에 접근한다.
+   function clickFn () {
+      console.log(input.value);
+   }
+   // 2.2 접근한 input 요소의 값을 가져온다.
+   function clickFn () {
+      // couunt++;
+      let inputnum = input.value;
+      if(randomnum == inputnum) {
+         resSter = `정답입니다.`;
+      } else if (randomnum > inputnum) {
+         resSter = `입력하신 숫자(${inputnum})보다 큽니다.`;
+      } else if (randomnum < inputnum) {
+         resSter = `입력하신 숫자(${inputnum})보다 작습니다.`;
+      }
+      pTag.innerHTML = resSter; // innerHTML은 <p> </p> 사이에 들어갈 내용을 말한다.
+   }
+
+
+   // 3. 랜덤숫자와 가져온 값이 일치하는지 비교한다.
+
+   // 3.1 비교해서 값이 일치하면 p태그에 "정답" 이라는 텍스트를 출력한다.
+
+   // 3.1 비교해서 값이 일치하지 않으면 값을 다시 입력받는다.
+
+</script>
+
+</html>

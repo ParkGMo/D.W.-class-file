@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>함수연습</title>
+</head>
+
+<body>
+  <!-- <button onclick="inputPrompt()">Click</button> -->
+  <script>
+    // 1. 아래 배열의 마지막에 "banana" 를 추가 후 반환하세요.
+    const arr = ["apply", "pie", "fig", "melon", "pear", "peach"];
+    // arr.push("banana");
+    // document.write(arr);
+
+    function solution1(inputValue) {
+      // 소스코드 작성
+      arr.push(inputValue);
+      return arr;
+    }
+
+    // 함수 실행 코드
+
+    solution1("banana")
+    console.log(solution1(arr));
+    document.write(solution1(arr));
+
+    // ---------------------------------------------------------------
+    document.write('<br>');
+
+    // 2. 아래 배열의 처음에 "banana"를 추가 후 반환하세요.
+    const arr2 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+
+    function solution2(inputValue) {
+      // 소스코드 작성
+      arr2.unshift(inputValue);
+      return arr2;
+    }
+
+    // 함수 실행 코드
+    solution2('banana')
+    console.log(solution2(arr2));
+    document.write(solution2(arr2));
+
+    document.write('<br>');
+    // ---------------------------------------------------------------
+
+    // 3. 입력 받은 배열의 길이를 반환하는 함수를 작성하여 배열의 길이를 출력하세요.
+    const arr3 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+
+    function solution3(inputValue) {
+      // 소스코드 작성
+      // arr3.length
+      return inputValue.length;
+    }
+
+    // 함수 실행 코드
+    console.log(solution3(arr3));
+    document.write(solution3(arr3));
+
+    document.write('<br>');
+    // ---------------------------------------------------------------
+
+    // 4. 입력 받은 배열의 마지막 값을 제거(삭제)후 반환하세요.
+    const arr4 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+
+    function solution4(inputValue) {
+      // 소스코드 작성
+      return inputValue.pop();
+    }
+
+    // 함수 실행 코드
+    // console.log(solution4(arr4));
+    document.write(solution4(arr4));
+    document.write('<br>');
+    document.write(arr4);
+
+    document.write('<br>');
+    // ---------------------------------------------------------------
+
+    // 5. 입력 받은 배열의 첫번째 값을 제거(삭제) 후 반환하세요.
+    const arr5 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+
+    function solution5(inputValue) {
+      // 소스코드 작성
+      return inputValue.shift();
+    }
+
+    document.write('<br>');
+    // 함수 실행 코드
+    // console.log(solution5(arr5));
+    document.write(solution5(arr5));
+    document.write('<br>');
+    document.write(arr5);
+
+    document.write('<br>');
+    // 6. 입력 받은 배열을 참조하여["pie", "fig", "melon"] 배열을 반환하세요.
+    const arr6 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+
+    function solution6(inputValue) {
+      // 소스코드 작성
+      return inputValue.slice(1, 4);
+    }
+
+    // 함수 실행 코드
+    console.log(solution6(arr6));   // ["pie", "fig", "melon"] 나와야함
+    console.log(arr6 == solution6(arr6)); // false 나와야함
+    document.write(solution6(arr6));
+
+    document.write('<br>');
+    // ---------------------------------------------------------------
+
+    // 7. 입력받은 2개의 배열을 합쳐서 반환하세요.
+    const arr7 = ["apply", "pie", "fig"];
+    const arr8 = ["melon", "pear", "peach"];
+
+    function solution7(inputValue1, inputValue2) {
+      // 소스코드 작성
+      return inputValue1.concat(inputValue2);
+    }
+
+    // 함수 실행 코드
+    console.log(arr7, arr8);
+    document.write(solution7(arr7, arr8));
+
+
+  </script>
+</body>
+
+</html>
