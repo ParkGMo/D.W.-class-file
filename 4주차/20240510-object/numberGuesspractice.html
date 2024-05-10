@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>숫자맞추기 게임</title>
+</head>
+
+<body>
+   <h1>Number Guess</h1>
+   <p>1부터 100 사이의 숫자를 입력하세요.</p>
+   <input type="text" id="number" value="" />
+   <button onclick="clickFn ()"> 숫자 추측</button>
+   <button onclick="reset ()"> 다시 도전</button>
+   <p id="message"></p>
+</body>
+<script>
+   // 0. 변수선언
+   const input = document.querySelector(`#number`);
+   const pTag = document.querySelector(`#message`);
+   const MAX_COUNT = 10;
+   let randNum = 0;
+   let resStr = ``;
+   let count = 0;
+
+   function reset() {
+      pTag.innerHTML = '';
+      resStr = '';
+      input.value = '';
+      count = 0;
+      randNum = parseInt(Math.random() * 100) + 1;
+   }
+
+   // 1. 랜덤숫자를 추출한다.(1 ~ 100)
+   randNum = parseInt(Math.random() * 100) + 1;
+
+
+   // 2. 사용자가 input 창에 입력한 숫자를 가져온다.
+
+   // 2.1 input 요소에 접근한다.
+
+   // 2.2 접근한 input 요소의 값을 가져온다.
+
+
+   // 3. 랜덤숫자와 가져온 값이 일치하는지 비교한다.
+   // 3.1 비교해서 값이 일치하면 p태그에 "정답" 이라는 텍스트를 출력한다.
+   // 3.2 비교해서 값이 일치하지 않으면 값을 다시 입력받는다.
+
+   function clickFn() {
+      let inputNum = input.value;
+
+      if (count < MAX_COUNT) {
+         if (randNum == inputNum) {
+            resStr = `" ${randNum} " : 정답입니다.`;
+            alert(resStr);
+            reset();
+         } else if (randNum > inputNum) {
+            resStr = `<p>숫자가 ${inputNum}보다 큽니다.<br></p>`;
+
+         } else {
+            resStr = `<p>숫자가 ${inputNum}보다 작습니다.<br ></p>`;
+         }
+         count++;
+         pTag.innerHTML += resStr;
+      } else {
+         resStr = `틀리셨습니다. 정답은 " ${randNum} " 입니다. 다시도전하세요!`
+         alert(resStr)
+         reset()
+         // resStr = `<p>틀리셨습니다. 정답은 ${randNum}입니다.<br> 다시도전하세요!</p>`
+         // pTag.innerHTML = resStr;
+
+      }
+   }
+
+
+   // document.write(`<h1>${resStr}</h1>`);
+
+</script>
+
+</html>
