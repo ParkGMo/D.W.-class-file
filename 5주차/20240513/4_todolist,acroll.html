@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 600px;
+      border: 2px solid #c5c5c5;
+      border-radius: 10px;
+      position: absolute;
+      top: 100px;
+      left: 200px;
+      pad: 0 10px;
+      overflow: auto;
+    }
+    /* 
+:: -webkit-scrollbar : 스크롤바 전체 -> 있으면 브라이우저가 디자인하는 것으로 인식 -> 초기화
+:: -webkit-scrollbar - thumb : 드래그 가능한 스크롤 핸들 막대
+:: -webkit-scrollbar - track : 스크롤이 움직이는 영역
+:: -webkit-scrollbar - track-piece : 스크롤 핸들 막대 부분을 제외한 남은 빈공간 
+:: -webkit-scrollbar - button : 스크롤바의 방향 버튼
+:: -webkit-scrollbar - corner : 수평/ 수직 스크롤 막대가 만나는 스크롤 막대의 하단 모서리
+:: -webkit-scrollbar - resizer : 스크롤바 코너에 나타나는 크기조정 핸들
+
+*/
+    div::-webkit-scrollbar {
+      width: 20px;
+    }
+    div::-webkit-scroll {
+      /* 
+      width : 세로축 스크롤바의 폭 너비
+      height : 가로축 스크롤바의 폭 너비 
+      */
+      display: inline-block;
+      width: 250px;
+      height: 250px;
+      padding: 20px;
+      overflow-y: scroll;
+      border: 1px solid black;
+      box-sizing: border-box;
+      color: white;
+      font-family: "Nanum Gothic";
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    div::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 1);
+      /* 스크롤바 둥글게 설정    */
+      border-radius: 8px;
+      border: 5px solid rgba(0, 0, 0, 0.8);
+      /* background-color: ; */
+      /* border: 2px solid #9b6a2f; */
+    }
+    div::-webkit-scrollbar-thumb:hover {
+      background-color: #a0a0a5;
+    }
+    div::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0);
+      /* background-color: #9b6a2f; */
+      border-radius: 10px;
+    }
+    /* 주로 위에 3가지 사용 */
+    /* div::-webkit-scrollbar-button:vertical {
+      background-color: red;
+    } */
+    /* div::-webkit-scrollbar {
+    }
+    div::-webkit-scrollbar {
+    } */
+
+    p {
+      background-color: yellow;
+      padding: 10px 5px;
+      border-radius: 10px;
+    }
+  </style>
+  <body>
+    <input
+      id="input"
+      placeholder="Add to do List"
+      onkeypress="enterKeyPressed(addTodoList())"
+    />
+    <button onclick="addTodoList()">CLICK!</button>
+    <div></div>
+  </body>
+  <script>
+    const input = document.querySelector("#input");
+    const div = document.querySelector("div");
+
+    function addTodoList() {
+      // 1. input 창에 입력된 값을 가져온다.
+      const inputValue = input.value;
+
+      // 2. p 태그 생성 후 가져온 값을 넣어준다.
+      const el = document.createElement("p");
+      el.innerHTML = inputValue;
+
+      // 3. p 태그의 배경 색상을 변경한다.
+      chgBkColor(el);
+
+      // 4. div 태그에 p 태그를 넣어준다.
+      div.append(el);
+      // document.querySelector("#todoDiv").append(pTag);
+
+      // 5. 입력하고 input창을 비워준다.
+      input.value = "";
+      input.focus();
+    }
+
+    function chgBkColor(tag) {
+      // 1. 3개의 랜덤 rgb 값 추출
+      const colorArr = [];
+      for (let i = 0; i < 3; i++) {
+        const randNum = parseInt(Math.random() * 256);
+        colorArr.push(randNum);
+      }
+      // 2. 태그에 배경색상 적용
+      tag.style.backgroundColor = `rgb(${colorArr.toString()})`;
+
+      // 3. 배경색상에 따른 폰트 색상 변경
+      // luma :#00000(검정)색일 때 luma는 0, #FFFFF(흰색)일 때 luma는 254.99이다.
+      // 0에 가까울수록 배경색은 어둡고, 255에 가까울수록 배경색이 밝아진다.
+
+      const luma =
+        0.2126 * colorArr[0] + 0.7156 * colorArr[1] + 0.0722 * colorArr[2];
+      // luma 155
+
+      // if (luma <= 155) {
+      //   tag.style.color = "white";
+      // } else {
+      // }
+      //삼황연산자
+      tag.style.color = luma <= 155 ? "white" : "black";
+      // 조건식 - luma <= 155
+      // "white"(true) : "black"(false)
+    }
+    function enterKeyPressed(event) {
+      if (event.keyCode == 13) {
+        addTask();
+        taskInput.value = "";
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>
+</html>
