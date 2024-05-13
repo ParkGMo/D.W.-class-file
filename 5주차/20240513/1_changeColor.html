@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>색상 변경 함수</title>
+  </head>
+  <style>
+    div {
+      border: 2px solid red;
+      width: 300px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+    }
+  </style>
+  <body>
+    <div id="chgColor">
+      <span></span>
+    </div>
+    <br />
+    <button onclick="chgText()">텍스트입력</button>
+    <button onclick="chgBkGrdColor()">배경색상변경</button>
+    <button onclick="chgFontColor()">폰트색상변경</button>
+  </body>
+  <script>
+    // 사용자에게 "색상명"을 입력받아서 요소의 스타일을 변경하는 함수를 만들어보자.
+    //  1. 사용자에게 prompt 로 이름을 입력받는다.
+    function chgText() {
+      // 1 사용자에게 입력받을 prompt를 띄운다.
+      let nameProm = prompt(`텍스트를 입력하세요.`);
+
+      // 2 입력받은 텍스트를 넣어줄 요소를 가져온다.
+      const nameTag = document.querySelector(`#chgColor`);
+
+      // 3 가져온 요소에 입력받은 텍스트를 넣어준다.
+      nameTag.innerHTML = nameProm;
+    }
+
+    //  2. 사용자에게 prompt 로 색상명을 입력받는다.
+    function chgBkGrdColor() {
+      // 1 사용자에게 색상명 입력받는다.
+      const bkColor = prompt(`변경할 색상명을 입력하세요`);
+      // 2 적용할 요소를 가져온다.
+      const nameTag = document.querySelector(`#chgColor`);
+
+      // 3 가져온 요소에 색상을 적용한다.
+      nameTag.style.backgroundColor = bkColor;
+
+      // console.log(nameTag.style); -> CSS 요소에 관한 모든 객체들을 확인가능!
+      // CSS에서 "-" 다음 단어는 cammel 단어로 바꾸어서 입력!
+    }
+    function chgFontColor() {
+      // 1 사용자에게 색상명 입력받는다.
+      const fontColor = prompt(`변경할 폰트 색상명을 입력하세요`);
+      // 2 적용할 요소를 가져온다.
+      const nameTag = document.querySelector(`#chgColor`);
+
+      // 3 가져온 요소에 색상을 적용한다.
+      nameTag.style.color = fontColor;
+      // console.log(nameTag.style); -> CSS 요소에 관한 모든 객체들을 확인가능!
+
+      // CSS에서 "-" 다음 단어는 cammel 단어로 바꾸어서 입력!
+    }
+  </script>
+</html>

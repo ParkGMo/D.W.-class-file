@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>랜덤컬러</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 200px;
+      border: 2px solid red;
+    }
+  </style>
+  <body>
+    <div></div>
+    <br />
+    <button onclick="chgBkGrdColor()">색상변경</button>
+  </body>
+  <script>
+    function chgBkGrdColor() {
+      const colorArr = [];
+      for (let i = 0; i < 3; i++) {
+        const randNum = parseInt(Math.random() * 256);
+        colorArr.push(randNum);
+      } // 밑과 같다.
+      //   const randNum1 = parseInt(Math.random() * 256);
+      //   const randNum2 = parseInt(Math.random() * 256);
+      //   const randNum3 = parseInt(Math.random() * 256);
+      const divEl = document.querySelector("div");
+      //   divEl.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]} )`;
+      //   divEl.style.backgroundColor = `rgb(${colorArr.join(", ")})`;
+      divEl.style.backgroundColor = `rgb(${colorArr.toString()})`;
+      rgb(0, 0, 0);
+    }
+  </script>
+</html>
