@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date 객체</title>
+  </head>
+  <style></style>
+  <body>
+    <input type="date" id="pdate" />
+    <button onclick="checkdate()">검사</button>
+  </body>
+  <script>
+    // Date 객체 생성
+    const now = new Date();
+    document.write(`<h1>${now}</h1>`);
+
+    // getFullYear() - 년도를 반환하는 함수
+    const year = now.getFullYear();
+    document.write(`<h1>${year}년</h1>`);
+
+    // getMonth() - 달을 반환하는 함수 (0 ~ 11 월)
+    let month = now.getMonth();
+    month = month + 1;
+    // if (month < 10) {
+    //   month = "0" + month;
+    // }
+    // 조건식 ? true : false
+    month = month < 10 ? "0" + month : month;
+    document.write(`<h1>${month}월</h1>`);
+
+    // getDate() - 일을 반환하는 함수
+    let date = now.getDate();
+    date = date < 10 ? "0" + date : date;
+    document.write(`<h1>${date}일</h1>`);
+
+    // getDay() - 요일 숫자를 반환하는 함수
+    // 월요일 == 1, 화요일 == 2, 수요일 == 3 .... 일요일 = 0
+    const day = now.getDay();
+    const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
+    document.write(`<h1>${dayArr[day]}</h1>`);
+
+    document.write(`<h1>${year} - ${month} - ${date} - (${dayArr[day]}) </h1>`);
+
+    // getHours() - 시간을 반환해준다.
+    const hour = now.getHours();
+    document.write(`<h1>${hour}</h1>`);
+    // getMinutes() - 분을 반환해준다.
+    let Minute = now.getMinutes();
+    Minute = Minute < 10 ? "0" + Minute : Minute;
+    document.write(`<h1>${Minute}</h1>`);
+    // getSeconds() - 초을 반환해준다.
+    let Second = now.getSeconds();
+    Second = Second < 10 ? "0" + Second : Second;
+    document.write(`<h1>${Second}</h1>`);
+    // getMilliseconds() - 초을 반환해준다.
+    const milliSecond = now.getMilliseconds();
+    document.write(`<h1>${milliSecond}</h1>`);
+
+    document.write(`<h1>${hour} : ${Minute} : ${Second},${milliSecond}</h1>`);
+
+    //getTime() - 기준시간(1970년 1월 1일)으로부터의 경과시간을 반환한다.
+    const time = now.getTime();
+    document.write(`<h1>${time}</h1>`);
+
+    const newDate = new Date();
+    const setFullYear = newDate.setFullYear(2021);
+    document.write(
+      `<h1>newDate : ${newDate}, setFullYear : ${setFullYear} </h1>`
+    );
+
+    const setMonth = newDate.setMonth(11);
+    document.write(`<h1>newDate : ${newDate}, setMonth : ${setMonth} </h1>`);
+
+    const setDate = newDate.setDate(25);
+    document.write(`<h1>newDate : ${newDate}, setMonth : ${setDate} </h1>`);
+
+    // 년, 월, 일, 더하기 /빼기
+    const date1 = new Date(`2021-05-01`);
+    const date2 = new Date(`2021-12-30`);
+    date1.setDate(date1.getDate() - 1); // 일수 빼기
+    document.write(`<h1>Date1 : ${date1}, Date2 : ${date2} </h1>`);
+    // document.write(`<h1>${date1}</h1>`);
+    // document.write(`<h1>${date2}</h1>`);
+
+    // date 2 - 2024년 11월 15일
+    date2.setFullYear(date2.getFullYear() + 2);
+    date2.setMonth(date2.getMonth() + 10);
+    date2.setDate(date2.getDate() + 16);
+    document.write(`<h1>${date2}</h1>`);
+
+    const diff = date2 - date1;
+    console.log(diff);
+    //111888000000 / 1000 -> 초
+    //111888000000 / 1000 / 60 -> 분
+    //111888000000 / 1000 / 60 / 60-> 시
+    //111888000000 / 1000 / 60 / 60 / 24-> 일
+    let diffDay = 24 * 60 * 60 * 1000;
+    let diffMonth = diffDay * 30;
+    let diffYear = diffMonth * 12;
+
+    document.write(`<h1>두개의 날짜 : ${date1}, ${date2}</h1>`);
+    document.write(`<h1> 일수 차이 : ${parseInt(diff / diffDay)}일</h1>`);
+    document.write(`<h1> 월수 차이 : ${parseInt(diff / diffMonth)}개월</h1>`);
+    document.write(`<h1> 년수 차이 : ${parseInt(diff / diffYear)}년</h1>`);
+
+    document.write(`<h1>${date1.toLocaleString()}</h1>`);
+    document.write(`<h1>${date1.toLocaleDateString()}</h1>`);
+    document.write(`<h1>${date1.toLocaleTimeString()}</h1>`);
+
+    //30일 추가된 년일월을 간략히 표현가능
+    date1.setDate(date1.getDate() + 30);
+    date1.toLocaleString(); // yyyy.mm.dd.오전. hh:mm:ss 한자리 수는 m, d, h, m
+    //date1.toLocaleString("ko-KR", { year, month, day, weekday }); // ko-KR 기본값
+    // date1.toLocaleString("ko-KR", { moneth: "2-digit" });// mm 한자리 수는 0m, 0d, 0h, 0m
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      weekday: "long",
+    };
+
+    document.write(`<h1>${date1.toLocaleString("ko-KR", options)}</h1>`);
+  </script>
+</html>
