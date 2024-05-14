@@ -57,7 +57,7 @@
     const milliSecond = now.getMilliseconds();
     document.write(`<h1>${milliSecond}</h1>`);
 
-    document.write(`<h1>${hour} : ${Minute} : ${Second},${milliSecond}</h1>`);
+    document.write(`<h1>${hour} : ${Minute} : ${Second}.${milliSecond}</h1>`);
 
     //getTime() - 기준시간(1970년 1월 1일)으로부터의 경과시간을 반환한다.
     const time = now.getTime();
@@ -121,5 +121,12 @@
     };
 
     document.write(`<h1>${date1.toLocaleString("ko-KR", options)}</h1>`);
+
+    // document.write(`<h1>${date1.toISOString()}</h1>`);
+    document.write(`<h1>${date1.toISOString().split("T")[0]}</h1>`); // 밑애 두줄과 같다.
+    let dateFormatStr = date1.toISOString();
+    dateFormatStr = dateFormatStr.split("T")[0];
+    //.split("T") 는 문자 T를 기준으로 나누어서 배열을 반환한다.
+    console.log(dateFormatStr);
   </script>
 </html>

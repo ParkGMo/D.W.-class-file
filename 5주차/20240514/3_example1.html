@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example</title>
+  </head>
+  <style></style>
+  <body></body>
+  <script>
+    // 1. 변수 두개를 선언하고 각각 초기값을 3, 4 로 할당하세요.
+    let a = 3;
+    let b = 4;
+    let result = 0;
+
+    // 2. 위의 두 변수의 합, 차, 곱, 나누기한 값을 콘솔창에 출력해보세요.
+    console.log(a + b);
+    console.log(a - b);
+    console.log(a * b);
+    console.log(a / b);
+
+    // 3. 위 문제에서 콘솔창에 출력 할 때 결과가 어떤 연산을 했는지를 알 수 있도록
+    // 결과값 왼쪽에 연산 내용을 표시해보세요.
+    // ex) a + b = 결과
+    console.log(`a + b = ${a + b}`);
+    console.log(`a - b = ${a - b}`);
+    console.log(`a * b = ${a * b}`);
+    console.log(`a / b = ${a / b}`);
+
+    // 4. 1번에서 선언한 변수 두개의 대소 비교를 하여 어떤 변수가 큰지를
+    // alert 창으로 출력할 수 있게 작성해보세요.(조건문 사용)
+
+    // if (a > b) {
+    //   alert(`a의 변수 값이 더 크다.`);
+    // } else if (a < b) {
+    //   alert(`b의 변수 값이 더 크다.`);
+    // } else {
+    //   alert(`a와 b 변수 값이 같다.`);
+    // }
+
+    // 5. 비어있는 객체를 하나 생성해보세요.
+    let object = {};
+
+    // 6. 위에서 만든 객체에 num1과 num2 라는 프로퍼티를 추가하고
+    // 각각에 1번 문제에서 만든 변수를 할당해보세요.
+
+    object.num1 = a;
+    object.num2 = b;
+
+    // 7. 위에서 만든 객체의 속성을 콘솔창에 각각 출력해보세요.
+    console.log(object.num1);
+    console.log(object.num2);
+
+    // 8. 비어있는 배열을 선언하고 그 배열에 1부터 10까지 숫자를 추가해보세요.
+    //    (선언 이후에 값을 넣는 방법 사용)
+    let arr1 = [];
+
+    arr1.push = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    console.log(arr1);
+    // 9. 비어있는 배열을 선언하고 1 ~ 100 까지의 숫자를 추가해보세요.(반복문 사용)
+
+    let arr2 = [];
+    // arr2.push = numArr1();
+    arr2.push = result;
+    function numArr1() {
+      for (let i = 1; i <= 100; i++) {
+        result = i;
+        console.log(result);
+      }
+    }
+    console.log(arr2);
+    // arr2 = numArr1();
+    // function numArr1() {
+    //   for (let i = 1; i <= 100; i++) {
+    //     result = i;
+    //     // console.log(result);
+    //   }
+    // }
+
+    // 10. 비어있는 배열을 선언하고 1 ~ 100 까지의 숫자중 짝수만 추가해보세요.(반복문 사용)
+    let arr3 = [];
+    arr3.push = numArr2();
+    function numArr2() {
+      for (let i = 1; i <= 100; i++) {
+        if (i % 2 == 0) {
+          result = i;
+          // console.log(result);
+        }
+      }
+    }
+    console.log(arr3);
+
+    // 11. 함수를 생성하고 함수를 호출하면 '안녕하세요!' 라는 alert 창이 출력되도록 작성해보세요.
+    // let c;
+    // function call() {
+    //   alert(`안녕하세요!`);
+    // }
+    // call();
+
+    // 12. 함수를 호출하면 body 태그에 p 태그를 추가하고 font 색상과 background-color 가
+    // 변경된 요소가 화면에 출력되는 함수를 작성하세요.
+    const pTag = document.createElement("p");
+
+    function chagFontBkc(tag) {
+      document.querySelector("body").append(pTag);
+      pTag.innerHTML = `1`;
+      pTag.style.color = `rgb(30, 92, 172)`;
+      pTag.style.backgroundColor = `rgb(248, 237, 203)`;
+    }
+
+    chagFontBkc();
+  </script>
+</html>
