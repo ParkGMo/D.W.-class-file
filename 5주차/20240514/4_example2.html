@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자바스크립트 예제</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    input {
+      padding: 20px;
+      height: 100%;
+    }
+    button {
+      padding: 20px;
+      height: 100%;
+    }
+    div {
+      display: flex;
+      gap: 10px;
+      height: 80px;
+    }
+    body > div > div {
+      width: 100px;
+      height: 100%;
+      border: 2px solid red;
+    }
+  </style>
+  <body>
+    <div id="birthCalc">
+      <input type="text" placeholder="출생년도를 입력하세요." />
+      <button onclick="ageCul()">나이 계산</button>
+      <div class="result1"></div>
+    </div>
+    <hr />
+    <div id="square">
+      <input
+        class="square1"
+        type="text"
+        placeholder="가로 너비를 입력하세요."
+      />
+      <input
+        class="square2"
+        type="text"
+        placeholder="세로 높이를 입력하세요."
+      />
+      <button onclick="squareCul()">사각형 넓이 계산</button>
+      <div class="result2"></div>
+    </div>
+    <hr />
+    <div id="discount">
+      <input class="discount1" type="text" placeholder="할인 전 가격" />
+      <input class="discount2" type="text" placeholder="할인율" />
+      <button onclick="discountCul()">할인가계산</button>
+      <div class="result3"></div>
+    </div>
+  </body>
+  <script>
+    // 1. 나이 계산 버튼을 누르면 사용자가 입력한 출생년도를 참고하여 나이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
+    const now = new Date();
+    let result;
+    const year = now.getFullYear();
+    console.log(year);
+
+    function ageCul() {
+      let a = document.querySelector("#birthCalc > input").value;
+      console.log(a);
+      result = year - a + 1;
+      console.log(result);
+      document.querySelector(".result1").innerHTML = result;
+    }
+
+    // 2. 사각형의 가로 너비와 세로 높이를 입력하여 사각형의 넓이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
+    function squareCul() {
+      let b = document.querySelector("#square > .square1").value;
+      console.log(b);
+      let c = document.querySelector("#square > .square2").value;
+      console.log(c);
+      result = b * c;
+      console.log(result);
+      document.querySelector(".result2").innerHTML = result;
+    }
+
+    // 3. 원래 가격과 할인율을 입력하면 할인 가격을 계산해주는 함수를 작성하세요.(할인된 가격은 정수로 표현하세요. result div에 결과 표시)
+    function discountCul() {
+      const d = document.querySelector("#discount > .discount1").value;
+      console.log(d);
+      let d1 = d.replace("원", "");
+      console.log(d1);
+      const e = document.querySelector("#discount > .discount2").value;
+      console.log(e);
+      let e1 = e.replace("%", "");
+      console.log(e1);
+
+      result = d1 - d1 * (e1 / 100);
+      console.log(result);
+      document.querySelector(".result3").innerHTML = result;
+    }
+  </script>
+</html>
