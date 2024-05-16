@@ -9,8 +9,8 @@
   <body></body>
   <script>
     // 1. 변수 두개를 선언하고 각각 초기값을 3, 4 로 할당하세요.
-    let a = 3;
-    let b = 4;
+    const a = 3;
+    const b = 4;
     let result = 0;
 
     // 2. 위의 두 변수의 합, 차, 곱, 나누기한 값을 콘솔창에 출력해보세요.
@@ -47,9 +47,15 @@
     object.num1 = a;
     object.num2 = b;
 
+    // let key = ''num2';
+    // object.key; ==> object['key'];
+    // object.[key]; ==> object['num2'];
+
     // 7. 위에서 만든 객체의 속성을 콘솔창에 각각 출력해보세요.
     console.log(object.num1);
     console.log(object.num2);
+    // console.log(object.['num1']);
+    // console.log(object.['num2']);
 
     // 8. 비어있는 배열을 선언하고 그 배열에 1부터 10까지 숫자를 추가해보세요.
     //    (선언 이후에 값을 넣는 방법 사용)
@@ -61,32 +67,37 @@
 
     let arr2 = [];
     // arr2.push = numArr1();
-    arr2.push = result;
     function numArr1() {
       for (let i = 1; i <= 100; i++) {
-        result = i;
-        console.log(result);
+        arr2.push(i);
       }
     }
+    numArr1();
+    console.log(arr2);
     // arr2 = numArr1();
     // function numArr1() {
     //   for (let i = 1; i <= 100; i++) {
     //     result = i;
     //     // console.log(result);
-    //   }
+    // const
     // }
 
     // 10. 비어있는 배열을 선언하고 1 ~ 100 까지의 숫자중 짝수만 추가해보세요.(반복문 사용)
     let arr3 = [];
-    arr3.push = numArr2();
+    // function numArr2() {
+    //   for (let i = 1; i <= 100; i++) {
+    //     if (i % 2 == 0) {
+    //       arr3.push(i);
+    //       // console.log(result);
+    //     }
+    //   }
+    // }
     function numArr2() {
-      for (let i = 1; i <= 100; i++) {
-        if (i % 2 == 0) {
-          result = i;
-          // console.log(result);
-        }
+      for (let i = 2; i <= 100; i = i + 2) {
+        arr3.push(i);
       }
     }
+    numArr2();
     console.log(arr3);
 
     // 11. 함수를 생성하고 함수를 호출하면 '안녕하세요!' 라는 alert 창이 출력되도록 작성해보세요.
@@ -107,6 +118,7 @@
       pTag.style.backgroundColor = `rgb(248, 237, 203)`;
     }
 
+    //innerHTML = --> 프로퍼티에 전달되는 값은 문자열 이어야 한다.
     chagFontBkc();
   </script>
 </html>

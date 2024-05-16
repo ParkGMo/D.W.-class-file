@@ -17,27 +17,43 @@
       padding: 20px;
       height: 100%;
     }
-    div {
+    body > div {
       display: flex;
       gap: 10px;
       height: 80px;
     }
-    div div {
+
+    body > div > div {
+      width: 100px;
+      height: 100%;
+      border: 2px solid red;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: large;
       font-weight: bold;
     }
-    body > div > div {
-      width: 100px;
-      height: 100%;
-      border: 2px solid red;
-    }
   </style>
   <body>
     <div id="birthCalc">
-      <input type="text" placeholder="출생년도를 입력하세요." />
+      <input
+        type="text"
+        placeholder="출생년도를 입력하세요."
+        pattern="[0-9]{4}"
+        title="출생년도 4자리 숫자"
+        required
+        oninput="this.value = this.value.replace(/[^0-9]$/g,'')"
+      />
+      <!-- 
+        정규식 : oninput - 숫자를 제외한 나머지는 작성 불가
+        ^ : 문자열의 시작
+        ^0-9 : 숫자를 제외한 모든 문자
+        g :  global 
+        this : 사용자가 말하고있는 요소
+
+        이벤트 : oninput, onclick ....
+        event =" callback(=함수, 값...) "
+      -->
       <button onclick="ageCul()">나이 계산</button>
       <div class="result1"></div>
     </div>
@@ -47,11 +63,13 @@
         class="square1"
         type="text"
         placeholder="가로 너비를 입력하세요."
+        oninput="this.value = this.value.replace(/[^0-9]$/g,'')"
       />
       <input
         class="square2"
         type="text"
         placeholder="세로 높이를 입력하세요."
+        oninput="this.value = this.value.replace(/[^0-9]$/g,'')"
       />
       <button onclick="squareCul()">사각형 넓이 계산</button>
       <div class="result2"></div>
@@ -66,29 +84,60 @@
   </body>
   <script>
     // 1. 나이 계산 버튼을 누르면 사용자가 입력한 출생년도를 참고하여 나이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
-    const now = new Date();
     let result;
+
+    // 1.1 올 해 년도 가져온다.
+    const now = new Date();
     const year = now.getFullYear();
+    // const now = new Date().getFullYear; // now 변수 필요 없음
+
     console.log(year);
 
     function ageCul() {
-      let a = document.querySelector("#birthCalc > input").value;
-      console.log(a);
-      result = year - a + 1;
+      // 1.2 사용자가 입력한 값을 가져온다.
+      const a = document.querySelector("#birthCalc > input");
+      const aValue = a.value;
+      // let a = document.querySelector("#birthCalc > input").value;
+      console.log(aValue);
+
+      // 1.3 나이계산
+      result = year - aValue + 1;
       console.log(result);
-      document.querySelector(".result1").innerHTML = result;
+      if (result > 0) {
+        document.querySelector(".result1").innerHTML = result + "살";
+      } else {
+        alert("출생년도는 현재년도보다 클 수 없습니다.");
+        a.value = "";
+        document.querySelector(".result1").innerHTML = "";
+        return false;
+      }
     }
+
+    // 1.4 result div 에 결과 출력
 
     // 2. 사각형의 가로 너비와 세로 높이를 입력하여 사각형의 넓이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
     function squareCul() {
+      // 2.1 가로 너비와 세로 높이 값을 가져온다.
       let b = document.querySelector("#square > .square1").value;
       console.log(b);
       let c = document.querySelector("#square > .square2").value;
       console.log(c);
+
+      // 2.2 사각형의 넓이를 계산한다.
       result = b * c;
       console.log(result);
-      document.querySelector(".result2").innerHTML = result;
+      document.querySelector(".result2").innerHTML = `${result}m<sup>2</sup>`;
     }
+    // 2.3 결과를 화면에 출력한다.
+
+    /*
+    function area() {
+      const input = document.querySelector("#square  >  input");
+      const width = inputs[0].value;
+      const height = inputs[1].value;
+    }
+    2개의 input에 값을 넣으면 배열처럼 나타나지만 완전한 배열 역할을 하지 않는다.
+    */
 
     // 3. 원래 가격과 할인율을 입력하면 할인 가격을 계산해주는 함수를 작성하세요.(할인된 가격은 정수로 표현하세요. result div에 결과 표시)
     function discountCul() {
@@ -101,9 +150,17 @@
       let e1 = e.replace("%", "");
       console.log(e1);
 
-      result = d1 - d1 * (e1 / 100);
+      // result = d1 - d1 * (e1 / 100);
+      result = d1 * (1 - e1 / 100);
       console.log(result);
-      document.querySelector(".result3").innerHTML = result;
+      document.querySelector(".result3").innerHTML = result + "원";
     }
+    /*
+    function area() {
+      const input = document.querySelector("#discount  >  input");
+      const oldPrice = inputs[0].value;
+      const dicRate = inputs[1].value;
+    }
+    */
   </script>
 </html>
