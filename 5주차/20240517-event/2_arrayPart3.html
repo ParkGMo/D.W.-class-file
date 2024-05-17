@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Part 3</title>
+  </head>
+  <body></body>
+  <script>
+    // 1. forEach() 함수 ⭐⭐⭐
+    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한다.
+    document.write(`<h1>1. forEach() 함수 </h1>`);
+    const arr = [1, true, "Javascript"];
+    arr.push(5);
+    /* 
+    function printArr( , , ) {}
+    arr.forEach(printArr);
+    -> 함수가 주어진다면 직접 파라미터에 적어도된다.
+    
+    arr.forEach(function( , , ){});
+    -> 익명 함수를 직접 넣어주어도 된다.
+    */
+    function printArr(value, index, array) {
+      console.log(`value : ${value}, index : ${index}, array : ${array}`);
+    }
+    // value, index, array 파라미터 내의 매개변수는 원하는 대로 지정가능 ex)x,y,z
+
+    arr.forEach(printArr);
+    // arr.forEach(printArr); 함수 자체를 의미한다.
+    // arr.forEach(printArr()); 함수를 바로 실행 한다.
+    console.log(typeof printArr);
+    console.log(typeof printArr(arr));
+    // console.log(typeof printArr); -> 함수라는 타입이 출력된다.
+    // console.log(typeof printArr()); -> 함수의 값이 출력된다.
+
+    // 2. map() 함수 ⭐⭐⭐⭐⭐
+    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한 후,
+    // 그 결과를 새로운 배열에 담아 반환한다.
+    const arr2 = [3, 4, 5, 6];
+    const tempArr = [];
+    // for (let i = 0; i < arr2.length; i++) {
+    //   tempArr.push(arr2[i] * 2);
+    // }
+    // console.log(arr2);
+
+    function arr3(el) {
+      tempArr.push(el * 2);
+    }
+    arr2.forEach(arr3);
+    console.log(tempArr);
+  </script>
+</html>
