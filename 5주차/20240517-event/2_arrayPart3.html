@@ -12,11 +12,11 @@
     document.write(`<h1>1. forEach() 함수 </h1>`);
     const arr = [1, true, "Javascript"];
     arr.push(5);
-    /* 
+    /*
     function printArr( , , ) {}
     arr.forEach(printArr);
     -> 함수가 주어진다면 직접 파라미터에 적어도된다.
-    
+
     arr.forEach(function( , , ){});
     -> 익명 함수를 직접 넣어주어도 된다.
     */
@@ -48,5 +48,153 @@
     }
     arr2.forEach(arr3);
     console.log(tempArr);
+
+    // let modifiedArr = [];
+    // modifiedArr = arr2.map(function (elemnet, index, array) {
+    //     return element * 2;
+    // });
+    let modifiedArr = arr2.map(function (v) {
+      return v * 2;
+    });
+    // modifiedArr = arr2.map((v) => v * 2);
+    console.log(modifiedArr);
+    document.write(`<h1>2. map() 함수</h1>`);
+    document.write(`<h3>arr2 : [${arr2}]</h3>`);
+    document.write(`<h3>arr2의 원소에 * 2 : [${modifiedArr}]</h3>`);
+
+    const users = [
+      { firstname: "베컴", lastname: "데이비드" },
+      { firstname: "더브라위너", lastname: "케빈" },
+      { firstname: "홀란드", lastname: "엘링" },
+    ];
+    //["데이비드 베컴","케빈 더브라위너", "엘링 홀란드" ]
+    const nameArr = users.map(function (v) {
+      return ` ${v.lastname}  ${v.firstname} `;
+    });
+    document.write(`"${users}"`);
+    document.write(`<br>`);
+    document.write(`"${nameArr}"`);
+
+    const numberArr = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+    function multiplyThree(number) {
+      return number * 3;
+    }
+    // 단일 숫자 함수 활용
+    document.write(`<h3>${multiplyThree(11)}</h3>`);
+
+    // 배열의 숫자들 각각을 함수 실행!
+    const newnumberArr = numberArr.map(multiplyThree);
+    // const newnumberArr = numberArr.map(function(v){
+    //     return v * 3;
+    // });
+    document.write(`<h3>${numberArr}</h3>`);
+    document.write(`<h3>${newnumberArr}</h3>`);
+
+    //practice1
+    const doubleArr = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    // [6, 15, 24] 각 배열을 전부 합한값 - 1 -> 배열 안 배열의 수가 홀수 개면 가능
+    const newdoubleArr = doubleArr.map(function (v, i, a) {
+      //   return v[0] + v[1] + v[2];
+      return v[parseInt(a.length / 2)] * a.length;
+    });
+
+    // v = [1, 2, 3] i = 0
+    // v = [4, 5, 6] i = 1
+    // v = [7, 8, 9] i = 2
+
+    document.write(`<h3>${newdoubleArr}</h3>`);
+
+    // [6, 15, 24] 각 배열을 전부 합한값 - 2 -> 주어진 배열이 모른다는 가정을 할때
+    function sum(array) {
+      let sum = 0;
+      for (let i = 0; i < array.length; i++) {
+        sum += array[1];
+      }
+      return sum;
+    }
+    doubleArr.map(sum);
+
+    document.write(`<h3>${doubleArr.map(sum)}</h3>`);
+
+    // [0, 5, 10, 15]
+    const numArr = [5, 10, 15, 20];
+    const newnumArr = numArr.map(function (v, i, a) {
+      //   return v - 5;
+      //   return i * 5;
+      //   return v - a.length - 1;
+      return (a.length + 1) * i;
+    });
+
+    document.write(`<h3>${newnumArr}</h3>`);
+
+    const strArr = ["apple", "banana", "watermelon"];
+    // [5, 6, 10]
+
+    const newArr = strArr.map(function (v, i, a) {
+      return v.length;
+    });
+
+    document.write(`<h3>${newArr}</h3>`);
+
+    // ["HELLO", "WORLD", "JAVASCRIPT"]
+    const strArr2 = ["hello", "world", "Javascript"];
+    const newArr2 = strArr2.map(function (v, i, a) {
+      return `" ${v.toUpperCase()} "`;
+    });
+    document.write(`<h3>[${newArr2}]</h3>`);
+
+    // ["Index 0: 10", "Index 1: 20", "Index 2: 30", "Index 3: 40", "Index 4: 50"]
+    const numArr2 = [10, 20, 30, 40, 50];
+    const newnumArr2 = numArr2.map(function (v, i, a) {
+      return `" Index ${i}: ${v} "`;
+    });
+    document.write(`<h3>[${newnumArr2}]</h3>`);
+
+    // ["김덕배", "최덕배", "이덕배"]
+    const users2 = [
+      { id: 1, name: "김덕배" },
+      { id: 2, name: "최덕배" },
+      { id: 3, name: "이덕배" },
+    ];
+    const newusers2 = users2.map(function (v, i, a) {
+      return `" ${v.name} "`;
+    });
+    document.write(`<h3>[${newusers2}]</h3>`);
+
+    // ['kim@gmail.com', 'choi@gmail.com', 'lee@gmail.com']
+    const users3 = [
+      { id: 1, name: "김덕배", contact: { email: "kim@gmail.com" } },
+      { id: 2, name: "최덕배", contact: { email: "choi@gmail.com" } },
+      { id: 3, name: "이덕배", contact: { email: "lee@gmail.com" } },
+    ];
+    const newusers3 = users3.map(function (v, i, a) {
+      // let userContact = v.contact;
+      // return userContact.email;
+      return `" ${v.contact.email} "`;
+    });
+    document.write(`<h3>[${newusers3}]</h3>`);
+
+    // [1, 2, 3],
+    // [4, 5, 6],
+    // [7, 8, 9],
+    // 결과
+    // [
+    //   [2,  4,   6],
+    //   [8,  10, 12],
+    //   [14, 16, 18]
+    // ]
+
+    const doubleArr2 = doubleArr.map(function (v, i, a) {
+      return v[0];
+    });
+    document.write(`<h3>[${doubleArr2}]</h3>`);
+    const doubleArr3 = doubleArr2.map(function (v, i, a) {
+      return `"${v}"`;
+    });
+    document.write(`<h3>[${doubleArr3}]</h3>`);
   </script>
 </html>
