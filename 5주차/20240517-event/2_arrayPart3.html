@@ -189,12 +189,23 @@
     // ]
 
     const doubleArr2 = doubleArr.map(function (v, i, a) {
-      return v[0];
+      let arr = v.join();
+      arr[0];
+      // console.log(arr[0] * 2);
+      arr[1];
+      console.log(arr[1] * 2);
+      arr[2];
+      // console.log(arr[2] * 2);
+      // let arr1 = arr[i].join();
+      return `"${arr}" `;
+      // return v.join();
     });
     document.write(`<h3>[${doubleArr2}]</h3>`);
-    const doubleArr3 = doubleArr2.map(function (v, i, a) {
-      return `"${v}"`;
-    });
-    document.write(`<h3>[${doubleArr3}]</h3>`);
+    // const doubleArr3 = doubleArr2.
+    // }); //
+    // return `"${v}"`;
+    //   return `"${a.concat(v[0], v[1], v[2])}"`;
+    // const doubleArr3 = doubleArr2.map(function (v, i, a) {
+    // document.write(`<h3>[${doubleArr3}]</h3>`);
   </script>
 </html>

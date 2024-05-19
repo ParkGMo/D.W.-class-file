@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Part 3</title>
+  </head>
+  <body></body>
+  <script>
+    const doubleArr = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    // 원본
+    // [ [1, 2, 3], [4, 5, 6], [7, 8, 9], ]
+
+    // 결과
+    // [ [2, 4, 6], [8, 10, 12], [14, 16, 18] ]
+    // function mapArr (x){
+    //   const a = a.map(function (v, i, a) {
+    //     return v[x] * 2;
+    //   });
+    // }  -> 변수명에 매개변수 지정X??
+
+    const doubleArr2 = doubleArr.map(function (v, i, a) {
+      // const a1 = a.map(function (v, i, a) {
+      //   return v[0] * 2;
+      // });
+      // const a2 = a.map(function (v, i, a) {
+      //   return v[1] * 2;
+      // });
+      // const a3 = a.map(function (v, i, a) {
+      //   return v[2] * 2;
+      // });
+      const a1 = a.map(function (v, i, a) {
+        // console.log(v[0] * 2);
+        return v[0] * 2;
+      });
+      const a2 = a.map(function (v, i, a) {
+        // console.log(v[1] * 2);
+        return v[1] * 2;
+      });
+      const a3 = a.map(function (v, i, a) {
+        // console.log(v[2] * 2);
+        return v[2] * 2;
+      });
+      // console.log(a1[i]);
+      // console.log(a2[i]);
+      // console.log(a3[i]);
+      return `[${a1[i]}, ${a2[i]}, ${a3[i]}]`;
+    });
+    console.log(doubleArr2);
+
+    document.write(`<h3>[${doubleArr2}]</h3>`);
+  </script>
+</html>
