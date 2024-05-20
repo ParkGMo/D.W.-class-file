@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 랜덤변화</title>
+  </head>
+  <style>
+    #image:hover {
+      border: 3px solid black;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <img
+      src="../../resources/img/home.png"
+      width="500"
+      height="auto"
+      id="image"
+      onmouseover="changeImage()"
+      onmouseout="changeImage()"
+      onclick="changeImage()"
+    />
+    <!-- <button onclick="changeImage()">눌러보세요!</button> -->
+    <!-- 
+        onclick
+        onmouseover
+        onmousout
+     -->
+  </body>
+  <script>
+    function changeImage() {
+      // 사진 5정도를 준비
+
+      // 사진의 경로를 배열에 담는다.
+      let images = [
+        "../../resources/img/balckhole.jpg",
+        "../../resources/img/cat wallpaper.jpg",
+        "../../resources/img/cat wallpaper1.jpg",
+        "../../resources/img/Drip_Coffee.jpg",
+        "../../resources/img/spongbob.jpg",
+      ];
+      // 클릭할 때마다 0 ~ 4의 랜덤 숫자를 뽑는다.
+      let randNum = parseInt(Math.random() * 5);
+
+      document.querySelector("#image").src = images[randNum];
+    }
+  </script>
+</html>
