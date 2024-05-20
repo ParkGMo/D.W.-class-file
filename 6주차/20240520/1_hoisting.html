@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>호이스팅</title>
+  </head>
+  <body></body>
+  <script>
+    // ----------------------------------------------------------------------
+    // arrow funtion
+
+    const arr = [1, 2, 3, 4, 5];
+    // arr.map(function (v) {
+    //   return v * 3;
+    // });
+    arr.map((v) => v * 3);
+    // ----------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------
+    // hoisting
+    let a = 10;
+    // if (true) {
+    //   console.log(a);
+    //   let a = 20;
+    // }
+
+    // if (true) {
+    //   var test = true;
+    // }
+    // alert(test);
+
+    // ----------------------------------------------------------------------
+    // 스코프(범위)
+    // var ==> 블록 스코프가 없다. 전역 or 함수만 가진다.
+    //         변수명을 같이하여 다시 선언할 수 있다.
+    function varTest() {
+      var test = 5;
+      alert(test);
+    } // var test 는 지역변수가 된다.
+    // alert(test)를 함수 블록 안에서만 가능;
+    var test = 10;
+    var test = 20; // 모두 가능
+    // ----------------------------------------------------------------------
+    // ES6 ==> let, const 등장!
+    // let, const 는 블록 레벨의 스코프를 가진다.
+
+    function sayHi() {
+      phrase = "Hello";
+      alert(phrase);
+      var phrase;
+    }
+    sayHi(); // 작동함!, var phrase 위치가 첫번째로 간다.
+
+    // var, let, const, function, class는 시작할때 가장위로 올리고 시작한다.
+    // var은 호이스팅시 선언(공간 생성)과 초기화가 동시에 이루어진다.
+    // var test; // => 초기화가 되어있다.
+    // let test; // => undefined : 선언과 출력사이에서 undefined가 나타남
+
+    // ----------------------------------------------------------------------
+    console.log(foo);
+    var foo; // undefined
+    // var는 코드 순서관계 없이 할당시킨다.
+    // ∴var는 코드 유무에 관계없이 작동가능!!
+
+    console.log(bar); // TDZ존 : let 초기화 전단계, 선언단계와 초기화단계가 분리되어있기 때문
+    let bar; // error
+    // let과 const는 코드 시각적으로 나타나는 순서를 확인하여 할당 시키기위해
+    // ∴let과 const는 코드를 만나야지만 작동가능!!
+
+    // 변수 선언 단계
+    // 선언단계   >   초기화단계   >   할당단계
+    //   var            var           (직접지정)
+    //   let         (직접지정)       (직접지정)
+
+    // 자바스크립트 엔진이 실행되면서 선언 단계가 실행된다.
+    // 아직 변수가 초기화(undefined)되지 않았다.
+
+    // ----------------------------------------------------------------------
+    // for (var i = 0; i < 10; i++) {
+    //   console.log(i);
+    // }
+    // alert(i);
+    // ----------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------
+    //    함수 선언식     vs         함수 표현식
+    // function aaa(){}   vs   const bbb = function () {}
+
+    // aaa(); // 작동함
+    // bbb(); // 작동하지 X
+
+    // function aaa() {
+    //   alert("aaa 함수");
+    // }
+    // let bbb = function () {
+    //   alert("bbb 함수");
+    // };
+  </script>
+</html>
