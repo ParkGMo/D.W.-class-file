@@ -41,9 +41,26 @@
         "../../resources/img/spongbob.jpg",
       ];
       // 클릭할 때마다 0 ~ 4의 랜덤 숫자를 뽑는다.
-      let randNum = parseInt(Math.random() * 5);
+      let lastIdx = 0;
+      let randNum = 0;
 
+      while (true) {
+        randNum = parseInt(Math.random() * 5);
+        if (randNum !== lastIdx) {
+          lastIdx = randNum;
+          //   return randNum;
+          break;
+        }
+      }
       document.querySelector("#image").src = images[randNum];
+      //   const num = makeRandNum(imges.length);
+
+      //   function makeRandNum(length) {
+      //     const randNum = length(Math.random() * length);
+      //     return randNum;
+      //   }
+
+      //   document.querySelector("#image").src = images[num];
     }
   </script>
 </html>

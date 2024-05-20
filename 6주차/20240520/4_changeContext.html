@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>changeConstext</title>
+  </head>
+  <style>
+    div {
+      width: 500px;
+      height: 200px;
+      border: 3px solid orange;
+      font-weight: 600;
+    }
+  </style>
+  <body>
+    <div id="ex">무궁화 꽃이 피었습니다!</div>
+    <button onclick="get()">요소 내용 가져오기</button>
+    <button onclick="set()">요소 내용 변경하기</button>
+  </body>
+  <script>
+    // innerHTML : 태그도 같이 가져온다.
+    // innerText : 텍스트만 가져온다.
+    function get() {
+      // div 요소의 텍스트를 가져와서 alert으로 출력
+      const exText = document.querySelector("#ex").innerHTML;
+      //   const exText = document.querySelector("#ex").innerText;
+      alert(`${exText}`);
+      document.querySelector("#ex").innerHTML = "";
+      console.log(exText);
+    }
+    function set() {
+      // 프롬프트 창을 띄워 사용자에게 입력받은 후
+      const answer = prompt("변경할 텍스트를 입력하세요");
+      // div요소의 변경
+      const exText = document.querySelector("#ex");
+      exText.innerHTML = answer;
+      console.log(exText.innerHTML);
+    }
+  </script>
+</html>
