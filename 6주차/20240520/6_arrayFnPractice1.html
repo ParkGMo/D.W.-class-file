@@ -23,27 +23,35 @@
     console.log(name);
 
     // 2. 점수가 7점 이상인 학생 필터링
-    const score = students.map(function (v) {
-      if (v.score > 7) {
-        return v.name;
-      }
+    // const score = students.map(function (v) {
+    //   if (v.score > 7) {
+    //     return v.name;
+    //   }
+    // });
+    const score = students.filter(function (v) {
+      return v.score > 7;
     });
     console.log(score);
 
     // 3. 모든 학생의 점수 합계 구하기
-
     const score1 = students.map(function (v) {
       return v.score;
     });
     console.log(score1);
-    s;
+
     const sum = score1.reduce(function (x, y) {
-      console.log(x);
-      console.log(y);
-      //   return x;
+      return x + y;
     });
+    console.log(sum);
 
     // 4. 모든 학생의 평균 점수 구하기
+    const mean = score1.reduce(function (x, y) {
+      let sum = x + y;
+      return sum / students.length;
+    });
+    console.log(mean);
+    console.log(students.length);
+    console.log(sum / students.length);
 
     const products = [
       { name: "Laptop", price: 899.99 },
@@ -55,8 +63,32 @@
     ];
 
     // 1. 모든 제품의 가격에 10%의 세금을 추가한 배열을 만드세요.
+    const price = products.map(function (v) {
+      // console.log(v.price * 0.1);
+      console.log(v.price * 0.1 + v.price);
+      // console.log(v.price * (1 + v / 10));
+      return v.price * 0.1 + v.price;
+    });
+    console.log(price);
     // 2. 세금이 추가된 가격이 100달러 이상인 제품들만 필터링하세요.
+    const filtering = price.filter(function (v) {
+      return v > 100;
+    });
+    console.log(filtering);
+
     // 3. 필터링된 제품들의 총 가격을 계산하세요.
+    const sum1 = filtering.reduce(function (x, y) {
+      return x + y;
+    });
+    console.log(sum1);
+
     // 4. 필터링된 제품들의 평균 가격을 계산하세요.
+    const mean1 = filtering.reduce(function (acc, cur, cid, arr) {
+      let sum = acc + cur;
+      return sum / arr.length;
+    });
+    console.log(mean1);
+    console.log(filtering.length);
+    console.log(sum1 / filtering.length);
   </script>
 </html>
