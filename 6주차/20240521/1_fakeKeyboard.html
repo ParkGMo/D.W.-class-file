@@ -150,6 +150,26 @@
       // 눌린 키를 화면상에서 회색으로 변경한다. (클래스를 적용하여)
       el.classList.add("on");
 
+      // 외부파일에 대한 엘리먼트 접근!!
+      // el.style => 다 적용된 후에 style 적용함으로 적용되지 않는다.
+      // window.getComputedStyle() => 다 적용된 전에 style 적용 -> css 값 콘솔 확인가능
+      // const rootStyles = window.getComputedStyle(el);
+      // console.log(rootStyles.backgroundColor);
+
+      colorArr = [];
+      for (let i = 0; i < 3; i++) {
+        colorArr.push(parseInt(Math.random() * 256));
+      }
+      const luma =
+        0.2126 * colorArr[0] + 0.7156 * colorArr[1] + 0.0722 * colorArr[2];
+
+      //  el.style.setProperty = luma <= 155 ? "white" : "black";
+      el.style.setProperty("--font-color", luma <= 155 ? "white" : "black");
+
+      // style.setProperty로 CSS 변수에다가 적용한다.
+
+      el.style.setProperty("--main-color", `rgb(${colorArr})`);
+
       // 눌린 키의 "key"와"code"프로퍼티 값을 화면에 표시한다.
       key.innerHTML = `key: ${e.key}`;
       code.innerHTML = `code: ${e.code}`;
