@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* :root {
+      --TF-translateY: 0px;
+    } */
+
+    #container {
+      border: 1px solid black;
+      border-radius: 500px;
+      width: 500px;
+      height: 500px;
+      position: relative;
+    }
+    #wallUp {
+      text-align: center;
+      width: 100%;
+      height: 20px;
+      /* border: 1px solid red; */
+      position: absolute;
+      top: 0;
+    }
+    #wallDown {
+      text-align: center;
+      width: 100%;
+      height: 20px;
+      /* border: 1px solid red; */
+      position: absolute;
+      bottom: 0;
+    }
+    #icon {
+      width: 100%;
+      height: 20px;
+      /* border: 1px solid blue; */
+      position: absolute;
+      top: 50%;
+      transform: var(--TF-trans);
+      /* transform: var(--TF-translateY); */
+      /* transform: translateY(200px); */
+    }
+
+    /* #icon:hover {
+      transform: translateY(200px);
+      transition: 2s;
+    } */
+  </style>
+  <body>
+    <div id="container">
+      <div id="wallUp">12</div>
+      <div id="icon">
+        &nbsp;&nbsp;&nbsp;←-----------------------------------
+      </div>
+      <div id="wallDown">6</div>
+    </div>
+  </body>
+  <script>
+    let icon = document.querySelector("#icon");
+    // console.log(icon.getBoundingClientRect());
+    // console.log(icon.offsetHeight);
+    let icon1 = icon.offsetHeight - 20;
+    setInterval(function () {
+      icon1 = icon1 + 6;
+      // console.log(icon1);
+      //   icon1 = icon.offsetHeight + 10;
+      icon.style.setProperty("--TF-trans", `rotate(${icon1}deg)`);
+      console.log(icon.getBoundingClientRect().x);
+      console.log(icon.getBoundingClientRect().y);
+    }, 1000);
+  </script>
+</html>
