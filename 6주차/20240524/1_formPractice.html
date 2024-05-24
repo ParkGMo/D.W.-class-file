@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Practice</title>
+  </head>
+  <body>
+    <form>
+      <p>이름 : <input type="text" name="name" /></p>
+      <p>
+        성별 :
+        <input type="radio" id="male" name="gender" value="남" class="gender" />
+        <label for="male">남자</label>
+        <input
+          type="radio"
+          id="female"
+          name="gender"
+          value="여"
+          class="gender"
+        />
+        <label for="female">여자</label>
+      </p>
+      <p>
+        취미 :
+        <input type="checkbox" id="travel" name="hobby" />
+        <label for="travel">여행</label>
+        <input type="checkbox" id="reading" name="hobby" />
+        <label for="reading">독서</label>
+        <input type="checkbox" id="WM" name="hobby" />
+        <label for="WM">영화감상</label>
+        <input type="checkbox" id="HTML" name="hobby" />
+        <label for="HTML">HTML 공부</label>
+        <input type="checkbox" id="CSS" name="hobby" />
+        <label for="CSS">CSS 공부</label>
+        <input type="checkbox" id="Javascript" name="hobby" />
+        <label for="Javascript">Javascript</label>
+        <input type="checkbox" id="jQuery" name="hobby" />
+        <label for="jQuery">jQuery</label>
+      </p>
+      <input type="button" value="결과출력" id="resultBtn" />
+    </form>
+    <br />
+    <textarea rows="10" cols="100"></textarea>
+  </body>
+  <script>
+    const resultBtn = document.getElementById(`resultBtn`);
+    const textArea = document.querySelector(`textarea`);
+    resultBtn.addEventListener("click", function () {
+      // 이름 input, 성별 input, 취미 input 값 가져오기
+      const name = document.querySelector(`input[name = 'name']`);
+      const radioElq = document.querySelectorAll(`input[name = 'gender']`);
+      //   const radioElc = document.querySelectorAll(`input[name = 'hobby']`);
+      const radioElcc = document.getElementsByClassName(`gender`);
+      //   console.log(radioElq);
+      //   console.log(radioElcc);
+      //   console.log(radioElq[0].value);
+      /*
+      //   radioElq[0].value = "남자"; or radioElcc[0].value="남자"; 둘다 가능
+      console.log(radioElq[0].value);
+      console.log(radioElcc[0].value);
+      console.log(`radioElq(NodeList) : ${radioElq.length}`);
+      console.log(`radioElcc(HTMLCollection) : ${radioElcc.length}`);
+
+      const body = document.querySelector(`body`);
+      const newInput = document.createElement(`input`);
+      newInput.setAttribute(`class`, `gender`);
+      newInput.setAttribute(`name`, `gender`);
+      newInput.setAttribute(`type`, `radio`);
+      body.append(newInput);
+      
+      //   NodeList는 non-live : 실시간 반영 X  -> childNodes로 뽑은 객체는 live 객체이다.
+      //   HTMLCollection는 live : 실시간 반영
+
+      console.log(`radioElq(NodeList) : ${radioElq.length}`);
+      console.log(`radioElcc(HTMLCollection) : ${radioElcc.length}`);
+      */
+
+      //   radioElq.forEach(function (el) {
+      //     console.log(`forEach test`);
+      //   });NodeList 유사배열은 forEach 사용 가능
+      //   radioElcc.forEach(function (el) {
+      //     console.log(`forEach test`);
+      //   }); -> HTMLCollection 유사배열은 forEach 사용 불가
+
+      //   a:hover, a:active ... 처럼 input:checked도 가능
+      const checkedRadio = document.querySelector(
+        `input[name = "gender"]:checked`
+      ).value;
+
+      /*
+      //   위와 동일하다
+      let value;
+      radioElq.forEach(function (el) {
+          if (el.checked == true) {
+            value = el.value;
+        }
+        console.log(el.checked);
+    });
+    console.log(value);
+    */
+      const checkedBoxes = document.querySelectorAll(
+        `input[name = "hobby"]:checked`
+      );
+      console.log(checkedBoxes.value);
+      const checkBoxArr = [];
+      checkedBoxes.forEach((el) => checkBoxArr.push(el.id));
+
+      // 위 세계의 값을 조합해서 textarea에 출력
+      //   textArea.innerHTML = `name : ${name.value}씨! <br /> gender : ${checkedRadio}자 <br /> hobby : ${checkBoxArr}이군요`;
+      textArea.value = ` ${name.value}씨! \n 당신의 성별은 ${checkedRadio}자 이군요! \n 취미는 ${checkBoxArr} 이군요`;
+    });
+  </script>
+</html>
