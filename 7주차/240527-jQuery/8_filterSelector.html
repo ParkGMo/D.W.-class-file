@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>filter Selector</title>
+    <script src="../../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    ul {
+      border: 3px solid teal;
+      list-style-type: none;
+      padding: 0;
+      width: 500px;
+      border-radius: 10px;
+    }
+    li {
+      border: 2px solid tomato;
+      background-color: beige;
+      border-radius: 5px;
+      text-align: 10px;
+      padding: 10px 0;
+      font-size: 32px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+      <li>four</li>
+      <li>five</li>
+      <li>six</li>
+      <li>seven</li>
+      <li>eight</li>
+      <li>nine</li>
+    </ul>
+
+    <table border="1">
+      <tr>
+        <th>이름</th>
+        <th>주소</th>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>대전</td>
+      </tr>
+      <tr>
+        <td>진달래</td>
+        <td>서울</td>
+      </tr>
+      <tr>
+        <td>개나리</td>
+        <td>부산</td>
+      </tr>
+      <tr>
+        <td>무궁화</td>
+        <td>대구</td>
+      </tr>
+    </table>
+  </body>
+  <script>
+    $("li:first").css("font-size", "48px");
+    $("li:last").css("font-size", "48px");
+    $("li:even").css("backgroundColor", "yellow");
+    $("li:odd").css("backgroundColor", "skyblue");
+    $("li:lt(4)").css("color", "red");
+    $("li:gt(4)").css("color", "blue");
+    $("li:eq(4)").css("color", "pink");
+
+    $("table")
+      .css("width", "300px")
+      .css("textAlign", "center")
+      .css("border-collapse", "collapse;");
+    $("tr:even").css("backgroundColor", "#9f9f9f");
+    $("tr:odd").css("backgroundColor", "#f9f9f9");
+    $("tr:first").css("backgroundColor", "black").css("color", "white");
+  </script>
+</html>
