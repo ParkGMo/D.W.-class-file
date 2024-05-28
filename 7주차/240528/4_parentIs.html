@@ -21,26 +21,42 @@
     </div>
   </body>
   <script>
-    const divTag1 = $("#pTag").prev();
-    const divTag2 = $("#pTag").next();
-    const pTag = document.createElement("p");
-    const pTag1 = $("#pTag").prev().find("p");
-    const pTag2 = $("#pTag").next().find("p");
-    console.log(pTag1);
+    // const divTag1 = $("#pTag").prev();
+    // const divTag2 = $("#pTag").next();
+    // const pTag = document.createElement("p");
+    // const pTag1 = $("#pTag").prev().find("p");
+    // const pTag2 = $("#pTag").next().find("p");
+    // console.log(pTag1);
     // console.log(newpTag1);
+    // divTag1.on("click", function () {
+    //   const newpTag1 = $("pTag").append(pTag1.css("color", "red").html());
+    //   this.append(newpTag1);
+    // });
+
+    // divTag2.on("click", function () {
+    //   const newpTag2 = $("pTag").append(pTag2.css("color", "red").html());
+    //   this.append(newpTag2);
+    // });
 
     // p 태그들에 클릭 이벤트를 달아준다.
 
-    // pTag1.on("click", function () {
-    divTag1.on("click", function () {
-      const newpTag1 = $("pTag").append(pTag1.css("color", "red").html());
-      this.append(newpTag1);
-    });
+    // $("p").on("click", function () {
+    //   const pTag = $(this);
 
-    pTag2.on("click", function () {
-      const newpTag2 = $("pTag").append(pTag2.css("color", "red").html());
-      this.after(newpTag2);
-    });
+    //   const parent = pTag.parent();
+
+    //   const parentEl = parent.prop("tagName").toLowerCase();
+    //   console.log(parentEl);
+
+    //   if (parentEl == "div") {
+    //     const text = pTag.html();
+    //     // parent.append(`<p style ="color: red">${text}</p>`);
+    //     // parent.append(pTag.clone().css("color", "red")); // 첫문장만 복사
+    //     parent.append(pTag.clone(true).css("color", "red")); // 빨간 문장 눌러도 복사
+    //   } else {
+    //     alert("작업대상이 아닙니다.");
+    //   }
+    // });
 
     // 선택된 p 태그를 가져온다.
 
@@ -49,13 +65,19 @@
     // 부모요소가 div 태그인지 확인한다.
 
     // parent.prop("tagName");
-    pTag1.prop("tagName");
-    pTag2.prop("tagName");
 
     // 부모요소가 div 태그라면 선택된 p 태그의 텍스트를 가져온다.
 
     // 새로운 p태그를 생성하고 부모요소에 추가한다(.css red추가)
 
     // 부모요소가 div 태그가 아니라면 alert(작업대상이 아닙니다.)를 호출
+
+    // $("div").on("click", function (e) {
+    $("div").on("click", "p", function (e) {
+      const pTag = e.target;
+      console.log(e.target); // p태그
+      console.log(this); // div 태그 (이벤트가 걸린 태그) 그러나 "p"로 인해 p태그로 바뀐다.
+      $(this).parent("div").append($(pTag).clone().css("color", "red"));
+    });
   </script>
 </html>
