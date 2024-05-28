@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조작 관련 함수</title>
+    <script src="../../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    p {
+      cursor: pointer;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <p>러시안블루</p>
+    <p>먼치킨</p>
+    <p>폴드</p>
+    <p>오드아이</p>
+  </body>
+  <script>
+    const imgArr = ["고양이1.png", "고양이2.png", "고양이3.jpg", "고양이4.jpg"];
+
+    $("p").on("click", function () {
+      // h2[i] == e.target == this
+      const index = $(this).index(); //  단순히 배열 순서를 나타냄 - 추가된 사진도 포함
+      console.log(index);
+      //   const pTags = $("p"); // p태그의 객체전체를 나타냄
+      //   console.log(pTags);
+
+      // 요소 내부에 추가
+      const imgTag = `<img src = '../../resources/img/${imgArr[index]}'>`;
+
+      //   * 내부에 추가
+      //   어디에 무엇을(뒤) ==> append
+      //   $(this).append(imgTag);
+
+      //   무엇을 어디에(뒤) ==> appendTo
+      //   $(imgTag).appendTo(this);
+
+      //   어디에 무엇을(앞) ==> prepend
+      //   $(this).prepend(imgTag);
+
+      //   무엇을 어디에(앞) ==> prependTo
+      //   $(imgTag).prependTo(this);
+
+      //   * 외부에 추가
+      //   이후에 추가
+      //   $(this).after(imgTag);
+      //   $(imgTag).insertAfter(this);
+      //   이전에 추가
+      //   $(this).before(imgTag);
+      $(imgTag).insertBefore(this);
+    });
+  </script>
+</html>

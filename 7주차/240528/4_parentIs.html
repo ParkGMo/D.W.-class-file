@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>부모요소 확인</title>
+    <script src="../../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    div {
+      border: 3px solid orange;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화 꽃이 피었습니다.</p>
+    </div>
+    <p id="pTag">은주는 예쁘다~~~.</p>
+    <div>
+      <p>사뿐히 즈려밟고 가시옵소서.</p>
+    </div>
+  </body>
+  <script>
+    const divTag1 = $("#pTag").prev();
+    const divTag2 = $("#pTag").next();
+    const pTag = document.createElement("p");
+    const pTag1 = $("#pTag").prev().find("p");
+    const pTag2 = $("#pTag").next().find("p");
+    console.log(pTag1);
+    // console.log(newpTag1);
+
+    // p 태그들에 클릭 이벤트를 달아준다.
+
+    // pTag1.on("click", function () {
+    divTag1.on("click", function () {
+      const newpTag1 = $("pTag").append(pTag1.css("color", "red").html());
+      this.append(newpTag1);
+    });
+
+    pTag2.on("click", function () {
+      const newpTag2 = $("pTag").append(pTag2.css("color", "red").html());
+      this.after(newpTag2);
+    });
+
+    // 선택된 p 태그를 가져온다.
+
+    // 선택된 p 태그의 부모요소를 가져온다.
+
+    // 부모요소가 div 태그인지 확인한다.
+
+    // parent.prop("tagName");
+    pTag1.prop("tagName");
+    pTag2.prop("tagName");
+
+    // 부모요소가 div 태그라면 선택된 p 태그의 텍스트를 가져온다.
+
+    // 새로운 p태그를 생성하고 부모요소에 추가한다(.css red추가)
+
+    // 부모요소가 div 태그가 아니라면 alert(작업대상이 아닙니다.)를 호출
+  </script>
+</html>
