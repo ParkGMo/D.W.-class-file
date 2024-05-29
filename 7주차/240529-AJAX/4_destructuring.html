@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>destructuring(구조분해)</title>
+  </head>
+  <body></body>
+  <script>
+    const newJeans = ["하니", "해린", "민지", "다니엘", "혜인"];
+
+    // ES6 이전까지
+    const one = newJeans[0];
+    const two = newJeans[1];
+    const three = newJeans[2];
+    const four = newJeans[3];
+    const five = newJeans[4];
+
+    // ES6 이후로는
+    const unit = [];
+    unit.push(two);
+    unit.push(three);
+    unit.push(four);
+
+    // ES6 이후로는
+
+    // 배열 구조분해
+    // 변수명과 배열의 내용과 일치할 필요 없이 순서대로 매치된다.
+    const [
+      unitOne,
+      unitTwo,
+      unitThree,
+      unitFour,
+      unitFive,
+      unitSix = "default",
+    ] = newJeans;
+    console.log(unitOne, unitTwo, unitThree, unitFour, unitFive, unitSix);
+    // const [a, b, c] = newJeans;
+    // console.log(a, b, c);
+
+    const fileName = "고양이1.png";
+    // const fileNameArr = fileName.split(".");
+    // const name = fileNameArr[0];
+    // const extension = fileNameArr[1];
+
+    // const [name, extension] = fileNameArr;
+
+    const [name, extension] = fileName.split(".");
+
+    // 객체 구조분해
+    // 차이점은 변수명과 key가 일치해야한다.
+    const obj = {
+      name: "홍길동",
+      age: 20,
+      addr: "대전광역시 중구 선화동",
+      weight: "80kg",
+      height: "200cm",
+    };
+    const obj2 = {
+      name: "홍길동",
+      age: 20,
+      addr: "대전광역시 중구 선화동",
+      weight: "80kg",
+      height: "200cm",
+    };
+
+    // const myName = obj.name
+    // const age = obj.age; ....
+
+    const { name: myName, age, addr, weight, height } = obj;
+    // key가 겹쳐지면 key:를 통해 변수명을 지정 가능
+    document.write(
+      `안녕하세요.
+    저의 이름은 ${myName}이고,
+    나이는 ${age}살 입니다.
+    주소는 ${addr}이고,
+    키와 몸무게는 ${weight},${height}입니다.
+    잘부탁드립니다.`
+    );
+
+    // ...문법(스프레드 문법)
+    const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const [num1, num2, ...restNum] = numArr;
+    // ...restNum은 가장 마지막에 와야한다.
+    console.log(num1, num2, restNum);
+
+    const options = {
+      title: "menu",
+      width: 100,
+      height: 200,
+    };
+    // const rest = {
+    //   width: 100,
+    //   height: 200,
+    // };
+    const { title, ...rest } = options;
+
+    // options = {
+    //   size: {
+    //     width: 100,
+    //     height: 200,
+    //   },
+    //   items: ["Cake", "Donut"],
+    //   extra: true,
+    // };
+    // let {
+    //   size: { width, height: height2 },
+    //   items: [item1, item2],
+    //   extra,
+    // } = options;
+
+    // console.log(width, height2, item1, item2, extra);
+
+    const user = {
+      id: 1,
+      name: "Leanne Graham",
+      username: "Bret",
+      email: "Sincere@april.biz",
+      address: {
+        street: "Kulas Light",
+        suite: "Apt. 556",
+        city: "Gwenborough",
+        zipcode: "92998-3874",
+        geo: { lat: "-37.3159", lng: "81.1496" },
+      },
+    };
+    let {
+      id,
+      name: Graham,
+      username,
+      email,
+      address: {
+        street,
+        suite,
+        city,
+        zipcode,
+        geo: { lat, lng },
+      },
+    } = user;
+    console.log(
+      id,
+      Graham,
+      username,
+      email,
+      street,
+      suite,
+      city,
+      zipcode,
+      lat,
+      lng
+    );
+  </script>
+</html>
