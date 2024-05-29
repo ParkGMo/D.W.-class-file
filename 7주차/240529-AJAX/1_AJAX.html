@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX</title>
+  </head>
+  <body>
+    <h1>Authors</h1>
+    <ul id="authors"></ul>
+    <button>post</button>
+    <button>comments</button>
+    <button>albums</button>
+    <button>photos</button>
+    <button>todos</button>
+    <button>users</button>
+  </body>
+  <script>
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    // userid : 1 --> /user에서 id가 1
+    // --------------------------------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+    // fetch함수는 promise 객체를 반환
+    // promise == 비동기통신에 대한 상태과 결과값을 담고 있는 객체
+    // promise state 값
+    // pending : 진행중
+    // fulfilled : 작업(통신) 성공
+    // rejuected : 작업(통신) 실패
+    // --------------------------------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+    // const data = fetch(url).then(function (response) {
+    //   console.log(response.json());
+    // }); // [fetch(), patch(), put() 등등] / then() : fetch 함수가 끝나고 나면!
+    // console.log(data); // promise.[[promiseResult]]:Response.status: 200 이면 정상
+    // --------------------------------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+    // 동기함수(동기식 코드) 순서 ex) const data = fetch(url).then(function (Response) {})
+    //  - fetch -> then -> function -> 대입(=) -> data 원래 순서는 이러하지만
+
+    // 비동기함수(비동기식 코드)는 순서대로 진행되지 않는다.
+    //  - fetch -> 대입(=) -> data 먼저 이루어짐
+    //  - fetch -> then -> function 나중에 이루어짐
+    //  - 결과를 받기전(then)에 변수를 받는다.
+    // --------------------------------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+    // response.json() : 응답을 JSON 형태로 파싱(바꿔줌)한다.
+    // response.text() : 응답을 읽고 string 형태로 반환한다.
+    // response.formData() : 응답을 FormData 객체 형태로 반환한다.
+    // response.blob() : 응답을 Blob(바이너리 데이터) 객체 형태로 반환한다.
+    // --------------------------------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+    // fetch(url)
+    // .then((response) => response.json())
+    // .then((result) => console.log(result));
+    // fetch(url)
+    // .then((response) => response.text())
+    // .then((result) => console.log(JSON.parse(result)));
+    // --------------------------------------------------------------------------------------------
+
+    console.log("Start!!!");
+    fetch(url)
+      .then((response) => response.text())
+      .then((result) => console.log(JSON.parse(result)));
+    console.log("End!!!");
+    // Start 콘솔이 먼저 찍힘
+    // fetch를 만났는데 여기서 리턴하는 promise 객체의 then 함수로 콜백을 등록
+    // 뒤에 있는 두번째 then 함수도 콜백을 등록 (등록만 할 뿐 실행 하지 않음)
+    // 등록 과정 후 End 콘솔이 찍힘
+    // 서버(요청한 쪽)에서 response 가 도착하면 then 함수로 등록했던 콜백들이 실행(fetch가 빠르면 먼저 실행가능)
+  </script>
+</html>
