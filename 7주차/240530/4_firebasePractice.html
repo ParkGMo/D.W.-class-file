@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파이어베이스 연습</title>
+  </head>
+
+  <body>
+    <table border="1">
+      <!-- beforebegin -->
+      <tr>
+        <!-- afterbegin -->
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+        <!-- beforeend -->
+      </tr>
+      <!-- afterend -->
+
+      <!-- <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr> -->
+    </table>
+  </body>
+  <!-- <script type="text/javascript"> 기본값 -->
+  <script type="module">
+    import { db, getMembers } from "../../resources/js/firebaseGM.js";
+    console.log(db);
+
+    // async function getDatas() {}
+    const snapshot = await getMembers(); // async를 했기때문에 바로 적용 가능
+    // console.log(snapshot);
+    const tableTag = document.querySelector("table");
+
+    snapshot.forEach((doc) => {
+      console.log(doc.data());
+      //   console.log(docText.email);
+      //   const { name, age, gender, tel, email } = doc.data();
+      let { name, email, tel, gender, age } = doc.data();
+      //   ~.insertAdjacentHtml : 첫번째 파라미터는 4개의 구간을 나눈어서 구분짓는다.
+      // 젤위부터 아레까지  beforebegin(가장바깥위), afterbegin(부모태그와 자식태그 사이위), beforeend(부모태그와 자식태그의 사이 아래), afterend(가장바깥아래)
+      tableTag.insertAdjacentHTML(
+        "beforeend",
+        `<tr>
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${gender}</td>
+        <td>${email}</td>
+        <td>${tel}</td>
+      </tr>`
+      );
+    });
+  </script>
+</html>
