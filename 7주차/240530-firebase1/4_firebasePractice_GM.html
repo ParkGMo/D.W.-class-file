@@ -7,6 +7,29 @@
   </head>
 
   <body>
+    <p>
+      <label>이름 : </label>
+      <input type="text" name="name" />
+    </p>
+    <p>
+      <label>나이 : </label>
+      <input type="text" name="age" />
+    </p>
+    <p>
+      <label>이메일 : </label>
+      <input type="text" name="email" />
+    </p>
+    <p>
+      <label>전화번호 : </label>
+      <input type="text" name="tel" />
+    </p>
+    <p>
+      <label>성별 : </label>
+      <input type="text" name="gender" />
+    </p>
+
+    <button id="saveBtn">데이터 저장</button>
+
     <table border="1">
       <!-- beforebegin -->
       <tr>
@@ -31,11 +54,11 @@
   </body>
   <!-- <script type="text/javascript"> 기본값 -->
   <script type="module">
-    import { db, getMembers } from "../../resources/js/firebaseGM.js";
-    console.log(db);
+    import { db, getDatas, addDatas } from "../../resources/js/firebaseGM.js";
+    // console.log(db);
 
     // async function getDatas() {}
-    const snapshot = await getMembers(); // async를 했기때문에 바로 적용 가능
+    const snapshot = await getDatas("member"); // async를 했기때문에 바로 적용 가능
     // console.log(snapshot);
     const tableTag = document.querySelector("table");
 
@@ -56,6 +79,24 @@
         <td>${tel}</td>
       </tr>`
       );
+    });
+
+    const btn = document.getElementById("saveBtn");
+    btn.addEventListener("click", async function () {
+      const memberInfo = {
+        name: document.querySelector("input[name='name']").value,
+        age: Number(document.querySelector("input[name='age']").value),
+        tel: document.querySelector("input[name='tel']").value,
+        gender: document.querySelector("input[name='gender']").value,
+        email: document.querySelector("input[name='email']").value,
+      };
+      console.log(memberInfo);
+      // 파이어베이스에 데이터를 저장
+      const result = await addDatas("member", memberInfo);
+      // 저장 결과가 성공 ==> 페이지리로딩
+      // 저장 겨로가가 실패 ==> "저장을 실패했습니다."alert
+
+      result ? window.location.reload() : alert("저장을 실패 했습니다.");
     });
   </script>
 </html>

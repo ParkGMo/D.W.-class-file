@@ -3,6 +3,9 @@ import {
   getFirestore,
   getDocs,
   collection,
+  setDoc,
+  doc,
+  addDoc,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
@@ -21,15 +24,32 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // const analytics = getAnalytics(app);
 
-async function getMembers() {
-  const collect = await collection(db, `member`);
+async function getDatas(collectionName) {
+  const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
 
   return snapshot;
-  //   snabshot.forEach((doc) => {
-  //     //   doc.data();
-  //     console.log(doc.data());
-  //     doc.data();
-  //   });
 }
-export { db, getMembers };
+
+async function addDatas(collectionName, dataObj) {
+  //   문서 ID 수동
+
+  try {
+    // const saveDoc = doc(db, 컬렉션명, 문서ID)
+    const saveDoc = await doc(db, collectionName, `3`);
+    console.log(`doc() 결과 : ${saveDoc}`);
+    const saveResult = await setDoc(saveDoc, dataObj);
+    console.log(`setDoc() 결과 : ${saveResult}`);
+
+    // 문서 ID 자동
+    const collect = await collection(db, collectionName);
+    await addDoc(collect, dataObj);
+
+    return true;
+  } catch (error) {
+    return false;
+  } finally {
+  }
+}
+
+export { db, getDatas, addDatas };
