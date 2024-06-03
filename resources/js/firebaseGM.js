@@ -7,6 +7,8 @@ import {
   doc,
   addDoc,
   deleteDoc,
+  getDoc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
@@ -59,4 +61,13 @@ async function deleteDatas(collectionName, docId) {
   await deleteDoc(docRef);
 }
 
-export { db, getDatas, addDatas, deleteDatas };
+async function updateDatas(collectionName, docId, updateInfoObj) {
+  // doc(db, 컬렉션명, 문서ID);
+  const docRef = await doc(db, collectionName, docId);
+  // getDocs(문서레퍼런스);
+  // const docData = await getDocs(docRef);
+  // updateDoc(문서데이터, 수정할정보);
+  updateDoc(docRef, updateInfoObj);
+}
+
+export { db, getDatas, addDatas, deleteDatas, updateDatas };

@@ -75,6 +75,7 @@
       getDatas,
       addDatas,
       deleteDatas,
+      updateDatas,
     } from "../../resources/js/firebaseGM.js";
     // console.log(db);
 
@@ -102,11 +103,11 @@
         // </tr>`
         //     );
         tagStr += `<tr>
-        <td>${name}</td>
-        <td>${age}</td>
-        <td>${gender}</td>
-        <td>${email}</td>
-        <td>${tel}</td>
+        <td class ='name'>${name}</td>
+        <td class ='age'>${age}</td>
+        <td class ='gender'>${gender}</td>
+        <td class ='email'>${email}</td>
+        <td class ='tel'>${tel}</td>
         <input type = "hidden" value ="${doc.id}" />
         </tr>`;
         // <input type = "heidden"value ="${doc.id}"/> -> 문서 ID 에 접근하여 직접 삭제하기 위해;
@@ -211,6 +212,18 @@
     saveUpdateBtn.addEventListener("click", function () {
       const selectedTr = document.querySelector("tr.selected");
       const trChildren = selectedTr.children;
+      // DB의 데이터를 수정할 정보를 추출한다.
+      const trChildrenArr = Array.from(trChildren); // reduce()를 사용하려면  배열을 사용한다.
+      //  input 요소(가장 마지막)를 따로 꺼낸다.
+      const docId = trChildrenArr.pop().value;
+      const updateObj = trChildrenArr.reduce(
+        (acc, cur) => ({
+          ...acc,
+          [cur.classList.value]: cur.firstElementChild.value,
+        }),
+        {}
+      );
+      // 수정된 내용을 화면에 반영한다.
       let originTrStr = "";
       for (let i = 0; i < trChildren.length; i++) {
         if (trChildren[i].tagName != "INPUT") {
@@ -220,6 +233,10 @@
         }
       }
       selectedTr.innerHTML = originTrStr;
+      selectedTr.classList.remove("selected");
+
+      // 파이어베이스 수정 함수 호출
+      updateDatas("member", docId, updateObj).then(getMembersHandleTrClick);
     });
 
     //----------------------------------------------------------------------------------------
@@ -257,6 +274,8 @@
         (acc, cur) => ({ ...acc, [cur.name]: cur.value }),
         {}
       );
+
+      //----------------------------------------------------------------------------------------
 
       // 객체로 모을려면  reduce( )에 초기값{}을 부여한다.
 
