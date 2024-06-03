@@ -94,3 +94,9 @@ Button : https://bootswatch.com/default/
 
 복붙이나 드래그 안될때!
 F12 > Setting(톱니모양) > preferences > Debugger > Disablejavascript
+
+CRUD
+C : create
+R : read
+U : update
+D : delete

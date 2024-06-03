@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>파이어베이스 연습</title>
   </head>
+  <style>
+    tr {
+      cursor: pointer;
+      height: 50px;
+    }
+    .selected {
+      background-color: yellow;
+    }
+  </style>
 
   <body>
     <form name="joinForm">
@@ -53,14 +62,60 @@
         <td></td>
       </tr> -->
     </table>
+    <button id="updateBtn">회원정보 수정</button>
+    <button id="saveUpdateBtn">회원정보 저장</button>
+    <button id="deleteBtn">회원삭제</button>
   </body>
   <!-- <script type="text/javascript"> 기본값 -->
   <script type="module">
     // import / from 자바스크립트에서 외부와 연결하기 위해서.
     // import / from 사용하기위해 type을 module로 사용한다.
-    import { db, getDatas, addDatas } from "../../resources/js/firebaseGM.js";
+    import {
+      db,
+      getDatas,
+      addDatas,
+      deleteDatas,
+    } from "../../resources/js/firebaseGM.js";
     // console.log(db);
 
+    async function getMembers() {
+      console.log(`getMembers 함수 시작`);
+      const snapshot = await getDatas("member");
+      const tableTag = document.querySelector("table");
+      let tagStr = `<tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+      </tr>`;
+      snapshot.forEach((doc) => {
+        let { name, age, gender, tel, email } = doc.data();
+        //     tableTag.insertAdjacentHTML(
+        //       "beforeend",
+        //       `<tr>
+        //   <td>${name}</td>
+        //   <td>${age}</td>
+        //   <td>${gender}</td>
+        //   <td>${email}</td>
+        //   <td>${tel}</td>
+        // </tr>`
+        //     );
+        tagStr += `<tr>
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${gender}</td>
+        <td>${email}</td>
+        <td>${tel}</td>
+        <input type = "hidden" value ="${doc.id}" />
+        </tr>`;
+        // <input type = "heidden"value ="${doc.id}"/> -> 문서 ID 에 접근하여 직접 삭제하기 위해;
+      });
+      tableTag.innerHTML = tagStr;
+      console.log(`getMembers 함수 종료`);
+    }
+
+    /*
     // async function getDatas() {}
     const snapshot = await getDatas("member"); // async를 했기때문에 바로 적용 가능
     // console.log(snapshot);
@@ -84,10 +139,95 @@
       </tr>`
       );
     });
+    */
+
+    // 멤버조회 및 이벤트 핸들러 등록하는 함수
+    function getMembersHandleTrClick() {
+      getMembers().then(handleTrClick);
+    }
+    getMembersHandleTrClick();
+
+    // handleTrClick();
+    // getMenber함수 가 끝나기 전에 handleTrClick함수가 실행과 종료가 이뤄진다.
+
+    function handleTrClick() {
+      console.log("handleTrClick 이벤트 시작");
+      // tr 태그에 click 이벤트 적용
+      const trs = document.querySelectorAll(`tr`);
+      trs.forEach((tr) => {
+        tr.addEventListener("click", (e) => {
+          if (e.target.tagName != "TH") tr.classList.toggle(`selected`);
+        });
+      });
+      console.log("handleTrClick 이벤트 종료");
+    }
+
+    //----------------------------------------------------------------------------------------
+
+    const deleteBtn = document.getElementById("deleteBtn");
+    deleteBtn.addEventListener("click", function () {
+      const selectedTrs = document.querySelectorAll("tr.selected");
+      if (selectedTrs.length == 0) {
+        alert("삭제할 데이터가 없습니다.");
+        return false;
+      }
+
+      // 문서ID 가져오기
+      selectedTrs.forEach((tr) => {
+        const docId = tr.lastElementChild.value;
+        deleteDatas("member", docId);
+      });
+      getMembersHandleTrClick();
+    });
+
+    //----------------------------------------------------------------------------------------
+
+    const updateBtn = document.getElementById("updateBtn");
+    updateBtn.addEventListener("click", function () {
+      const selectedTrs = document.querySelectorAll(`tr.selected`);
+      if (selectedTrs.length == 0) {
+        alert("수정할 회원을 선택해주세요.");
+        return false;
+      } else if (selectedTrs.length >= 2) {
+        alert("회원정보 수정은 하나씩만 가능합니다.");
+        return false;
+      }
+
+      const selectedTr = selectedTrs[0];
+      const trChildren = selectedTr.children;
+      console.log(trChildren);
+      for (let i = 0; i < trChildren.length; i++) {
+        // trChildren[i].addEventListener("click", (e) => {
+        //   e.stopPropagation();
+        // });
+        const tdText = trChildren[i].innerText;
+        trChildren[i].innerHTML = `<input type="text" value = '${tdText}' />`;
+      }
+    });
+
+    //----------------------------------------------------------------------------------------
+
+    const saveUpdateBtn = document.getElementById("saveUpdateBtn");
+    saveUpdateBtn.addEventListener("click", function () {
+      const selectedTr = document.querySelector("tr.selected");
+      const trChildren = selectedTr.children;
+      let originTrStr = "";
+      for (let i = 0; i < trChildren.length; i++) {
+        if (trChildren[i].tagName != "INPUT") {
+          originTrStr += `<td>${trChildren[i].firstElementChild.value}</td>`;
+        } else {
+          originTrStr += `<input type = "hidden" value = "${trChildren[i].value}"`;
+        }
+      }
+      selectedTr.innerHTML = originTrStr;
+    });
+
+    //----------------------------------------------------------------------------------------
 
     const btn = document.getElementById("saveBtn");
     btn.addEventListener("click", async function () {
       // const formEl = document.querySelector("form[name = 'joinForm']");
+
       const formEl = document.forms[0]; //forms : form 태그를 전부 가져온다.
       const formElChildren = formEl.elements; // .elements 는 배열과 객체역할을 모두 한다.
       // console.log(formElChildren.[0]);  -> 배열 가능
@@ -131,20 +271,20 @@
       };
       // console.log(memberInfo);
       // 파이어베이스에 데이터를 저장
-      // const result = await addDatas("member", memberInfo);
+      const result = await addDatas("member", memberInfo);
       // 저장 결과가 성공 ==> 페이지리로딩
-      // 저장 겨로가가 실패 ==> "저장을 실패했습니다."alert
+      // 저장 결과가 실패 ==> "저장을 실패했습니다."alert
 
-      // result ? window.location.reload() : alert("저장을 실패 했습니다.");
+      result ? getMembersHandleTrClick() : alert("저장을 실패했습니다.");
 
-      let value;
+      // let value;
 
-      try {
-        value = zero;
-        // value = 0;
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   value = zero;
+      //   // value = 0;
+      // } catch (error) {
+      //   console.log(error);
+      // }
     });
   </script>
 </html>

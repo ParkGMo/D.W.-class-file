@@ -6,6 +6,7 @@ import {
   setDoc,
   doc,
   addDoc,
+  deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
@@ -52,4 +53,10 @@ async function addDatas(collectionName, dataObj) {
   }
 }
 
-export { db, getDatas, addDatas };
+async function deleteDatas(collectionName, docId) {
+  const docRef = await doc(db, collectionName, docId);
+  // deleteDoc(삭제할 문서);
+  await deleteDoc(docRef);
+}
+
+export { db, getDatas, addDatas, deleteDatas };
