@@ -7,12 +7,19 @@ html {
 body {
   background: #000;
   color: #fff;
-  background-image: url(../../../resources/img/cat\ wallpaper1.jpg);
+  /* background-image: url(../../../resources/img/stars.jpg);
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 .player {
   backdrop-filter: blur(15px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 .progress-bar {
@@ -37,7 +44,8 @@ body {
 }
 .player-main {
   background-color: rgba(48, 48, 55, 0.7);
-  height: 80px;
+  flex-grow: 1;
+  /* height: 80px; */
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -17,6 +17,13 @@ section {
   margin: 80px auto;
   padding: 0 36px;
 }
+img,
+.playlist-title,
+.chart-title,
+.playlist-artist,
+.chart-artist {
+  cursor: pointer;
+}
 .featured {
   display: flex;
   gap: 40px;
@@ -93,4 +100,89 @@ section {
   font-weight: 500;
   font-size: 24px;
   margin: 24px 0 0;
+}
+
+.stations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.station {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.chats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 0;
+}
+.charts-title {
+  margin: 0;
+}
+.charts-see-all {
+  font-weight: 500;
+  font-size: 24px;
+  color: #d9d9d9;
+  text-decoration: none;
+  display: block;
+  text-align: end;
+  font-size: medium;
+  margin: 8px;
+}
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 32px;
+}
+.chart {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.chart-cover {
+  border-radius: 16px;
+  width: 160px;
+  height: 160px;
+}
+.chart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chart-rank {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chart-number {
+  background-color: #1a1a1a;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chart-change {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.2);
+}
+.chart-change.up {
+  color: #d93045;
+}
+.chart-title {
+  font-weight: 700;
+  font-size: 32px;
+}
+.chart-artist {
+  font-weight: 400;
+  font-size: 24px;
+  color: #868686;
 }

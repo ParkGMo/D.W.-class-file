@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="./MusicResources/CSS/main_GM.css" />
   </head>
   <body>
-    <header><div id="wrap">DW Music</div></header>
+    <header>
+      <div id="wrap"><span>DW Music</span></div>
+    </header>
     <section class="hero">
       <video
         src="./MusicResources/video/bg.mp4"
@@ -101,4 +103,10 @@
       </div>
     </section>
   </body>
+  <script>
+    const logo = document.querySelector("div#wrap > span");
+    logo.addEventListener("click", () => {
+      location.href = "4_home_GM.html";
+    });
+  </script>
 </html>
