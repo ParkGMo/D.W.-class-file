@@ -1,0 +1,96 @@
+html {
+  box-sizing: border-box;
+}
+html {
+  font-family: Pretendard;
+}
+body {
+  background: #000;
+  color: #fff;
+  background-image: url(../../../resources/img/cat\ wallpaper1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.player {
+  backdrop-filter: blur(15px);
+}
+
+.progress-bar {
+  background-color: #4d4d54;
+  height: 5px;
+  cursor: pointer;
+}
+.progress {
+  background-color: #7000ff;
+  height: 5px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.progress-point {
+  width: 10px;
+  height: 10px;
+  background-color: #7000ff;
+  border-radius: 50%;
+}
+.player-main {
+  background-color: rgba(48, 48, 55, 0.7);
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info,
+.controls,
+.time {
+  width: 20%;
+}
+.info {
+  margin: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* gap: 10px; */
+}
+
+.info img {
+  border-radius: 10px;
+  width: 70px;
+  /* margin: 5px; */
+  padding: 3px;
+  cursor: pointer;
+}
+.info > p {
+  color: #d9d9d9;
+  cursor: pointer;
+}
+
+.artist:hover {
+  text-decoration: underline;
+}
+.artist {
+  color: #8c8993;
+  font-size: small;
+}
+.title:hover {
+  font-weight: bold;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.controls img {
+  cursor: pointer;
+}
+.controls img:hover {
+  background-color: #7000ff;
+  border-radius: 50%;
+}
+.time {
+  margin: 15px;
+  color: #8c8993;
+  text-align: end;
+}
