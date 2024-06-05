@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTI Colour</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="resources/CSS/style_GM.css" />
+    <link rel="stylesheet" href="resources/CSS/home_GM.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-container">
+        <div class="header">
+          <h1>MBTI 별<br /><span class="accent">좋아하는 컬러</span></h1>
+          <div>
+            <span class="filter"
+              ><span>ESTP</span
+              ><img src="resources/img/x.svg" class="remove-icon"
+            /></span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <a href="newcolor_GM.html" class="add-item" id="newColor"
+          >+ 새컬러 등록하기</a
+        >
+        <ul class="items" id="items">
+          <!-- <li class="item">
+            <div class="item-id">20</div>
+            <div class="item-mbti">ENFP</div>
+            <div class="item-arrow">
+              <img src="resources/img/arrow.svg" class="item-arrow-icon" />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #efb578"
+            ></div>
+            <div class="item-color-code">#EFB578</div>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    const items = document.getElementById("items");
+    const newColor = document.getElementById("newColor");
+    // newColor.addEventListener("click", () => {
+    //   const mbtiVal = prompt("mbti를 입력하세요.");
+    //   const colorVal = prompt("코드를 입력하세요.");
+    //   return mbtiVal, colorVal;
+    // });
+
+    // function mbtiColor(mbti, color) {
+    //   let newColorObj = {};
+    //   newColorObj.mbti = `${mbti}`;
+    //   newColorObj.code = `#${color}`;
+    //   if ((mbti = "")) {
+    //     return false;
+    //   } else if ((color = "")) {
+    //     return false;
+    //   } else {
+    //     return newColorObj;
+    //   }
+    // }
+    // const newMbtlColor = mbtiColor(mbtiVal, colorVal);
+    // console.log(newMbtlColor);
+
+    const mbtiArr = [
+      { mbti: "ENFP", code: "#efb578" },
+      { mbti: "ENFP", code: "#8649b6" },
+      { mbti: "ENFP", code: "#a894b2" },
+      { mbti: "ENFJ", code: "#ecbb30" },
+      { mbti: "INFP", code: "#ecbb30" },
+      { mbti: "INTJ", code: "#c4601e" },
+      { mbti: "ENFP", code: "#95fcc0" },
+      { mbti: "INTJ", code: "#4d74b8" },
+      { mbti: "ENFP", code: "#40fa34" },
+      { mbti: "ESFJ", code: "#106100" },
+      { mbti: "ESTJ", code: "#f0df32" },
+      { mbti: "INFP", code: "#10e479" },
+      { mbti: "ENTJ", code: "#6c84ac" },
+      { mbti: "IMTJ", code: "#aec7cd" },
+      { mbti: "ISTP", code: "#ff5028" },
+      { mbti: "INFP", code: "#36c667" },
+      { mbti: "ESFP", code: "#4c8f9e" },
+      { mbti: "ENFP", code: "#c88ce8" },
+      { mbti: "ENFP", code: "#c1ffc0" },
+      { mbti: "INFJ", code: "#5f6600" },
+    ];
+    // mbtiArr.push(newMbtlColor);
+
+    mbtiArr.forEach((e, idx) => {
+      items.insertAdjacentHTML(
+        "afterbegin",
+        `<li class="item">
+            <div class="item-id">${idx + 1}</div>
+            <div class="item-mbti">${e.mbti}</div>
+            <div class="item-arrow">
+              <img src="resources/img/arrow.svg" class="item-arrow-icon" />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: ${e.code}"
+            ></div>
+            <div class="item-color-code">${e.code.toUpperCase()}</div>
+            </li>`
+      );
+    });
+  </script>
+</html>
