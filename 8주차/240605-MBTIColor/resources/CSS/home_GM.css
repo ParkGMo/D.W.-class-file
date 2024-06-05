@@ -104,3 +104,60 @@
   width: 105px;
   /* text-transform: uppercase; */
 }
+
+/* 미디어에따른 화면 크기에 대한 CSS */
+/* @media print : 홈페이지 자체를 프린터할 때*/
+
+/* width 944px 까지의 화면표시(CSS) */
+@media screen and (max-width: 944px) {
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 24px 16px;
+    gap: 24px;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+  .header-container {
+    position: sticky;
+    top: 24px;
+    z-index: 1;
+  }
+  .header {
+    padding: 32px;
+    text-align: center;
+    border-radius: 32px;
+  }
+  .header > h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .filter {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+  .add-item {
+    padding: 20px 24px;
+  }
+  .item {
+    padding: 18px 16px;
+  }
+  .item-id {
+    width: 37px;
+    margin-right: 16px;
+  }
+  .item-mbti {
+    width: 54px;
+    margin-right: 16px;
+  }
+  .item-color-code {
+    width: 72px;
+  }
+  .item-color-chip {
+    margin-right: 8px;
+  }
+}
+/* width 578px 까지의 화면표시(CSS) */
+@media screen and (max-width: 578px) {
+}
