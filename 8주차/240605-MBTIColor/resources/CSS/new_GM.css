@@ -32,6 +32,13 @@
   font-size: 24px;
   margin: 24px 0;
 }
+.userName {
+  width: 240px;
+  height: 40px;
+  font-size: x-large;
+  border: 2px solid #e7ebf2;
+  border-radius: 8px;
+}
 .mbti-options {
   margin: 16px 0;
   gap: 16px;
@@ -113,4 +120,5 @@
   font-size: 24px;
   font-weight: 700;
   padding: 22px;
+  cursor: pointer;
 }

@@ -47,8 +47,38 @@
       </div>
     </div>
   </body>
-  <script>
+  <script type="module">
+    import { getDatas } from "./resources/js/firebaseGM.js";
     const items = document.getElementById("items");
+
+    async function getMbtiInfo() {
+      const datas = await getDatas("MBTI-Colour");
+      let idx = 1;
+      // datas.forEach((doc, idx) => idx 사용 불가
+      datas.forEach((doc) => {
+        // console.log(doc.data());
+        // console.log(idx);
+        const info = doc.data();
+        items.insertAdjacentHTML(
+          "afterbegin",
+          `<li class="item">
+            <div class="item-id">${idx}</div>
+            <div class="item-mbti">${info.mbti}</div>
+            <div class="item-arrow">
+              <img src="resources/img/arrow.svg" class="item-arrow-icon" />
+              </div>
+              <div
+              class="item-color-chip"
+              style="background-color: ${info.code}"
+              ></div>
+              <div class="item-color-code">${info.code.toUpperCase()}</div>
+              </li>`
+        );
+        idx++;
+      });
+    }
+    getMbtiInfo();
+
     const newColor = document.getElementById("newColor");
     // newColor.addEventListener("click", () => {
     //   const mbtiVal = prompt("mbti를 입력하세요.");
@@ -96,21 +126,21 @@
     // mbtiArr.push(newMbtlColor);
 
     mbtiArr.forEach((e, idx) => {
-      items.insertAdjacentHTML(
-        "afterbegin",
-        `<li class="item">
-            <div class="item-id">${idx + 1}</div>
-            <div class="item-mbti">${e.mbti}</div>
-            <div class="item-arrow">
-              <img src="resources/img/arrow.svg" class="item-arrow-icon" />
-            </div>
-            <div
-              class="item-color-chip"
-              style="background-color: ${e.code}"
-            ></div>
-            <div class="item-color-code">${e.code.toUpperCase()}</div>
-            </li>`
-      );
+      // items.insertAdjacentHTML(
+      //   "afterbegin",
+      //   `<li class="item">
+      //       <div class="item-id">${idx + 1}</div>
+      //       <div class="item-mbti">${e.mbti}</div>
+      //       <div class="item-arrow">
+      //         <img src="resources/img/arrow.svg" class="item-arrow-icon" />
+      //       </div>
+      //       <div
+      //         class="item-color-chip"
+      //         style="background-color: ${e.code}"
+      //       ></div>
+      //       <div class="item-color-code">${e.code.toUpperCase()}</div>
+      //       </li>`
+      // );
     });
   </script>
 </html>
