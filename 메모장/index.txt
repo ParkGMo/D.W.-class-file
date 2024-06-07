@@ -29,6 +29,8 @@
   </body>
 </html>
 
+\\192.168.0.22\공유폴더\DW_DataVisualization3
+
 https://flexboxfroggy.com/#ko 레이아웃연습
 
 @font-face {
