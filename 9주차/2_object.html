@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체 리마인드</title>
+  </head>
+  <body></body>
+  <script>
+    // 배열의 선언
+    // 변수명 없이 여러개를 순서대로 꺼낼때
+    let fruit = new Array();
+    // const apple = "사과";
+    // const orange = "오렌지";
+    // const plum = "자두";
+    fruit = ["사과", "오렌지", "자두"];
+    console.log(fruit[0]);
+    console.log(fruit[1]);
+    console.log(fruit[2]);
+    fruit[0] = "포도"; //["포도", "오렌지", "자두"]
+    fruit[2] = "레몬"; //["포도", "오렌지", "레몬"]
+    fruit.push("망고"); //["포도", "오렌지", "레몬", "망고"] 길이로 나옴
+    let removedVal = fruit.pop();
+    console.log(removedVal); //["포도", "오렌지", "레몬"]로 변환 : 젤뒤 제거
+    fruit.unshift("배"); //["배", "포도", "오렌지", "레몬"] 길이로 나옴
+    removedVal = fruit.shift(); // ["포도", "오렌지", "레몬"]로 변환 : 젤앞 제거
+    console.log(removedVal); //["포도", "오렌지", "레몬"]로 변환 : 젤뒤 제거
+    for (let i = 0; i < fruit.length; i++) {
+      //   console.log(fruit[i]);
+      document.write(`<h1>${fruit[i]}</h1>`);
+    }
+
+    let arraybyArray = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    console.log(arraybyArray[1][1]);
+
+    for (let i = 0; i < arraybyArray.length; i++) {
+      //   console.log(arraybyArray[i]);
+      for (let j = 0; j < arraybyArray[i].length; j++) {
+        // console.log(arraybyArray[j]);
+        document.write(`<h1>${arraybyArray[i][j]}</h1>`);
+      }
+    }
+
+    // 배열의 인접한 요소의 총합이 최대인 부분배열을 찾아보자.
+    let arr = [-1, 2, 3, -9, 11];
+    // -1 부터 시작
+    // -1
+    // -1 + 2
+    // -1 + 2 + 3
+    // -1 + 2 + 3 + (-9)
+    // -1 + 2 + 3 + (-9) + 11
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] += arr[i + 1];
+    }
+
+    // 2부터 시작
+    // 2
+    // 2 + 3
+    // 2 + 3 + (-9)
+    // 2 + 3 + (-9) + 11
+
+    // 3부터 시작 ... // 11부터 시작
+
+    let maxSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      let sum = 0;
+      for (let j = i; j < arr.length; j++) {
+        sum += arr[j];
+        // console.log((sum += arr[j]));
+        maxSum = Math.max(maxSum, sum); // (maxSum, sum)두개 중 큰 값을 준다.
+      }
+    }
+    console.log(maxSum);
+  </script>
+</html>

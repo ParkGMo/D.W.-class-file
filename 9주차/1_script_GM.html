@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스크립트 리마인드</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    // text/javascript 기본값!
+    var a;
+    let b;
+    const c = 0; //const 변수 선언과 동시에 초기화 필수!
+
+    // var a; 가능 -> 지양한다.
+    // let b; 불가능
+    // const c = 0; 불가능 -> 변수는 데이터를 저장할 때 쓰이는 '이름이 붙은 저장소'
+
+    let message; // 선언만 되어 있는 변수이며,  undefined값이 할당 되어 있다.
+    /*
+    let message = "Hello!"; (X)
+    message = "Hello!"; (O)
+    */
+    // console.log(message);
+    // console.log(message);
+
+    //  변수 명명 규칙
+    // 1. 변수명에는 문자와 숫자, 특수문자($, _)
+    let $ = 3;
+    let _ = 2;
+    // let @ = 4;
+    let $content = 5; // $ 변수는 jquery변수라고 약속된다.
+    let _content = 10; // _변수는 class 내부에 선언하는 것을 말한다.
+
+    // 2. 숫자로 시작할 수 없다.
+    // 3. 예약어는 사용할 수 없다.
+    //    let for =4;
+    //    let function = 1;
+
+    // 4. 대소문자를 구분한다.
+    // 5. 변수명은 의미를 담고 있어야 한다.
+    // 6. 의미를 담고 있지 않은 변수명은 사용하지 않는다.
+    // 7. 변수명은 명사를 사용한다.
+    // 8. 변수명은 동사를 사용하지 않는다.
+    // 9. 변수명은 동사와 명사를 혼용해서 사용하지 않는다.
+    // 10. 변수명은 동사와 명사를 혼용해서 사용하지 않는다.
+
+    // 1 admin 과 name 이라는 변수를 선언해보세요.
+    let admin;
+    let name;
+    // 2.name 에 값으로 "John" 을 할당해보세요.
+    name = "John";
+    // 3.name의 값을 admin에 똑같이 넣어보세요.
+    admin = name;
+    // 4.admin의 값을 console.log 창으로 띄워보세요. "John"이 출력되어야 합니다.
+    console.log(admin);
+
+    let str1 = "Hello";
+    let str2 = '"Single quotes ${str1}"' + str1;
+    let str3 = `can embed another ${str1}`;
+    let str4 = str1 + str2;
+    let str5 = str1 - str2; // + 만 문자열 가능
+    let num1 = 1;
+    let str6 = str1 + num1; // "Hello" + 1 == "Hello" + "1" == "Hello1"
+    let num2 = 5;
+    let strNum = "2";
+    let sum = num2 + strNum; // "52"
+    // let numSum = num2 + parseInt(strNum); // "7"
+    // let numSum = num2 + Number(strNum); // "7"
+    let numSum = +strNum + num2; // "7"
+
+    //  조건문
+    let money = 50000;
+    let price = 40000;
+    if (price < money) {
+      console.log(`장난감을 구매했습니다. 남은돈: ${money - price}원 `);
+    } else {
+      console.log(`돈이 부족합니다. 남은돈: ${moeny}원 `);
+    }
+
+    let grade = prompt(`점수를 입력해주세요.`);
+    // 60점 미만은 F학점
+    // 60점 이상부터는 100점 까진 10점씩 구간을 나눠서
+    // D, C, B, A 학점을 주려고 한다.
+    if (grade <= 60) {
+      console.log("F학점");
+    } else if (grade <= 70 && grade > 60) {
+      console.log("D학점");
+    } else if (grade <= 80 && grade > 70) {
+      console.log("C학점");
+    } else if (grade <= 90 && grade > 80) {
+      console.log("B학점");
+    } else if (grade <= 100 && grade > 90) {
+      console.log("A학점");
+    }
+    // grade <= 60
+    //   ? console.log("F학점")
+    //   : grade <= 70 && grade > 60
+    //   ? console.log("D학점")
+    //   : grade <= 80 && grade > 70
+    //   ? console.log("C학점")
+    //   : grade <= 90 && grade > 80
+    //   ? console.log("B학점")
+    //   : grade <= 100 && grade > 90
+    //   ? console.log("A학점")
+    //   : console.log("잘못된 점수입니다.");
+
+    // 조건식의 불린형 변환
+    // 조건문의 조건식을 평가하고 그 결과를 불린 값으로 변환한다.
+    // 불린값으로 변환하기 전에 falsy한 값이냐 truthy한 값이냐를 판단한다.
+    // falsy : 0, "", null, undefined, NaN <-> truthy
+    if (str1 /*true*/) {
+      console.log("참 입니다.");
+    }
+
+    // 조건부 연산자 "?", 삼항연산자 "?:"
+    // 조건식? 참일때의 값 : 거짓일때의 값;
+    let num3 = +prompt("숫자를 입력하세요.");
+    let num4 = +prompt("숫자를 입력하세요.");
+    // if (num3 > num4) {
+    //   console.log(`두 수의 차는 ${num3 - num4} 입니다.`);
+    // } else {
+    //   console.log(`두 수의 차는 ${num4 - num3} 입니다.`);
+    // }
+    let diffNum = num3 > num4 ? num3 - num4 : num4 - num3;
+    console.log(`두 수의 차는 ${diffNum} 입니다.`);
+
+    // nullish  병합 연산자
+    let aa;
+    let bb = 10;
+    if (aa !== null && aa !== undefined) {
+      console.log(aa);
+    } else {
+      console.log(bb);
+    }
+
+    console.log(aa ?? bb);
+
+    /*반복문*/
+    // while (조건식) {반복할 코드;}
+    let i = 0;
+    while (i < 5) {
+      console.log(i);
+      i++;
+    }
+    // do {반복할 코드;} while (조건식);
+    let j = 0;
+    do {
+      console.log(j);
+      j++;
+    } while (j < 5);
+
+    // for (초기값; 조건식; 증감식) {반복할 코드;}
+    for (let i = 0; i < 10; i = i + 2) {
+      if (i % 3 == 0) {
+        continue; // 다른 코드보다 위로 올라가야 실행 여부 판단 가능
+        break; // 가장 가까이 있는 반복문을 멈추는 역할
+      }
+    }
+    outer: for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (i % 3 == 0) {
+          //   break; // j 반복문이 멈춘다.
+          break outer; // outer가 적힌 반복문이 멈춘다.
+        }
+      }
+    }
+  </script>
+</html>
