@@ -75,5 +75,52 @@
       }
     }
     console.log(maxSum);
+
+    // 객체 (objuect)
+    let obj = new Object();
+    obj = {};
+    obj.name = "홍길동";
+    obj["age"] = 20; // key 값을 변수 처리할 때 []를 사용
+    obj.addr = "대전광역시 중구 선화동";
+    obj.tel = "010 - 1234 -4556";
+    // let searchingVal = prompt(
+    //   "얻고 싶은 정보를 입력하세요. (name, age, addr, tel)"
+    // );
+    // document.write(`<h1> ${obj[searchingVal]}</h1>`); // 변수를 가져올때는 []
+
+    // 일반 객체에서 사용할 수 있는 순회 관련 함수
+
+    // (key)키값을 확인할 수 있는 함수 - keys()
+    const keyArr = Object.keys(obj); // key 값을 배열로 가져온다.
+    console.log(keyArr);
+
+    // (property)프로퍼티의 값을 확인할 수 있는 함수 - values()
+    const valuesArr = Object.values(obj); // 프로퍼티를 배열로 가져온다.
+    console.log(valuesArr);
+
+    // 키, 값 쌍을 확인할 수 있는 함수 - entries()
+    const entriesArr = Object.entries(obj); // key 와 프로퍼티 모두 배열로 가져온다.
+    console.log(entriesArr);
+
+    let salaries = {
+      John: 200,
+      Mary: 250,
+      Sam: 400,
+    };
+
+    // let sum = 0;
+    // let salariesValArrSum = Object.values(salaries).forEach(
+    //   (val) => (sum += val)
+    // );
+    // document.write(
+    //     `<h1>salaries의 총합은 ${sum}만원 입니다.</h1>`
+    //     );
+    const salariesValArrSum = Object.values(salaries).reduce(
+      (acc, cur) => acc + cur,
+      0
+    );
+    document.write(
+      `<h1>salaries의 총합은 ${salariesValArrSum}만원 입니다.</h1>`
+    );
   </script>
 </html>
