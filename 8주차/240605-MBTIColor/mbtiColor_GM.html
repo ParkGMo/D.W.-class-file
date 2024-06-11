@@ -54,11 +54,20 @@
     async function getMbtiInfo() {
       const datas = await getDatas("MBTI-Colour");
       let idx = 1;
+      const arr = [];
       // datas.forEach((doc, idx) => idx 사용 불가
       datas.forEach((doc) => {
+        const timeStamp = doc._document.createTime.timestamp.seconds;
         // console.log(doc.data());
         // console.log(idx);
         const info = doc.data();
+        const newObj = { ...info, timeStamp: timeStamp };
+        arr.push(newObj);
+      });
+      arr.sort(function (a, b) {
+        return a.timeStamp - b.timeStamp;
+      });
+      arr.forEach((info) => {
         items.insertAdjacentHTML(
           "afterbegin",
           `<li class="item">

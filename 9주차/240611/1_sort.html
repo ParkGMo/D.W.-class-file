@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열 sort 함수</title>
+  </head>
+  <body></body>
+  <script>
+    // 문자배열
+    let arr1 = ["a", "d", "e", "c", "b"];
+    arr1.sort();
+    console.log(arr1);
+
+    // 숫자배열
+    let arr2 = [100, 11, 1, 21, 3];
+    arr2.sort();
+    console.log(arr2);
+    arr2.sort(function (a, b) {
+      // a,b에 두 요소를 전달해서 a-b로 크기를 비교한 후에
+      // a > b이면 양수, a < b 이면 음수를 리턴하여 오름차순으로 정리
+      //  a-b : 오름차순
+      //  b-a : 내림차순
+      return a - b;
+    });
+    console.log(arr2);
+
+    // 배열의 배열
+    arr3 = [
+      [10, 2],
+      [7, 8],
+      [3, 3],
+      [-1, 3],
+      [99, 99],
+      [-10, 10],
+    ];
+    //  안쪽 파라미터의 첫번째 숫자 기준으로 오름차순
+    arr3.sort(function (a, b) {
+      return a[0] - b[0];
+    });
+    console.log(arr3);
+    //  안쪽 파라미터의 첫번째 숫자 기준으로 내림차순
+    arr3.sort(function (a, b) {
+      return b[0] - a[0];
+    });
+    console.log(arr3);
+    //  안쪽 파라미터의 두번째 숫자 기준으로 오름차순
+    arr3.sort(function (a, b) {
+      return a[1] - b[1];
+    });
+    console.log(arr3);
+    //  안쪽 파라미터의 두번째 숫자 기준으로 내림차순
+    arr3.sort(function (a, b) {
+      return b[1] - a[1];
+    });
+    console.log(arr3);
+
+    // 객체의 배열
+    arr4 = [
+      { mbti: "ENFP", code: "#efb578", docid: 4 },
+      { mbti: "INTJ", code: "#a894b2", docid: 3 },
+      { mbti: "ENFJ", code: "#ecbb30", docid: 1 },
+      { mbti: "INFP", code: "#ecbb30", docid: 2 },
+    ];
+    arr4.sort(function (a, b) {
+      //   return a.docid - b.docid;
+      return a.mbti - b.mbti;
+    });
+    console.log(arr4);
+  </script>
+</html>

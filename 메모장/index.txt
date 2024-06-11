@@ -87,6 +87,8 @@ Button : https://bootswatch.com/default/
 
 파이어베이스 
 : https://firebase.google.com/?hl=ko
+모듈식 : 함수를 사용하여 간단히 연결 : function느낌!
+네임스페이스식 (직접기입) : 스크립트를 직접 가져와서 활용 -> 간단한 작업에 용이하나 복잡하면 ...
 규칙 :
 rules_version = '2';
 
