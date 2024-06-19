@@ -102,6 +102,9 @@ service cloud.firestore {
 
 * Database >> Collection >> Document >> Field
 
+실시간 날씨 API 사이트
+https://openweathermap.org/api/one-call-3
+
 
 배포 : 외부에서도 확인할 수 있게 해주는 작업
  - html 파일을 만들어서 -> settings -> pages 

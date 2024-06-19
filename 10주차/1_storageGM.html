@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹 스토리지</title>
+  </head>
+  <body>
+    <div id="welcome"><span>환영합니다.</span></div>
+    <button id="login">로그인</button>
+    <button id="logout">로그아웃</button>
+  </body>
+  <script>
+    // 로그인 기능 중 항시 로그인 유지를 하기 위한 기능
+
+    const loginBtn = document.getElementById("login");
+    const logoutBtn = document.getElementById("logout");
+    const userObj = {
+      id: "karina",
+      name: "유지민",
+      addr: "대전광역시 중구 선화동",
+    };
+
+    localStorage.setItem("user1", JSON.stringify(userObj));
+    // 세션 스토리지 -> tab하나의 종속되어있다.
+    // 로컬 스토리지 -> 브라우저에 종속되어있다. (브라우저가 종료되면 사라진다.) /(브라우저가 꺼져도 유지된다.)
+    // 로컬 스토리지는 로컬에 저장된다.
+
+    // setItem("key", value-숫자, 배열, 문자열) - 키 - 값쌍을 저장한다.
+    // getItem(key) : 키에 해당하는 값을 가져온다.
+    // removeItem(key) : 키와 해당 값을 삭제한다.
+    // clear() : 모든 값을 삭제한다.
+
+    /* setItem(key, value) */
+    loginBtn.addEventListener("click", function () {
+      // 로그인 버튼 클릭 시 sessionStorage에 정보 저장
+      //   sessionStorage.setItem("isLogin", true);
+      sessionStorage.setItem("id", "Winter");
+      //   F12 -> 상단 Application -> 측면 Session storage에 확인 : 브라우저를 끄거나 새로운 탭에 확인하면 없다.
+
+      localStorage.setItem("id", "Karina");
+      //   F12 -> 상단 Application -> 측면 Local storage에 확인 : 브라우저를 끄거나 새로운 탭에 확인하면 없다.
+    });
+    logoutBtn.addEventListener("click", function () {
+      // 로그아웃 버튼 클릭 시 sessionStorage에 정보 삭제
+      //   sessionStorage.removeItem("isLogin");
+      sessionStorage.removeItem("id");
+      //   F12 -> 상단 Application -> 측면 Session storage에 확인 : 브라우저를 끄거나 새로운 탭에 확인하면 없다.
+
+      localStorage.removeItem("id");
+      //   F12 -> 상단 Application -> 측면 Local storage에 확인 : 브라우저를 끄거나 새로운 탭에 확인하면 없다.
+    });
+
+    /* getItem(key, value) */
+    const welcomeDiv = document.getElementById("welcome");
+    let userLocalInfo = localStorage.getItem("user1");
+    // const userLocalInfo1 = localStorage.getItem("user1");
+    // const userSessionInfo = sessionStorage.getItem("id");
+    // 로그인 했을 때 객체로 저장
+    userLocalInfo = JSON.parse(userLocalInfo);
+    console.log(userLocalInfo);
+
+    if (userLocalInfo) {
+      welcomeDiv.innerHTML = `<span>${userLocalInfo.name}님 환영합니다. </span>`;
+      //   welcomeDiv.innerHTML = `<span>${userSessionInfo}님 환영합니다. </span>`;
+    }
+
+    // key(index) : 인덱스에 해당하는 키를 가져온다.
+    // length : 저장된 키의 개수를 가져온다.
+    // key(index) : 인덱스에 해당하는 키를 가져온다.
+  </script>
+</html>
