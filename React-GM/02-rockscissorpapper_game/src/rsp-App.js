@@ -21,24 +21,21 @@ function App() {
   const [myScore, setMyScore] = useState(0);
   const [otherScore, setOtherScore] = useState(0);
   const [battingPoint, setBattingPoint] = useState(0);
-  const [gameResult, setGameResult] = useState("");
 
   const handleChoice = (choice) => {
     setMyChoice(choice);
     const otherChoice = randomIcon();
     setOtherChoice(otherChoice);
 
-    // 승부 로직
-    let result = "";
     if (choice === otherChoice) {
     } else if (
       (choice === rock && otherChoice === scissor) ||
       (choice === scissor && otherChoice === paper) ||
       (choice === paper && otherChoice === rock)
     ) {
-      setMyScore(myScore + battingPoint); // 이 부분을 변경
+      setMyScore(myScore + battingPoint);
     } else {
-      setOtherScore(otherScore + battingPoint); // 이 부분을 변경
+      setOtherScore(otherScore + battingPoint);
     }
 
     setGameResult(result);
