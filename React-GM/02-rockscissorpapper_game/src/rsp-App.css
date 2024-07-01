@@ -1,28 +1,146 @@
+/* 기본 스타일 설정 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 전체 앱 스타일 */
 .rsp-App {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: darkgray;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
   text-align: center;
-  background-color: black;
-  color: white;
-  padding: 24px 80px;
-  margin-top: 40px;
+  position: relative;
 }
-.socre-block {
+
+/* 타이틀 스타일 */
+.rsp-App h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* 점수 블록 스타일 */
+.score-block {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
+
+.score-rsp {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.my-rsp {
+  padding: 40px;
+  color: #4caf50;
+}
+
+.other-rsp {
+  padding: 40px;
+  color: #f44336;
+}
+
+.dots div {
+  margin: 0 4px;
+  font-size: 20px;
+  color: #aaa;
+}
+
+/* 대결 아이콘 스타일 */
 .rsp-versus-icons {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
-.rsp-versus-icon,
-.rsp-icon {
+
+.rsp-versus-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+}
+
+.vs-word {
+  font-size: 18px;
+  color: #888;
+}
+
+/* 배점 입력 스타일 */
+.score-batting {
+  margin-bottom: 20px;
+}
+
+.batting-word {
+  font-size: 14px;
+  color: #555;
+}
+
+.batting-word input {
+  width: 60px;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* 버튼 스타일 */
+.rsp-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rsp-btn:hover {
+  background-color: #555;
+}
+
+/* 아이콘 스타일 */
+.rsp-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.rsp-icon {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.rsp-icon:hover {
+  transform: scale(1.1);
+}
+
+/* 게임 결과 스타일 */
+.game-result {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* 리셋 버튼 스타일 */
+.reset-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
