@@ -131,3 +131,38 @@ D : delete
 - 중간 최종까지의 계획방안
 - 역할분담!
 - *** ppt 준비 6/17까지 ***
+
+
+React
+ - frameWorek : 만들어진 틀에 맞추어 사용 ex)집 - 인테리어
+ - Library(API) : 개발자가 직접 사용 ex) 집 설계
+ - Class(=Interface) -> 프로그램의 기본 개념
+
+  특정 레이이아웃 headers나 footer와 같은 모든페이지에 똑같이 들어감 
+   --> Header.js, Footer.js (앞 대문자!) <태그>형식으로 불러옴 = shadow DOM (real DOM, vritual DOM)
+
+  MPA(Multi Page Application) : 기본 구성
+  SPA(Single Page Application) : React
+
+  MPA : 여러개의 .html들을 하나씩 새로 구성, 랜더링될때마다 .CSS .Js를 불러옴(사용할때만 불러옴 - 처음 Fast 후 Slow)
+
+  SPA 장점 : 하나의 'index.html'에서 처음 랜더링할때만 .CSS .Js를 불러옴(모든파일을 불러온다. - 처음 Slow 후 Fast)
+
+  * index.html
+  <body>
+  <div id = "root">
+  </div>
+  </body>
+
+
+ctrl+`  --> 노드설치
+1 node -v 확인
+2 cd: chage direct
+PS C:\Users\user1\Desktop\테스트> cd .\D.W.-class-file\
+PS C:\Users\user1\Desktop\테스트\D.W.-class-file> cd .\React-GM\
+3 npm install -g npm@10.8.1
+4 npx create-react-app 01-dice_game(파일명!)
+5 y
+6 cd 01-dice_game
+7 npm run start  -> 실시간 서버 시작     , npm start -> 서버 시작
+8 ctrl+c, y  -> 서버끝내기
