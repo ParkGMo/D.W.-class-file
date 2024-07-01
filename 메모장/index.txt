@@ -157,9 +157,10 @@ React
 
 ctrl+`  --> 노드설치
 1 node -v 확인
-2 cd: chage direct
-PS C:\Users\user1\Desktop\테스트> cd .\D.W.-class-file\
-PS C:\Users\user1\Desktop\테스트\D.W.-class-file> cd .\React-GM\
+2 cd: chage direct  // cd .. : 뒤로가기
+  PS C:\Users\user1\Desktop\테스트> cd .\D.W.-class-file\
+  PS C:\Users\user1\Desktop\테스트\D.W.-class-file> cd .\React-GM\
+  *경로 자동완성 'Tab key'
 3 npm install -g npm@10.8.1
 4 npx create-react-app 01-dice_game(파일명!)
 5 y
