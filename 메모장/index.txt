@@ -168,3 +168,5 @@ ctrl+`  --> 노드설치
 6 cd 01-dice_game
 7 npm run start  -> 실시간 서버 시작     , npm start -> 서버 시작
 8 ctrl+c, y  -> 서버끝내기
+
+innerHTML X --> useState()
