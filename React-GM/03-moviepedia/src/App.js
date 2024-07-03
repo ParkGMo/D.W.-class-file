@@ -26,6 +26,7 @@ function App() {
   }, []);
   // []-> 빈배열이면 변경되었을 때만 랜더링한다.
   // [a, b, c] -> a,b,c 중 하나만 변경되어도 랜더링된다.
+
   return (
     <div className="App">
       <nav className="App-nav">

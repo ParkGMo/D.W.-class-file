@@ -171,7 +171,9 @@ ctrl+`  --> 노드설치
 7 npm run start  -> 실시간 서버 시작     , npm start -> 서버 시작
 8 ctrl+c, y  -> 서버끝내기
 
-innerHTML X --> useState()
+* Hook 
+ - innerHTML  --> useState()
+ - 랜더링 해줌 --> useEffect(() =>[],[])
 
 npm install firebase --> firebase npm 방식 설치!
   - package.json --> "dependencies" --> "firebase" 설치 확인 가능!
