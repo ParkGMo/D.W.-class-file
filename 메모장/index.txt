@@ -101,6 +101,8 @@ service cloud.firestore {
 }
 
 * Database >> Collection >> Document >> Field
+firebase의 규칙에서 read,wirte --> true
+https://refiapp.io/  --> firebase Tool(파일을 한번에 DB에 넣기)
 
 실시간 날씨 API 사이트
 https://openweathermap.org/api/one-call-3
@@ -170,3 +172,6 @@ ctrl+`  --> 노드설치
 8 ctrl+c, y  -> 서버끝내기
 
 innerHTML X --> useState()
+
+npm install firebase --> firebase npm 방식 설치!
+  - package.json --> "dependencies" --> "firebase" 설치 확인 가능!
