@@ -4,10 +4,11 @@ import AddColor from "./AddColor.js";
 import repeat from "./assets/repeat.svg";
 import xicon from "./assets/x.svg";
 import { useState } from "react";
+import MbtiOption from "./MbtiOption.js";
 
 function App() {
-  let [pageOn, setPageOn] = useState(0);
-  function AddPage(pageOn) {
+  const [pageOn, setPageOn] = useState(0);
+  function AddPage() {
     if (pageOn == 0) return setPageOn(1);
     if (pageOn == 1) return setPageOn(0);
   }
@@ -55,38 +56,14 @@ function App() {
         <div className="section">
           <h2 className="section-heading">MBTI</h2>
           <div className="mbti-options">
-            <div className="mbti-option">
-              <span className="mbti-char">E</span>
-              외향형
-            </div>
-            <div className="mbti-option selected">
-              <span className="mbti-char">I</span>
-              내향형
-            </div>
-            <div className="mbti-option">
-              <span className="mbti-char">S</span>
-              감각형
-            </div>
-            <div className="mbti-option selected">
-              <span className="mbti-char">N</span>
-              직관형
-            </div>
-            <div className="mbti-option">
-              <span className="mbti-char">T</span>
-              사고형
-            </div>
-            <div className="mbti-option selected">
-              <span className="mbti-char">F</span>
-              감정형
-            </div>
-            <div className="mbti-option">
-              <span className="mbti-char">P</span>
-              인식형
-            </div>
-            <div className="mbti-option selected">
-              <span className="mbti-char">J</span>
-              판단형
-            </div>
+            <MbtiOption MBTIa="E" MBTIk="외향형" select="selected" />
+            <MbtiOption MBTIa="I" MBTIk="내향형" />
+            <MbtiOption MBTIa="S" MBTIk="감각형" select="selected" />
+            <MbtiOption MBTIa="N" MBTIk="직관형" />
+            <MbtiOption MBTIa="T" MBTIk="사고형" select="selected" />
+            <MbtiOption MBTIa="F" MBTIk="감정형" />
+            <MbtiOption MBTIa="P" MBTIk="인식형" select="selected" />
+            <MbtiOption MBTIa="J" MBTIk="판단형" />
           </div>
         </div>
         <div className="section">
