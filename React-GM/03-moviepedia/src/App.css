@@ -34,13 +34,20 @@
   font-weight: 600;
   font-size: 18px;
   background-color: transparent;
+  border-radius: 10px;
 }
 .AppSortButton.selected {
+  cursor: auto;
   border-radius: 10px;
   color: #fff;
   background-color: #000;
-  /* transition: 0.2s; */
+  transition: 0.3s;
 }
+
+.AppSortButton:not(.selected) {
+  cursor: pointer;
+}
+
 .App .App-nav,
 .App .App-footer {
   flex: none;

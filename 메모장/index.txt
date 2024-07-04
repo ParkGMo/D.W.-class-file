@@ -104,6 +104,8 @@ service cloud.firestore {
 firebase의 규칙에서 read,wirte --> true
 https://refiapp.io/  --> firebase Tool(파일을 한번에 DB에 넣기)
 
+ firebase의 storage --> 이미지를 따로 저장하여 경로를 가져온다.
+
 실시간 날씨 API 사이트
 https://openweathermap.org/api/one-call-3
 API key : 6e3669d9ce0d4e84eddd41c90c38ab37

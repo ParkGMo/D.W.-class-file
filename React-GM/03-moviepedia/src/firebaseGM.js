@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import {
   getFirestore,
   getDocs,
@@ -9,6 +10,10 @@ import {
   deleteDoc,
   getDoc,
   updateDoc,
+  query,
+  orderBy,
+  limit,
+  startAfter,
 } from "firebase/firestore";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
@@ -30,12 +35,52 @@ const db = getFirestore(app);
 async function getDatas(collectionName) {
   const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
+  // docId 넣고 배열로 나옴
   const resultData = snapshot.docs.map((doc) => ({
-    docID: doc.id,
+    docId: doc.id,
     ...doc.data(),
   }));
 
   return resultData;
+}
+
+// 옵션에 따라 DB를 가져옴 (내림차순, 오름차순)
+async function getDatasByOrder(collectionName, options) {
+  const collect = await collection(db, collectionName);
+  // const q = query(컬렉션정보, 조건1, 조건2, 조건3 ...), asc: 오름차순,  decs: 내림차순
+  const q = query(collect, orderBy(options.order, "desc"));
+  const snapshot = await getDocs(q);
+  const resultData = snapshot.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  return resultData;
+}
+// 옵션에 따라 제한적인 수의 DB를 가져옴
+async function getDatasByOrderLimit(collectionName, options, number) {
+  const collect = await collection(db, collectionName);
+  let q;
+  if (options.lq) {
+    q = query(
+      collect,
+      orderBy(options.order, "desc"),
+      startAfter(options.lq),
+      limit(options.limit)
+    );
+  } else {
+    q = query(collect, orderBy(options.order, "desc"), limit(options.limit));
+  }
+  // const q = query(컬렉션정보, 조건1, 조건2, 조건3 ...), asc: 오름차순,  decs: 내림차순
+  const snapshot = await getDocs(q);
+  const lastQuery = snapshot.docs[snapshot.docs.length - 1];
+
+  const resultData = snapshot.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  return { resultData, lastQuery };
 }
 
 async function addDatas(collectionName, dataObj) {
@@ -74,4 +119,12 @@ async function updateDatas(collectionName, docId, updateInfoObj) {
   updateDoc(docRef, updateInfoObj);
 }
 
-export { db, getDatas, addDatas, deleteDatas, updateDatas };
+export {
+  db,
+  getDatas,
+  addDatas,
+  deleteDatas,
+  updateDatas,
+  getDatasByOrder,
+  getDatasByOrderLimit,
+};
