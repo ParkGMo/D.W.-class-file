@@ -1,10 +1,32 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
-function MbtiOption({ MBTIa, MBTIk, select }) {
+let selecta = "selected";
+function MbtiOption({ MBTIa, MBTIb, MBTIk, MBTIj, select }) {
+  // let selectisa = "";
+  const [selectisa, setSelctisa] = useState("");
+  const [selectisb, setSelctisb] = useState("");
+  const MbtiOptionBtn = () => {
+    if (!selectisa) {
+      setSelctisa("selected");
+      setSelctisb("");
+    }
+    if (!selectisb) {
+      setSelctisb("selected");
+      setSelctisa("");
+    }
+  };
+
   return (
-    <div className={`mbti-option ${select}`}>
-      <span className="mbti-char">{MBTIa}</span>
-      {MBTIk}
+    <div className="mbti-blocks">
+      <div className={`mbti-option ${selectisa}`} onClick={MbtiOptionBtn}>
+        <span className="mbti-char">{MBTIa}</span>
+        {MBTIk}
+      </div>
+      <div className={`mbti-option ${selectisb}`} onClick={MbtiOptionBtn}>
+        <span className="mbti-char">{MBTIb}</span>
+        {MBTIj}
+      </div>
     </div>
   );
 }

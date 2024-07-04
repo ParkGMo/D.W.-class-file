@@ -68,6 +68,7 @@ function App() {
     handleLoad({ order: order, limit: LIMIT });
     setHasNext(true);
   }, [order]);
+  // 비동기로 실행 (함수  , [] ) 함수실행 --> [] 변경확인 --> 다시 함수 실행
   // []-> 빈배열이 변경되었을 때만 랜더링한다.
   // [a, b, c] -> a,b,c 중 하나만 변경되어도 랜더링된다.
 

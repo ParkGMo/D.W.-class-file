@@ -173,9 +173,10 @@ ctrl+`  --> 노드설치
 7 npm run start  -> 실시간 서버 시작     , npm start -> 서버 시작
 8 ctrl+c, y  -> 서버끝내기
 
+
 * Hook 
- - innerHTML  --> useState()
- - 랜더링 해줌 --> useEffect(() =>[],[])
+ - [변수명, 함수명] = useState(초기값)  --> 함수 내부를 다시 랜더링한 후 innerHTML
+ - useEffect(함수, []) // 비동기로 실행, (함수  , [] ): 함수실행 --> [] 변경확인 --> 다시 함수 실행
 
 npm install firebase --> firebase npm 방식 설치!
   - package.json --> "dependencies" --> "firebase" 설치 확인 가능!

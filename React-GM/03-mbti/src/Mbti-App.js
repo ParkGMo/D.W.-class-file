@@ -35,7 +35,9 @@ function App() {
             <a className="add-item" onClick={AddPage}>
               + 새컬러 등록하기
             </a>
-            <ul className="items">{/* <AddColor /> */}</ul>
+            <ul className="items">
+              <AddColor />
+            </ul>
           </div>
         </div>
       </div>
@@ -56,14 +58,34 @@ function App() {
         <div className="section">
           <h2 className="section-heading">MBTI</h2>
           <div className="mbti-options">
-            <MbtiOption MBTIa="E" MBTIk="외향형" select="selected" />
-            <MbtiOption MBTIa="I" MBTIk="내향형" />
-            <MbtiOption MBTIa="S" MBTIk="감각형" select="selected" />
-            <MbtiOption MBTIa="N" MBTIk="직관형" />
-            <MbtiOption MBTIa="T" MBTIk="사고형" select="selected" />
-            <MbtiOption MBTIa="F" MBTIk="감정형" />
-            <MbtiOption MBTIa="P" MBTIk="인식형" select="selected" />
-            <MbtiOption MBTIa="J" MBTIk="판단형" />
+            <MbtiOption
+              MBTIa="E"
+              MBTIb="I"
+              MBTIk="외향형"
+              MBTIj="내향형"
+              select="selected"
+            />
+            <MbtiOption
+              MBTIa="S"
+              MBTIb="N"
+              MBTIk="감각형"
+              MBTIj="직관형"
+              select="selected"
+            />
+            <MbtiOption
+              MBTIa="T"
+              MBTIb="F"
+              MBTIk="사고형"
+              MBTIj="감정형"
+              select="selected"
+            />
+            <MbtiOption
+              MBTIa="P"
+              MBTIb="J"
+              MBTIk="인식형"
+              MBTIj="판단형"
+              select="selected"
+            />
           </div>
         </div>
         <div className="section">
