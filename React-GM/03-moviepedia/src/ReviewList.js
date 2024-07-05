@@ -14,7 +14,7 @@ function ReviewListItem({ item }) {
       <img className="ReviewListItem-img" src={item.imgUrl} />
       <div className="ReviewListItem-rows">
         <h1 className="ReviewListItem-title">{item.title}</h1>
-        <Rating className="ReviewListItem-rating" />
+        <Rating className="ReviewListItem-rating" hoverRating={item.rating} />
         <p className="ReviewListItem-date">{formatDate(item.createdAt)}</p>
         <p className="ReviewListItem-content">{item.content}</p>
         <div className="ReviewListItem-buttons">

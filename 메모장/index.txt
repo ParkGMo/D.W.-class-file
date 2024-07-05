@@ -141,6 +141,7 @@ React
  - frameWorek : 만들어진 틀에 맞추어 사용 ex)집 - 인테리어
  - Library(API) : 개발자가 직접 사용 ex) 집 설계
  - Class(=Interface) -> 프로그램의 기본 개념
+ - 17~18은 현재 쓰고 있는거! 이전버젼은 공식문서 확인
 
   특정 레이이아웃 headers나 footer와 같은 모든페이지에 똑같이 들어감 
    --> Header.js, Footer.js (앞 대문자!) <태그>형식으로 불러옴 = shadow DOM (real DOM, vritual DOM)
@@ -176,7 +177,12 @@ ctrl+`  --> 노드설치
 
 * Hook 
  - [변수명, 함수명] = useState(초기값)  --> 함수 내부를 다시 랜더링한 후 innerHTML
+  // usEffect 실행시점
+  // 1. 최초 렌더링시
+  // 2. 디펜던시 리스트에 들어있는 값이 변경될 때
+  // 3. 컴포넌트가 unmount 될때
  - useEffect(함수, []) // 비동기로 실행, (함수  , [] ): 함수실행 --> [] 변경확인 --> 다시 함수 실행
+ - useRef()
 
 npm install firebase --> firebase npm 방식 설치!
   - package.json --> "dependencies" --> "firebase" 설치 확인 가능!

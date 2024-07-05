@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
 import {
   getFirestore,
   getDocs,
@@ -15,6 +14,7 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
 const firebaseConfig = {
@@ -42,6 +42,16 @@ async function getDatas(collectionName) {
   }));
 
   return resultData;
+}
+
+async function uploadImage(path, imgFile) {
+  // 스토리지 객체 가져오기
+  const storage = getStorage(app);
+  const storageRef = storage.ref(path);
+  // 저장할 이미지 객체 생성
+
+  // File 객체를 스토리지에 저장
+  // 저장한 file의 url 가져오기
 }
 
 // 옵션에 따라 DB를 가져옴 (내림차순, 오름차순)
@@ -87,11 +97,11 @@ async function addDatas(collectionName, dataObj) {
   //   문서 ID 수동
 
   try {
-    // const saveDoc = doc(db, 컬렉션명, 문서ID)
-    const saveDoc = await doc(db, collectionName, `3`);
-    console.log(`doc() 결과 : ${saveDoc}`);
-    const saveResult = await setDoc(saveDoc, dataObj);
-    console.log(`setDoc() 결과 : ${saveResult}`);
+    const uuid = await crypto.randomUUID();
+    const path = `movies/${uuid}`;
+
+    // id 필드의 값 ==> 가장 큰  id + 1
+    // createdAt , updatedAt ==> 현재날 밀리세컨즈로 바꿔서
 
     // 문서 ID 자동
     const collect = await collection(db, collectionName);

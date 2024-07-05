@@ -3,7 +3,7 @@ import FileInput from "./FileInput.js";
 import RatingInput from "./RatingInput.js";
 import "./ReviewForm.css";
 
-function ReviewForm(props) {
+function ReviewForm({ addData }) {
   // 초기값이 변화되면 랜더링 되지만 이후에는 초기값이 아니라 바뀐값으로 적용되어 있다.
   const [values, setValues] = useState({});
   const handleChange = (name, value) => {
@@ -15,10 +15,18 @@ function ReviewForm(props) {
     handleChange(name, value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await addData("movie", values);
+  };
   return (
-    <form className="ReviewForm">
+    <form className="ReviewForm" onSubmit={handleSubmit}>
       <div>
-        <FileInput name="imgUrl" onChange={handleChange} />
+        <FileInput
+          inputName="imgUrl"
+          onChange={handleChange}
+          value={values.imgUrl}
+        />
       </div>
       <div className="Form-container">
         <input
@@ -27,13 +35,17 @@ function ReviewForm(props) {
           placeholder="제목을 입력해주세요!"
           onChange={handleInputChange}
         />
-        <RatingInput />
+        <RatingInput
+          inputName="rating"
+          setRating={handleChange}
+          value={values.rating}
+        />
         <textarea
           name="content"
           placeholder="내용을 입력해주요."
           onChange={handleInputChange}
         />
-        <button>확인</button>
+        <button type="submit">확인</button>
       </div>
     </form>
   );

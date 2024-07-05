@@ -1,0 +1,7 @@
+.Rating-star {
+  color: rgba(112, 128, 144, 0.274);
+  cursor: pointer;
+}
+.Rating-star.selected {
+  color: yellowgreen;
+}
