@@ -14,7 +14,13 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
 const firebaseConfig = {
@@ -42,16 +48,6 @@ async function getDatas(collectionName) {
   }));
 
   return resultData;
-}
-
-async function uploadImage(path, imgFile) {
-  // 스토리지 객체 가져오기
-  const storage = getStorage(app);
-  const storageRef = storage.ref(path);
-  // 저장할 이미지 객체 생성
-
-  // File 객체를 스토리지에 저장
-  // 저장한 file의 url 가져오기
 }
 
 // 옵션에 따라 DB를 가져옴 (내림차순, 오름차순)
@@ -98,26 +94,74 @@ async function addDatas(collectionName, dataObj) {
 
   try {
     const uuid = await crypto.randomUUID();
-    const path = `movies/${uuid}`;
+    const path = `movie/${uuid}`;
+    const url = await uploadImage(path, dataObj.imgUrl);
+    // const url = await uploadBytes(path, dataObj.imgUrl);
 
-    // id 필드의 값 ==> 가장 큰  id + 1
+    dataObj.imgUrl = url;
+
     // createdAt , updatedAt ==> 현재날 밀리세컨즈로 바꿔서
+    const time = new Date().getTime();
+    dataObj.createdAt = time;
+    dataObj.updatedAt = time;
+    // id 필드의 값 ==> 가장 큰  id + 1
+    const lastId = await getLastNum(collectionName, "id");
 
+    dataObj.id = lastId + 1;
     // 문서 ID 자동
     const collect = await collection(db, collectionName);
-    await addDoc(collect, dataObj);
+    const result = await addDoc(collect, dataObj);
+    const docSnap = await getDoc(result); // document --> documentReference
 
-    return true;
+    const resultData = { ...docSnap.data(), docId: docSnap.id };
+
+    return resultData;
   } catch (error) {
     return false;
-  } finally {
   }
 }
 
-async function deleteDatas(collectionName, docId) {
-  const docRef = await doc(db, collectionName, docId);
-  // deleteDoc(삭제할 문서);
-  await deleteDoc(docRef);
+async function getLastNum(collectionName, field) {
+  const q = query(
+    collection(db, collectionName),
+    orderBy(field, "desc"),
+    limit(1)
+  );
+  const lastDoc = await getDocs(q);
+
+  const lastNum = lastDoc.docs[0].data()[field];
+  return lastNum;
+}
+
+async function uploadImage(path, imgFile) {
+  // 스토리지 객체 가져오기
+  const storage = getStorage();
+  // 저장할 이미지 객체 생성
+  const imageRef = ref(storage, path);
+  // File 객체를 스토리지에 저장
+  await uploadBytes(imageRef, imgFile);
+  // 저장한 file의 url 가져오기
+  const url = await getDownloadURL(imageRef);
+  return url;
+}
+
+async function deleteDatas(collectionName, docId, imgUrl) {
+  // async function deleteDatas(collectionName, docId, ...args) {
+  // (...args) --> 없어도 함수 실행가능, 여러 개를 기입하면 배열로 변환
+  // 1. 스토리지 객체 가져온다.
+  const storage = getStorage();
+  try {
+    // 2. 스토리지에서 이미지 삭제
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+    // 3. 컬렉션에 문서 삭제
+    const docRef = await doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    // deleteDoc(삭제할 문서);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 async function updateDatas(collectionName, docId, updateInfoObj) {

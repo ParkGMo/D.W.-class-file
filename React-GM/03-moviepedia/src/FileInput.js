@@ -6,6 +6,7 @@ import resetImg from "./assets/ic-reset.png";
 function FileInput({ inputName, onChange, value }) {
   const [preview, setPreview] = useState();
   const inputRef = useRef();
+
   const handleFileChange = (e) => {
     const nextFile = e.target.files[0];
     onChange(inputName, nextFile);
@@ -16,6 +17,11 @@ function FileInput({ inputName, onChange, value }) {
   // useEffect 내부 코드가 실행되고 사진변경
   //  =>ReviewForm 재 렌더링 => FileInput도 재 렌더링
   //  =>이때에는 useEffect 내부코드가 실행되는게 아니다.
+  const handleClearClick = () => {
+    const inputNode = inputRef;
+    inputNode.current.value = "";
+    onChange(inputName, null);
+  };
 
   useEffect(() => {
     // value  값이 없을 수도 있기 때문에  useEffect를 종료해준다,
@@ -34,16 +40,10 @@ function FileInput({ inputName, onChange, value }) {
     //  => 사용자 파일이 변경되면 value 값 변경으로 인한 useEffect 함수 실행
     //  => 앞으로 기억해뒀던 return 함수 실행
     return () => {
-      setPreview();
+      setPreview(null);
       URL.revokeObjectURL(nextpreview);
     };
   }, [value]);
-
-  const handleClearClick = () => {
-    const inputNode = inputRef;
-    // inputNode.current.value = "";
-    onChange(inputName, null);
-  };
 
   useEffect(() => {}, []);
 
