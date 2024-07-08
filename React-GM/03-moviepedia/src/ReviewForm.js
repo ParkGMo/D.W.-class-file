@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FileInput from "./FileInput.js";
 import RatingInput from "./RatingInput.js";
 import "./ReviewForm.css";
+import { LocaleContext, useLocale } from "./contexts/LocaleContext.js";
+import useTranslate from "./Hooks/useTranslate.js";
 
 const INITIAL_VALUE = {
   title: "",
@@ -20,6 +22,8 @@ function ReviewForm({
   // 초기값이 변화되면 랜더링 되지만 이후에는 초기값이 아니라 바뀐값으로 적용되어 있다.
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const locale = useLocale();
+  const t = useTranslate();
   const handleChange = (name, value) => {
     setValues((prevValue) => ({ ...prevValue, [name]: value }));
   };
@@ -58,7 +62,7 @@ function ReviewForm({
         <input
           type="text"
           name="title"
-          placeholder="제목을 입력해주세요!"
+          placeholder={t("title placeholer")}
           onChange={handleInputChange}
           value={values.title}
         />
@@ -69,15 +73,19 @@ function ReviewForm({
         />
         <textarea
           name="content"
-          placeholder="내용을 입력해주요."
+          placeholder={t("content placeholder")}
           onChange={handleInputChange}
           value={values.content}
         />
         {handleCancel && (
-          <button onClick={() => handleCancel(null)}>취소</button>
+          <button onClick={() => handleCancel(null)}>
+            {/* 취소 */}
+            {t("cancel button")}
+          </button>
         )}
         <button type="submit" disabled={isSubmitting}>
-          확인
+          {/* 확인 */}
+          {t("confirm button")}
         </button>
       </div>
     </form>

@@ -4,6 +4,7 @@ import "./ReviewList.css";
 import img1 from "./assets/cat wallpaper1.jpg";
 import ReviewForm from "./ReviewForm";
 import { updateDatas } from "./firebaseGM";
+import useTranslate from "./Hooks/useTranslate";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -11,6 +12,7 @@ function formatDate(value) {
 }
 
 function ReviewListItem({ item, handleDelete, handleEdit }) {
+  const t = useTranslate();
   const handleDeleteClick = () => {
     handleDelete(item.docId, item.imgUrl);
   };
@@ -32,13 +34,15 @@ function ReviewListItem({ item, handleDelete, handleEdit }) {
             // onClick={handleEdit}
             onClick={handleEditClick}
           >
-            수정
+            {/* 수정 */}
+            {t("edit button")}
           </button>
           <button
             className="ReviewListItem-delete-button"
             onClick={handleDeleteClick}
           >
-            삭제
+            {/* 삭제 */}
+            {t("delete button")}
           </button>
         </div>
       </div>

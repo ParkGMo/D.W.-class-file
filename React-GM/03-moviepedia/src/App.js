@@ -12,6 +12,8 @@ import {
   getDatasByOrderLimit,
   updateDatas,
 } from "./firebaseGM";
+import LocaleSelect from "./LocaleSelect.js";
+import useTranslate from "./Hooks/useTranslate.js";
 
 const LIMIT = 5;
 
@@ -47,6 +49,7 @@ function App() {
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
+  const t = useTranslate();
 
   const handleLoad = async (options) => {
     const { resultData, lastQuery } = await getDatasByOrderLimit(
@@ -122,10 +125,11 @@ function App() {
       <nav className="App-nav">
         <div className="App-nav-container">
           <img className="App-logo" src={logoImg} />
-          <select>
+          <LocaleSelect />
+          {/* <select>
             <option>한국어</option>
             <option>English</option>
-          </select>
+          </select> */}
         </div>
       </nav>
       <div className="App-container">
@@ -140,13 +144,15 @@ function App() {
             selected={order === "createdAt"}
             onClick={handleNewestClick}
           >
-            최신순
+            {/* 최신순 */}
+            {t("newest")}
           </AppSortButton>
           <AppSortButton
             selected={order === "rating"}
             onClick={handleBestClick}
           >
-            베스트순
+            {/* 베스트순 */}
+            {t("best")}
           </AppSortButton>
         </div>
         <div className="App-ReviewList">
@@ -161,7 +167,7 @@ function App() {
             onClick={handleMoreClick}
             disabled={!hasNext}
           >
-            더보기
+            {t("load more")}
           </button>
 
           {/* {hasNext && (
@@ -175,7 +181,7 @@ function App() {
         </div>
       </div>
       <footer className="App-footer">
-        <div className="App-footer-container">| 개인정보 처리방침</div>
+        <div className="App-footer-container">| {t("privary policy")}</div>
       </footer>
     </div>
   );
