@@ -10,6 +10,7 @@ import {
   getDatas,
   getDatasByOrder,
   getDatasByOrderLimit,
+  updateDatas,
 } from "./firebaseGM";
 
 const LIMIT = 5;
@@ -70,8 +71,21 @@ function App() {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
   };
 
-  const handleAddSucess = (data) => {
+  const handleAddSuccess = (data) => {
     setItems((prevItems) => [data, ...prevItems]);
+  };
+
+  const handleUpdatdSuccess = (result) => {
+    // 화몇처리.. 기존데이터는 item에서 삭제, 수정된 데이터는 item의 기존 위치에 추가
+    setItems((prevItems) => {
+      // findIndex() --> 반복문 함수에서 조건에 해당하는 index 값을 가져온다.
+      const splitIdx = prevItems.findIndex((item) => item.id === result.id);
+      return [
+        ...prevItems.slice(0, splitIdx),
+        result,
+        ...prevItems.slice(splitIdx + 1),
+      ];
+    });
   };
 
   const handleDelete = async (docId, imgUrl) => {
@@ -116,7 +130,10 @@ function App() {
       </nav>
       <div className="App-container">
         <div className="App-ReviewForm">
-          <ReviewForm addDatas={addDatas} handleAddSucess={handleAddSucess} />
+          <ReviewForm
+            onSubmits={addDatas}
+            handleSubmitSuccess={handleAddSuccess}
+          />
         </div>
         <div className="App-sorts">
           <AppSortButton
@@ -133,7 +150,12 @@ function App() {
           </AppSortButton>
         </div>
         <div className="App-ReviewList">
-          <ReviewList items={items} handleDelete={handleDelete} />
+          <ReviewList
+            items={items}
+            handleDelete={handleDelete}
+            onUpdate={updateDatas}
+            onUpdateSuccess={handleUpdatdSuccess}
+          />
           <button
             className="App-load-more-button"
             onClick={handleMoreClick}
