@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Cleanup from "./Cleanup";
+import ToDoList from "./ToDoList";
+import MovieApp from "./MovieApp";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -35,10 +38,16 @@ function App() {
         placeholder="Search here"
         onChange={(e) => console.log(e.target.value)}
       /> */}
-      <input type="text" placeholder="Search here" onChange={handleChange} />
+      {/* <input type="text" placeholder="Search here" onChange={handleChange} />
       <h2>입력한 값 : {input}</h2>
       <h1>{counter}</h1>
       <button onClick={handleClick}>Click me</button>
+      <hr />
+      <Cleanup />
+      <hr />
+      <ToDoList />
+      <hr /> */}
+      <MovieApp />
     </div>
   );
 }
