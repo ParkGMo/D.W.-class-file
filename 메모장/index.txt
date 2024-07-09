@@ -195,3 +195,14 @@ ctrl+`  --> 노드설치
 
 npm install firebase --> firebase npm 방식 설치!
   - package.json --> "dependencies" --> "firebase" 설치 확인 가능!
+
+npm install react-router-dom    --> 경로를 만들어준다.
+ ex)<BrowserRouter>
+      <Routes>
+        <Route path="/">
+          {/* "/" 이후에 없으면 Home으로 간다. */}
+          <Route path="" element={<Home />} />
+          <Route path="new" element={<New />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>

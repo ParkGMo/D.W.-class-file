@@ -35,9 +35,7 @@ function App() {
             <a className="add-item" onClick={AddPage}>
               + 새컬러 등록하기
             </a>
-            <ul className="items">
-              <AddColor />
-            </ul>
+            <ul className="items">{/* <AddColor /> */}</ul>
           </div>
         </div>
       </div>

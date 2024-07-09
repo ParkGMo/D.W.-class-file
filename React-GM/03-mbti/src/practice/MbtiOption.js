@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 let selecta = "selected";
 function MbtiOption({ MBTIa, MBTIb, MBTIk, MBTIj, select }) {
   // let selectisa = "";
-  const [selectisa, setSelctisa] = useState("");
+  const [selectisa, setSelctisa] = useState("selected");
   const [selectisb, setSelctisb] = useState("");
   const MbtiOptionBtn = () => {
     if (!selectisa) {
