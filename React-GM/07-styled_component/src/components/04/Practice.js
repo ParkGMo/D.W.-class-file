@@ -16,13 +16,11 @@ const Container = styled.div`
 export function Practice(props) {
   return (
     <Container>
-      <div>
-        <h1>로그인</h1>
-        <label htmlFor="email">Email</label>
-        <Input type="text" placeholder="Karinablue@gmail.com" id="email" />
-        <label htmlFor="password">Password</label>
-        <Input type="password" placeholder="비밀번호" id="password" />
-      </div>
+      <h1>로그인</h1>
+      <label htmlFor="email">Email</label>
+      <Input type="text" placeholder="Karinablue@gmail.com" id="email" />
+      <label htmlFor="password">Password</label>
+      <Input type="password" placeholder="비밀번호" id="password" />
     </Container>
   );
 }
