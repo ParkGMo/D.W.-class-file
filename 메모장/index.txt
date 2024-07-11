@@ -211,3 +211,6 @@ npm install react-router-dom    --> 경로를 만들어준다.
         </Route>
       </Routes>
     </BrowserRouter>
+
+npm install styled-components
+  scf -> 자동완성 
