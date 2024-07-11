@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./ColorSurvey.module.css";
+import React from 'react';
+import styles from './ColorSurvey.module.css';
 
 function ColorSurvey({ mbtiData }) {
   // const mbtiData = props.mbtiData;
@@ -11,7 +11,7 @@ function ColorSurvey({ mbtiData }) {
       <div className={styles.id}>{id}</div>
       <div className={styles.mbti}>{mbti}</div>
       <div className={styles.arrow}>
-        <img className={styles.arrowIcon} src="/images/arrow.svg" />
+        <img className={styles.arrowIcon} src='/images/arrow.svg' />
       </div>
       <div
         className={styles.colorChip}
