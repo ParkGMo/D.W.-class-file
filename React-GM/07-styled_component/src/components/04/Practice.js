@@ -20,7 +20,7 @@ export function Practice(props) {
       <label htmlFor="email">Email</label>
       <Input type="text" placeholder="Karinablue@gmail.com" id="email" />
       <label htmlFor="password">Password</label>
-      <Input type="password" placeholder="비밀번호" id="password" />
+      <Input type="password" placeholder="password" id="password" />
     </Container>
   );
 }
