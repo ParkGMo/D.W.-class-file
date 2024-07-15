@@ -29,7 +29,7 @@
   </body>
 </html>
 
-\\192.168.0.22\공유폴더\DW_DataVisualization3
+\\192.168.0.23\공유폴더\DW_DataVisualization3
 
 https://flexboxfroggy.com/#ko 레이아웃연습
 
@@ -214,3 +214,9 @@ npm install react-router-dom    --> 경로를 만들어준다.
 
 npm install styled-components
   scf -> 자동완성 
+npm install styled-reset
+${reset} -> css초기화
+
+  npm install classnames
+  cn() -> cn이라는 변수명을 따로지정하고 파라미터에 여러개의 클래스를 넣을 수 있게 만들어준다.
+   ex) import cn from "classnames";  -> <div className={cn(styles.container, className)}>{children}</div>
