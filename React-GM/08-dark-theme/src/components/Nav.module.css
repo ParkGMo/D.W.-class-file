@@ -30,6 +30,11 @@ ul.menu {
   margin: 0;
   gap: 30px;
 }
+ul.menu.dark a,
+ul.menu.dark a:hover,
+ul.menu.dark a:active {
+  color: beige;
+}
 ul.menu a:hover,
 ul.menu a:active {
   text-decoration: underline;
