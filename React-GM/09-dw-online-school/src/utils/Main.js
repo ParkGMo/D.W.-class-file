@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import App from "../components/App";
+import CourseListPage from "../pages/CourseListPage";
+import QuestionListPage from "../pages/QuestionListPage";
 
 function Main(props) {
   return (
@@ -9,7 +11,8 @@ function Main(props) {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-          <Route></Route>
+          <Route path="courses" element={<CourseListPage />} />
+          <Route path="questions" element={<QuestionListPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
