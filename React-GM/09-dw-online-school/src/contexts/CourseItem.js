@@ -3,25 +3,47 @@ import Card from "./../components/Card";
 import CourseIcon from "../components/CourseIcon";
 import { Link } from "react-router-dom";
 import styles from "./CourseItem.module.css";
+import getCourseColor from "../utils/getCourseColor";
 
-function CourseItem(props) {
+const DIFFICULTY = {
+  0: "입문",
+  1: "초급",
+  2: "중급",
+  3: "고급",
+};
+
+const colorDict = {
+  1: "pink",
+  2: "pink",
+  3: "mint",
+  4: "yellow",
+  5: "yellow",
+  6: "yellow",
+  7: "pink",
+  8: "pink",
+  9: "mint",
+};
+function CourseItem({ course }) {
+  const { title, summary, difficulty, code, language, photoUrl } = course;
+  const coursColor = getCourseColor(code);
+  const thumbStyle = {
+    borderColor: coursColor,
+  };
   return (
     <Card className={styles.courseItem}>
-      <div className={styles.thumb}>
-        <CourseIcon />
+      <div className={styles[colorDict[code.charAt(0)]]}>
+        {/* <div className={styles.thumb} style={thumbStyle}> */}
+        <CourseIcon photoUrl={photoUrl} />
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          <Link>프로그래밍 기초 in Python</Link>
+          <Link>{title}</Link>
         </h2>
-        <p className={styles.description}>
-          웹/앱 개발, 데이터분석, 인공지능/머신러닝, 업무 자동화 등으로 나아가기
-          위한 첫 걸음!
-        </p>
+        <p className={styles.description}>{summary}</p>
         <div>
           <ul className={styles.tags}>
-            <li>PYTHON</li>
-            <li>초급</li>
+            <li>{language}</li>
+            <li>{DIFFICULTY[difficulty]}</li>
           </ul>
         </div>
       </div>

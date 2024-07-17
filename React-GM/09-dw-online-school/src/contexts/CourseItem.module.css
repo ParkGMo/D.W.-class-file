@@ -8,6 +8,27 @@
   align-items: center;
   padding: 30px 0px;
 }
+.courseItem .pink {
+  border-top: 10px solid #d19fe9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0px;
+}
+.courseItem .mint {
+  border-top: 10px solid #7cd9c2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0px;
+}
+.courseItem .yellow {
+  border-top: 10px solid #f7d16f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0px;
+}
 .courseItem .content {
   background-color: #f9f9f9;
   border-top: 1px solid #ebebeb;
@@ -21,11 +42,19 @@
   font-weight: 500;
   font-size: 14px;
   margin: 0 0 10px;
+  /* 문장이 길면 줄이는 역할 : 밑에 3줄 같이 작성 */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .courseItem .description {
   font-size: 12px;
   font-weight: 300;
   margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .courseItem .tags {
   display: flex;
