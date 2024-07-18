@@ -3,14 +3,16 @@ import Container from '../components/Container';
 import CourseIcon from '../components/CourseIcon';
 import Button from '../components/Button';
 import Card from '../components/Card';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import getCourseColor from '../utils/getCourseColor';
 import { getData } from '../api/firebase';
 import styles from './CoursePage.module.css';
 
 function CoursePage() {
   const props = useLocation();
+  const { pathname } = props;
   const { courseSlug } = useParams();
+  const navigate = useNavigate();
 
   const [course, setCourse] = useState();
 
@@ -33,6 +35,16 @@ function CoursePage() {
     setCourse(resultData);
   };
 
+  const handleAddWishlistClick = () => {
+    const member = JSON.parse(localStorage.getItem('member'));
+
+    if (member) {
+    } else {
+      alert('로그인을 해주세요.');
+      navigate('/login', { state: pathname });
+    }
+  };
+
   useEffect(() => {
     handleLoad();
   }, []);
@@ -43,7 +55,9 @@ function CoursePage() {
         <Container className={styles.content}>
           <CourseIcon photoUrl={course?.photoUrl} />
           <h1 className={styles.title}>{course?.title}</h1>
-          <Button>+ 코스 담기</Button>
+          <Button variant='round' onClick={handleAddWishlistClick}>
+            + 코스 담기
+          </Button>
           <p className={styles.summary}>{course?.summary}</p>
         </Container>
       </div>

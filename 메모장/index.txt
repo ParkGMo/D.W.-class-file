@@ -201,6 +201,8 @@ ctrl+`  --> 노드설치
      --> 전역으로 사용할 수 있도록 한다. ex)const { locale } = useContext(LocaleContext); 여러 파일에서 사용가능
  - useParams() : route의 path=:*** 과 , 컴포넌트의 to={***}을 가져온다.
  - useLocation() : 간단한 정보들을 가져온다. 중요 정보가 없을 때 사용
+ - useNavigate() : 원하는 곳으로 이동하는 함수, 
+    --> ("/" -> 원하는 경로, /가 없으면 주소 끝에 변경, {replace: true} -> 뒤로가기 불가) 
 
 
 npm install firebase --> firebase npm 방식 설치!

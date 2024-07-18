@@ -5,6 +5,7 @@ import App from "../components/App";
 import CourseListPage from "../pages/CourseListPage";
 import QuestionListPage from "../pages/QuestionListPage";
 import CoursePage from "../pages/CoursePage";
+import Login from "../components/Login";
 
 function Main(props) {
   return (
@@ -18,6 +19,7 @@ function Main(props) {
             <Route path=":courseSlug" element={<CoursePage />} />
           </Route>
           <Route path="questions" element={<QuestionListPage />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>

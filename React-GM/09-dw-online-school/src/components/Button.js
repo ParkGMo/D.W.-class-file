@@ -2,13 +2,12 @@ import React from "react";
 import styles from "./Button.module.css";
 import cn from "classnames";
 
-function Button({ variant, ...restPorps }) {
-  debugger;
+function Button({ variant, onClick, ...restProps }) {
   return (
     <button
-      {...restPorps}
+      {...restProps}
       className={cn(styles.button, variant && styles[variant])}
-      // children={children}
+      onClick={onClick}
     />
   );
 }

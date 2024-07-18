@@ -39,4 +39,29 @@ async function getData(collectionName, option) {
   return resultData;
 }
 
-export { db, getDatas, getData };
+async function getMember(values) {
+  const { email, password } = values;
+  const collect = collection(db, "member");
+  const q = query(collect, where("email", "==", email));
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  let message;
+  let memberObj = {};
+  if (docs.length == 0) {
+    message = "이메일이 올바르지 않습니다";
+  } else {
+    const memberData = { ...docs[0].data(), docId: docs[0].id };
+    if (password === memberData.password) {
+      message = "로그인에 성공했습니다.";
+      memberObj = {
+        email: memberData.email,
+        docId: memberData.docId,
+      };
+    } else {
+      message = "비밀번호가 일치하지 않습니다.";
+    }
+  }
+  return { message, memberObj };
+}
+
+export { db, getDatas, getData, getMember };
