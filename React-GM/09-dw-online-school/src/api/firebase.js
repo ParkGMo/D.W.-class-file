@@ -3,6 +3,8 @@ import {
   getFirestore,
   collection,
   getDocs,
+  query,
+  where,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -28,4 +30,13 @@ async function getDatas(collectionName) {
   return resultData;
 }
 
-export { db, getDatas };
+async function getData(collectionName, option) {
+  const { field, condition, value } = option;
+  const collect = collection(db, collectionName);
+  const q = query(collect, where(field, condition, value));
+  const snapshot = await getDocs(q);
+  const resultData = { ...snapshot.docs[0].data(), docId: snapshot.docs[0].id };
+  return resultData;
+}
+
+export { db, getDatas, getData };

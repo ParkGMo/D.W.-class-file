@@ -24,7 +24,7 @@ const colorDict = {
   9: "mint",
 };
 function CourseItem({ course }) {
-  const { title, summary, difficulty, code, language, photoUrl } = course;
+  const { title, summary, difficulty, code, language, photoUrl, slug } = course;
   const coursColor = getCourseColor(code);
   const thumbStyle = {
     borderColor: coursColor,
@@ -37,7 +37,9 @@ function CourseItem({ course }) {
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          <Link>{title}</Link>
+          <Link to={`/courses/${slug}`} state={{ course }}>
+            {title}
+          </Link>
         </h2>
         <p className={styles.description}>{summary}</p>
         <div>

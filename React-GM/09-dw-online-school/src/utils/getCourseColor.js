@@ -3,7 +3,7 @@ const COLORS = {
   green: "#7cd9c2",
   yellow: "#f7d16f",
 };
-function getCourseColor(code) {
+function getCourseColor(code = "000") {
   const firstCode = Number(code.charAt(0));
   switch (firstCode) {
     case 3:
@@ -15,7 +15,7 @@ function getCourseColor(code) {
     case 7:
     case 8:
     default:
-      return COLORS.green;
+      return COLORS.purple;
   }
 }
 export default getCourseColor;
