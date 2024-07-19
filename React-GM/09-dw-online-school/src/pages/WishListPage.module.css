@@ -30,6 +30,8 @@ ul.items {
   display: block;
 }
 .emptyList {
+  margin: 50px auto 30px;
 }
 .link {
+  text-align: center;
 }

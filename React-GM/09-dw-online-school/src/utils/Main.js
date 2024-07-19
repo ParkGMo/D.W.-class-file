@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import App from "../components/App";
 import CourseListPage from "../pages/CourseListPage";
@@ -7,6 +7,7 @@ import QuestionListPage from "../pages/QuestionListPage";
 import CoursePage from "../pages/CoursePage";
 import Login from "../components/Login";
 import WishListPage from "../pages/WishListPage";
+import Logout from "../components/Logout";
 
 function Main(props) {
   return (
@@ -21,6 +22,7 @@ function Main(props) {
           </Route>
           <Route path="questions" element={<QuestionListPage />} />
           <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
           <Route path="wishlist" element={<WishListPage />} />
         </Route>
       </Routes>

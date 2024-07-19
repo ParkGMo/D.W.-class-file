@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 
 function UserMenu(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const member = JSON.parse(localStorage.getItem("member"));
-  const [islogined, setIslogined] = useState(member ? true : false);
+  const islogined = JSON.parse(localStorage.getItem("member"));
   const handleClick = (e) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
@@ -36,18 +35,24 @@ function UserMenu(props) {
       </button>
       {isOpen && (
         <ul className={styles.popup}>
-          <Link to="/wishlist">
-            <li>위시리스트</li>
-          </Link>
-          <li className={styles.disabled}>회원가입</li>
           {!islogined ? (
-            <Link to="/login">
-              <li>로그인</li>
-            </Link>
+            <>
+              <li className={styles.disabled}>위시리스트</li>
+              <li className={styles.disabled}>회원가입</li>
+              <Link to="/login">
+                <li>로그인</li>
+              </Link>
+            </>
           ) : (
-            <Link to="/login">
-              <li>로그아웃</li>
-            </Link>
+            <>
+              <Link to="/wishlist">
+                <li>위시리스트</li>
+              </Link>
+              <li className={styles.disabled}>회원가입</li>
+              <Link to="/logout">
+                <li>로그아웃</li>
+              </Link>
+            </>
           )}
         </ul>
       )}

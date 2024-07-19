@@ -1,13 +1,12 @@
 .warn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 .icon {
-  margin-top: 30px;
+  display: block;
+  margin: 0 auto;
 }
 .title {
+  margin: 20px auto 3px;
   font-size: 20px;
   font-weight: 500;
 }
@@ -17,6 +16,7 @@
 .description {
   font-weight: 500;
   color: #878787;
+  margin: 0;
 }
 .big .description {
   font-size: 18px;
