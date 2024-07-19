@@ -1,0 +1,23 @@
+.warn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  margin-top: 30px;
+}
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+.big .title {
+  font-size: 24px;
+}
+.description {
+  font-weight: 500;
+  color: #878787;
+}
+.big .description {
+  font-size: 18px;
+}

@@ -25,6 +25,7 @@ const colorDict = {
 };
 function CourseItem({ course }) {
   const { title, summary, difficulty, code, language, photoUrl, slug } = course;
+  // console.log(course);
   const coursColor = getCourseColor(code);
   const thumbStyle = {
     borderColor: coursColor,
