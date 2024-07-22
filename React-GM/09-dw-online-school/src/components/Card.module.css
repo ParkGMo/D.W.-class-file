@@ -2,6 +2,6 @@
   overflow: hidden;
   background-color: #fff;
   border-radius: 5px;
-  box-sizing: var(--box-shadow);
+  box-shadow: var(--box-shadow);
   width: 100%;
 }

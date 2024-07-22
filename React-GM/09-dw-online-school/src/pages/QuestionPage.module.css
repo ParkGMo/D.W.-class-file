@@ -1,0 +1,25 @@
+.header {
+  padding: 39px 0 33px;
+  background-color: #fff;
+}
+.count {
+  margin: 0 0 22px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #878787;
+}
+.question {
+  padding: 0 30px;
+}
+.questionInfo {
+}
+.questionInfo .content {
+}
+.questionInfo .author {
+}
+.questionInfo .title {
+}
+.questionInfo .title .count {
+}
+.questionInfo .date {
+}

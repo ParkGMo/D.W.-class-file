@@ -8,6 +8,7 @@ import CoursePage from "../pages/CoursePage";
 import Login from "../components/Login";
 import WishListPage from "../pages/WishListPage";
 import Logout from "../components/Logout";
+import QuestionPage from "../pages/QuestionPage";
 
 function Main(props) {
   return (
@@ -20,7 +21,10 @@ function Main(props) {
             {/* 동적 routing -> 특정 주소에서 제일 끝에 상품명이나 순서만 바뀐다.  */}
             <Route path=":courseSlug" element={<CoursePage />} />
           </Route>
-          <Route path="questions" element={<QuestionListPage />} />
+          <Route path="questions">
+            <Route index element={<QuestionListPage />} />
+            <Route path=":questionId" element={<QuestionPage />} />
+          </Route>
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
           <Route path="wishlist" element={<WishListPage />} />

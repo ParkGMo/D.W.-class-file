@@ -8,6 +8,7 @@ import Card from "../components/Card";
 import { Link } from "react-router-dom";
 import personImg from "../assets/person.png";
 import UserMenu from "../components/UserMenu";
+import QuestionItem from "../components/QuestionItem";
 
 let listItems;
 function QuestionListPage(props) {
@@ -48,7 +49,10 @@ function QuestionListPage(props) {
       </form>
       <p className={styles.count}>총 {items.length}개 코스</p>
       <div className={styles.questionList}>
-        {items.map((item) => {
+        {items.map((question) => (
+          <QuestionItem question={question} key={question.docId} />
+        ))}
+        {/* {items.map((item) => {
           console.log(item);
           const { answers, content, createdAt, title, updatedAt, writer } =
             item;
@@ -75,7 +79,7 @@ function QuestionListPage(props) {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
     </ListPage>
   );
