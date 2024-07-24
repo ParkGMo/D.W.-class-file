@@ -1,6 +1,9 @@
 .FoodList {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 .FoodList > li {
   padding: 22px;
@@ -58,6 +61,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  text-align: start;
 }
 .FoodListItem-date-buttons {
   flex: none;

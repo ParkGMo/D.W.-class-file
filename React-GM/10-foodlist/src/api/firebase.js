@@ -97,4 +97,64 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-export { addDatas, getDatas };
+// async function getDatasOrderByLimit(collectionName, options) {
+//   const { fieldName, limits } = options;
+//   let q;
+//   if (!options.lq) {
+//     q = query(
+//       getCollection(collectionName),
+//       orderBy(fieldName, "desc"),
+//       limit(limits)
+//     );
+//   } else {
+//     q = query(
+//       getCollection(collectionName),
+//       orderBy(fieldName, "desc"),
+//       startAfter(options.lq),
+//       limit(limits)
+//     );
+//   }
+
+//   const snapshot = await getDocs(q);
+//   const resultData = snapshot.docs.map((doc) => ({
+//     ...doc.data(),
+//     docId: doc.id,
+//   }));
+//   return resultData;
+// }
+async function getDatasOrderByLimit(collectionName, options) {
+  const { fieldName, limits } = options;
+  const q = query(
+    getCollection(collectionName),
+    orderBy(fieldName, "desc"),
+    limit(limits)
+  );
+
+  const snapshot = await getDocs(q);
+  const resultData = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  }));
+  return resultData;
+}
+
+async function deleteDatas(collectionName, docId, imgUrl) {
+  // async function deleteDatas(collectionName, docId, ...args) {
+  // (...args) --> 없어도 함수 실행가능, 여러 개를 기입하면 배열로 변환
+  // 1. 스토리지 객체 가져온다.
+  const storage = getStorage();
+  try {
+    // 2. 스토리지에서 이미지 삭제
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+    // 3. 컬렉션에 문서 삭제
+    const docRef = await doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    // deleteDoc(삭제할 문서);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export { addDatas, getDatas, getDatasOrderByLimit };
