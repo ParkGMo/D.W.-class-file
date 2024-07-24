@@ -1,6 +1,5 @@
 import "./Main.css";
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
-import HomePage from "./page/HomePage";
 import App from "./components/App";
 
 function Main() {

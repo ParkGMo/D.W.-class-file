@@ -35,6 +35,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+async function getDatas(collectionName) {
+  const collect = await collection(db, collectionName);
+  const snapshot = await getDocs(collect);
+  // return snapshot;
+  const resultData = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  }));
+  return resultData;
+}
+
 function getCollection(collectionName) {
   return collection(db, collectionName);
 }
@@ -86,4 +97,4 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-export { addDatas };
+export { addDatas, getDatas };

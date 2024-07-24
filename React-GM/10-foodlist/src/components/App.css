@@ -57,6 +57,51 @@ body {
   box-shadow: 0 0 9px 0 rgba(100, 126, 118, 0.09);
   background-color: #fff;
 }
+.App-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.App-search {
+  position: relative;
+}
+.App-search-button {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.App-orders {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.AppSortButton {
+  font-size: 16px;
+  color: #2b302f;
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  cursor: pointer;
+}
+.AppSortButton.selected {
+  color: #2c9631;
+}
+/* ::before -->   content: ""; 필수로*/
+.AppSortButton.selected::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  position: relative;
+  left: -5px;
+  top: -2px;
+  border-radius: 5px;
+  background-color: #2c9631;
+  /* transform: translateY(-50%); */
+}
 .App-footer {
   margin-top: 250px;
   background-color: #4caf50;
