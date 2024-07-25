@@ -168,4 +168,34 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   }
 }
 
-export { addDatas, getDatas, getDatasOrderByLimit, deleteDatas };
+async function updateDatas(collectionName, dataObj, docId) {
+  const docRef = await doc(db, collectionName, docId);
+  // 수정할 데이터 양식 생성 => title, content, rating, updatedAt, imgUrl
+  const time = new Date().getTime();
+  dataObj.updatedAt = time;
+  // 사진파일이 수정되면 => 사진삭제 => 새로운 사진 추가 => url 받아와서  imgUrl 값 세팅
+  if (dataObj.imgUrl !== null) {
+    // 기존사진 url 가져오기
+    const docSnap = await getDoc(docRef);
+    const prevImgUrl = docSnap.data().imgUrl;
+    // 스토리지에서  기존사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, prevImgUrl);
+    await deleteObject(deleteRef);
+    // 새로운 사진 추가
+    const uuid = storage.randomUUID();
+    const path = `food/${uuid}`;
+    const url = await uploadImage(path, dataObj.imgUrl);
+    dataObj.imgUrl = url;
+  } else {
+    // imgUrl 프로퍼티 삭제
+    delete dataObj["imgUrl"];
+  }
+  // 사진파일이 수정되지 않으면 => 변경 데이터만 업데이트
+  await updateDoc(docRef, dataObj);
+  const updateData = await getDoc(docRef);
+  const resultData = { docId: updateData.id, ...updateData.data() };
+  return resultData;
+}
+
+export { addDatas, getDatas, getDatasOrderByLimit, deleteDatas, updateDatas };

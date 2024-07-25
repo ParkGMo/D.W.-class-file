@@ -78,7 +78,7 @@ function App() {
     setItems((prevItems) => [data, ...prevItems]);
   };
 
-  const handleUpdatdSuccess = (result) => {
+  const handleUpdatedSuccess = (result) => {
     // 화몇처리.. 기존데이터는 item에서 삭제, 수정된 데이터는 item의 기존 위치에 추가
     setItems((prevItems) => {
       // findIndex() --> 반복문 함수에서 조건에 해당하는 index 값을 가져온다.
@@ -160,7 +160,7 @@ function App() {
             items={items}
             handleDelete={handleDelete}
             onUpdate={updateDatas}
-            onUpdateSuccess={handleUpdatdSuccess}
+            onUpdatedSuccess={handleUpdatedSuccess}
           />
           <button
             className="App-load-more-button"

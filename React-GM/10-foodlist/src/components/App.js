@@ -12,9 +12,17 @@ import {
   deleteDatas,
   getDatas,
   getDatasOrderByLimit,
+  updateDatas,
 } from "../api/firebase";
 
 const LIMIT = 5;
+
+const INITIAL_VALUES = {
+  title: "",
+  content: "",
+  calorie: 0,
+  imgUrl: null,
+};
 
 function AppSortButton({ children, selected, onClick }) {
   return (
@@ -73,7 +81,16 @@ function App(props) {
   const handleAddSuccess = (resultData) => {
     setItems((prevItems) => [resultData, ...prevItems]);
   };
-  const handleUpdateSuccess = () => {};
+  const handleUpdateSuccess = (result) => {
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => {
+        return item.docId === result.docId;
+      });
+      const beforeArr = prevItems.slice(0, splitIdx);
+      const afterArr = prevItems.slice(splitIdx + 1);
+      return [...beforeArr, result, ...afterArr];
+    });
+  };
 
   const countOnClick = () => {
     setItemCount((prevCount) => prevCount + LIMIT);
@@ -91,7 +108,11 @@ function App(props) {
       </div>
       <div className="App-container">
         <div className="App-FoodForm">
-          <FoodForm onSubmit={addDatas} onSubmitSuccess={handleAddSuccess} />
+          <FoodForm
+            onSubmit={addDatas}
+            onSubmitSuccess={handleAddSuccess}
+            // item={INITIAL_VALUES}
+          />
         </div>
         <div className="App-filter">
           <form className="App-search">
@@ -118,7 +139,7 @@ function App(props) {
         <FoodList
           items={items}
           onDelete={handleDelete}
-          // onUpdate={updateDatas}
+          onUpdate={updateDatas}
           onUpdateSuccess={handleUpdateSuccess}
         />
         {itemCount >= dataLength ? (

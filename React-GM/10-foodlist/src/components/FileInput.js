@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import placeholderImg from "../assets/preview-placeholder.png";
 import resetImg from "../assets/ic-reset-white.png";
 import "./FileInput.css";
 
-function FileInput({ name, value, onChange }) {
-  const [preview, setPreview] = useState();
+function FileInput({ name, value, onChange, initialPreview }) {
+  // value는 문자열로 넘어온다. -> createObjectURL()에는 미디어소스 블록타입 형태로 들어와야한다.
+  const [preview, setPreview] = useState(initialPreview);
+  const inputRef = useRef();
 
   const handleChange = (e) => {
     const nextValue = e.target.files[0];
@@ -35,6 +37,7 @@ function FileInput({ name, value, onChange }) {
         className="FileInput-hidden-overlay"
         type="file"
         onChange={handleChange}
+        ref={inputRef}
       />
       {value && (
         <button

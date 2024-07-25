@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 import { addDatas } from "../api/firebase";
@@ -20,8 +20,14 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm({ onSubmit, onSubmitSuccess }) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function FoodForm({
+  onSubmit,
+  onSubmitSuccess,
+  onCancel,
+  initialPreview,
+  initialValues = INITIAL_VALUES,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
@@ -39,6 +45,10 @@ function FoodForm({ onSubmit, onSubmitSuccess }) {
     setIsSubmitting(false);
     setValues(INITIAL_VALUES);
   };
+
+  const handleUpdatedSuccess = (resultData) => {
+    handleUpdatedSuccess(resultData);
+  };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
       <FileInput
@@ -46,6 +56,7 @@ function FoodForm({ onSubmit, onSubmitSuccess }) {
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
+        initialPreview={initialPreview}
       />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
@@ -64,6 +75,15 @@ function FoodForm({ onSubmit, onSubmitSuccess }) {
             name="calorie"
             value={values.calorie}
           />
+          {onCancel && (
+            <button
+              className="FoodForm-cancel-button"
+              type="button"
+              onClick={() => onCancel(null)}
+            >
+              취소
+            </button>
+          )}
           <button
             className="FoodForm-submit-button"
             type="submit"

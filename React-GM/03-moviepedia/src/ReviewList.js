@@ -50,7 +50,7 @@ function ReviewListItem({ item, handleDelete, handleEdit }) {
   );
 }
 
-function ReviewList({ items, handleDelete, onUpdate, onUpdateSuccess }) {
+function ReviewList({ items, handleDelete, onUpdate, onUpdatedSuccess }) {
   const [editingId, setEditingId] = useState(null);
 
   return (
@@ -64,7 +64,7 @@ function ReviewList({ items, handleDelete, onUpdate, onUpdateSuccess }) {
             return result;
           };
           const handleSubmitSuccess = (result) => {
-            onUpdateSuccess(result);
+            onUpdatedSuccess(result);
             setEditingId(null);
           };
           return (

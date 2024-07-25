@@ -44,15 +44,38 @@ function FoodListItem({ item, onDelete, onEdit }) {
   );
 }
 
-function FoodList({ items, onDelete }) {
+function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
   const [editingId, setEditingId] = useState(null);
   return (
     <ul className="FoodList">
       {items.map((item) => {
         if (item.id == editingId) {
+          const { title, calorie, content, imgUrl, docId } = item;
+          const initialValues = {
+            title,
+            calorie,
+            content,
+            imgUrl: null,
+            docId,
+          };
+          const handleSubmit = (collectionName, dataObj) => {
+            const result = onUpdate(collectionName, dataObj, docId);
+            return result;
+          };
+          const handleSubmitSuccess = (result) => {
+            onUpdateSuccess(result);
+            setEditingId(null);
+          };
           return (
             <li key={item.docId}>
-              <FoodForm />
+              <FoodForm
+                initialValues={initialValues}
+                initialPreview={imgUrl}
+                onCancel={setEditingId}
+                item={item}
+                onSubmit={handleSubmit}
+                onSubmitSuccess={handleSubmitSuccess}
+              />
             </li>
           );
         }
