@@ -20,8 +20,9 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm({ handleLoad }) {
+function FoodForm({ onSubmit, onSubmitSuccess }) {
   const [values, setValues] = useState(INITIAL_VALUES);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -32,7 +33,11 @@ function FoodForm({ handleLoad }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resultData = await addDatas("food", values);
+    setIsSubmitting(true);
+    const resultData = await onSubmit("food", values);
+    onSubmitSuccess(resultData);
+    setIsSubmitting(false);
+    setValues(INITIAL_VALUES);
   };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
@@ -59,7 +64,11 @@ function FoodForm({ handleLoad }) {
             name="calorie"
             value={values.calorie}
           />
-          <button className="FoodForm-submit-button" type="submit">
+          <button
+            className="FoodForm-submit-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             확인
           </button>
         </div>
