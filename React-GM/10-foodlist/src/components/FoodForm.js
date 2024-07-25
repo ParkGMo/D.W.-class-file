@@ -20,7 +20,7 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm(props) {
+function FoodForm({ handleLoad }) {
   const [values, setValues] = useState(INITIAL_VALUES);
 
   const handleChange = (name, value) => {

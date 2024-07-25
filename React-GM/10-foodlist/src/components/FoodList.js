@@ -2,9 +2,10 @@ import React from "react";
 import { getDatas } from "../api/firebase";
 import "./FoodList.css";
 
-function FoodListItem({ item }) {
+function FoodListItem({ item, handleDelete }) {
   const { title, imgUrl, content, createdAt, calorie } = item;
   const date = new Date(createdAt).toLocaleDateString("ko-KR");
+  const handleDeleteClick = () => {};
   return (
     <div className="FoodListItem">
       <img className="FoodListItem-preview" src={imgUrl} />
@@ -18,7 +19,12 @@ function FoodListItem({ item }) {
           <p className="FoodListItem-date">{date}</p>
           <div className="FoodListItem-buttons">
             <button className="FoodListItem-edit-button">수정</button>
-            <button className="FoodListItem-delete-button">삭제</button>
+            <button
+              className="FoodListItem-delete-button"
+              onClick={() => handleDelete(item.docId, imgUrl)}
+            >
+              삭제
+            </button>
           </div>
         </div>
       </div>
@@ -26,13 +32,13 @@ function FoodListItem({ item }) {
   );
 }
 
-function FoodList({ items }) {
+function FoodList({ items, handleDelete }) {
   return (
     <ul className="FoodList">
       {items.map((item) => {
         return (
           <li key={item.docId}>
-            <FoodListItem item={item} />
+            <FoodListItem item={item} handleDelete={handleDelete} />
           </li>
         );
       })}

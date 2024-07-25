@@ -23,17 +23,19 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCh9lo6AcO8k9UEIKzLFKoq9xZqXYBvMn8",
-  authDomain: "foodlist-a7ea2.firebaseapp.com",
-  projectId: "foodlist-a7ea2",
-  storageBucket: "foodlist-a7ea2.appspot.com",
-  messagingSenderId: "756021758981",
-  appId: "1:756021758981:web:903fcb3c4316b7d3cd606c",
+  apiKey: "AIzaSyCJtntIKLytLGdJblTmqsbQvUUHbpGULcw",
+  authDomain: "foodlist02.firebaseapp.com",
+  projectId: "foodlist02",
+  storageBucket: "foodlist02.appspot.com",
+  messagingSenderId: "789185922817",
+  appId: "1:789185922817:web:a38e2fd6dcbc5cf4063d00",
+  measurementId: "G-3N2VCH6PK7",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const store = getStorage(app);
 
 async function getDatas(collectionName) {
   const collect = await collection(db, collectionName);
@@ -139,15 +141,15 @@ async function getDatasOrderByLimit(collectionName, options) {
 }
 
 async function deleteDatas(collectionName, docId, imgUrl) {
-  // async function deleteDatas(collectionName, docId, ...args) {
-  // (...args) --> 없어도 함수 실행가능, 여러 개를 기입하면 배열로 변환
-  // 1. 스토리지 객체 가져온다.
+  // 스토리이지에 있는 이미지를 삭제할 때 필요한 것 ==> 파일명(경로포함) or 파일 url
+  // 스토리지 객체 생성
   const storage = getStorage();
   try {
-    // 2. 스토리지에서 이미지 삭제
+    // 삭제할 파일의 참조객체 생성(ref 함수 사용)
     const deleteRef = ref(storage, imgUrl);
+    // 파일 삭제
     await deleteObject(deleteRef);
-    // 3. 컬렉션에 문서 삭제
+    // database에 있는 문서 삭제
     const docRef = await doc(db, collectionName, docId);
     await deleteDoc(docRef);
     // deleteDoc(삭제할 문서);
@@ -157,4 +159,4 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   }
 }
 
-export { addDatas, getDatas, getDatasOrderByLimit };
+export { addDatas, getDatas, getDatasOrderByLimit, deleteDatas };
