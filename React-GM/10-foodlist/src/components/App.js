@@ -12,17 +12,14 @@ import {
   deleteDatas,
   getDatas,
   getDatasOrderByLimit,
+  getSearchDatas,
   updateDatas,
 } from "../api/firebase";
+import { useSetLocale } from "../contexts/LocalContext";
+import useTranslate from "../hooks/useTranslate";
+import LocalSelect from "./LocalSelect";
 
 const LIMIT = 5;
-
-const INITIAL_VALUES = {
-  title: "",
-  content: "",
-  calorie: 0,
-  imgUrl: null,
-};
 
 function AppSortButton({ children, selected, onClick }) {
   return (
@@ -40,6 +37,10 @@ function App(props) {
   const [items, setItems] = useState([]);
   const [itemCount, setItemCount] = useState(5);
   const [order, setOrder] = useState("createdAt");
+  const [search, setSearch] = useState("");
+  // const [locale, setLocale] = useState("ko");
+  const t = useTranslate();
+
   const handleNewestClick = () => {
     handleLoad();
     setOrder("createdAt");
@@ -77,6 +78,22 @@ function App(props) {
     }
     setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
   };
+  const handleSearchChange = (e) => {
+    const searchValue = e.target.value;
+    setSearch(searchValue);
+  };
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    if (search === "") {
+      handleLoad({ fieldName: order, limits: itemCount });
+    } else {
+      const resultData = await getSearchDatas("food", {
+        limits: itemCount,
+        search: search,
+      });
+      setItems(resultData);
+    }
+  };
 
   const handleAddSuccess = (resultData) => {
     setItems((prevItems) => [resultData, ...prevItems]);
@@ -84,7 +101,7 @@ function App(props) {
   const handleUpdateSuccess = (result) => {
     setItems((prevItems) => {
       const splitIdx = prevItems.findIndex((item) => {
-        return item.docId === result.docId;
+        return item.id === result.id;
       });
       const beforeArr = prevItems.slice(0, splitIdx);
       const afterArr = prevItems.slice(splitIdx + 1);
@@ -115,8 +132,8 @@ function App(props) {
           />
         </div>
         <div className="App-filter">
-          <form className="App-search">
-            <input className="App-search-input" />
+          <form className="App-search" onSubmit={handleSearchSubmit}>
+            <input className="App-search-input" onChange={handleSearchChange} />
             <button className="App-search-button">
               <img src={searchImg} />
             </button>
@@ -126,13 +143,15 @@ function App(props) {
               selected={order == "createdAt" ? true : false}
               onClick={handleNewestClick}
             >
-              최신순
+              {t("newest")}
+              {/* {최신순} */}
             </AppSortButton>
             <AppSortButton
               selected={order == "calorie" ? true : false}
               onClick={handleCalorieClick}
             >
-              칼로리순
+              {t("calorie")}
+              {/* 칼로리순 */}
             </AppSortButton>
           </div>
         </div>
@@ -141,12 +160,13 @@ function App(props) {
           onDelete={handleDelete}
           onUpdate={updateDatas}
           onUpdateSuccess={handleUpdateSuccess}
+          search={search}
         />
         {itemCount >= dataLength ? (
           ""
         ) : (
           <button className="App-load-more-button" onClick={countOnClick}>
-            더보기
+            {t("load more")}
           </button>
         )}
         {/* <button onClick={countOnClick}>더보기</button> */}
@@ -154,12 +174,13 @@ function App(props) {
       <div className="App-footer">
         <div className="App-footer-container">
           <img src={logoTextImg} />
-          <select>
-            <option>한국어</option>
-            <option>English</option>
-          </select>
+          <LocalSelect />
+          {/* <select onChange={() => handleTranslate}>
+            <option value={"ko"}>한국어</option>
+            <option value={"en"}>English</option>
+          </select> */}
           <div className="App-footer-menu">
-            서비스 이용약관 | 개인정보 처리방침
+            {t("terms of service")} | {t("private policy")}
           </div>
         </div>
       </div>

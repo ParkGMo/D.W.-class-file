@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { getDatas } from "../api/firebase";
 import "./FoodList.css";
 import FoodForm from "./FoodForm";
+import useTranslate from "../hooks/useTranslate";
 
 function FoodListItem({ item, onDelete, onEdit }) {
   const { title, imgUrl, content, createdAt, calorie, id } = item;
   const date = new Date(createdAt).toLocaleDateString("ko-KR");
+  const t = useTranslate();
   const handleDeleteClick = () => {
     onDelete(item.docId, imgUrl);
   };
@@ -28,14 +30,14 @@ function FoodListItem({ item, onDelete, onEdit }) {
               className="FoodListItem-edit-button"
               onClick={handleEditClick}
             >
-              수정
+              {t("edit button")}
             </button>
             <button
               className="FoodListItem-delete-button"
               // onClick={() => handleDelete(item.docId, imgUrl)}
               onClick={handleDeleteClick}
             >
-              삭제
+              {t("delete button")}
             </button>
           </div>
         </div>
@@ -44,7 +46,7 @@ function FoodListItem({ item, onDelete, onEdit }) {
   );
 }
 
-function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
+function FoodList({ items, onDelete, onUpdate, onUpdateSuccess, search }) {
   const [editingId, setEditingId] = useState(null);
   return (
     <ul className="FoodList">
@@ -56,10 +58,9 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
             calorie,
             content,
             imgUrl: null,
-            docId,
           };
-          const handleSubmit = (collectionName, dataObj) => {
-            const result = onUpdate(collectionName, dataObj, docId);
+          const handleSubmit = (collectionName, updateObj) => {
+            const result = onUpdate(collectionName, docId, updateObj, imgUrl);
             return result;
           };
           const handleSubmitSuccess = (result) => {
@@ -72,7 +73,6 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
                 initialValues={initialValues}
                 initialPreview={imgUrl}
                 onCancel={setEditingId}
-                item={item}
                 onSubmit={handleSubmit}
                 onSubmitSuccess={handleSubmitSuccess}
               />
@@ -85,6 +85,7 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
               item={item}
               onDelete={onDelete}
               onEdit={setEditingId}
+              search={search}
             />
           </li>
         );

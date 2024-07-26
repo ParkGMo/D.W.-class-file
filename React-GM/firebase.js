@@ -24,30 +24,17 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCJtntIKLytLGdJblTmqsbQvUUHbpGULcw",
-  authDomain: "foodlist02.firebaseapp.com",
-  projectId: "foodlist02",
-  storageBucket: "foodlist02.appspot.com",
-  messagingSenderId: "789185922817",
-  appId: "1:789185922817:web:a38e2fd6dcbc5cf4063d00",
-  measurementId: "G-3N2VCH6PK7",
+  apiKey: "AIzaSyAdHy-PY5GiXz7B73eiyeL8FT0udOmhBkM",
+  authDomain: "moviepedia-c1462.firebaseapp.com",
+  projectId: "moviepedia-c1462",
+  storageBucket: "moviepedia-c1462.appspot.com",
+  messagingSenderId: "452125101812",
+  appId: "1:452125101812:web:40b9aedb70d1e7e97e98a1",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const store = getStorage(app);
-
-async function getDatas(collectionName) {
-  const collect = await collection(db, collectionName);
-  const snapshot = await getDocs(collect);
-  // return snapshot;
-  const resultData = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    docId: doc.id,
-  }));
-  return resultData;
-}
 
 function getCollection(collectionName) {
   return collection(db, collectionName);
@@ -78,9 +65,6 @@ async function addDatas(collectionName, addObj) {
   const docSnap = await getDoc(result);
   const resultData = { ...docSnap.data(), docId: docSnap.id };
   return resultData;
-
-  // // 컬렉션에 저장
-  // await addDoc(getCollection(collectionName), addObj);
 }
 
 async function uploadImage(path, file) {
@@ -106,63 +90,52 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-// async function getDatasOrderByLimit(collectionName, options) {
-//   const { fieldName, limits } = options;
-//   let q;
-//   if (!options.lq) {
-//     q = query(
-//       getCollection(collectionName),
-//       orderBy(fieldName, "desc"),
-//       limit(limits)
-//     );
-//   } else {
-//     q = query(
-//       getCollection(collectionName),
-//       orderBy(fieldName, "desc"),
-//       startAfter(options.lq),
-//       limit(limits)
-//     );
-//   }
-
-//   const snapshot = await getDocs(q);
-//   const resultData = snapshot.docs.map((doc) => ({
-//     ...doc.data(),
-//     docId: doc.id,
-//   }));
-//   return resultData;
-// }
 async function getDatasOrderByLimit(collectionName, options) {
   const { fieldName, limits } = options;
-  const q = query(
-    getCollection(collectionName),
-    orderBy(fieldName, "desc"),
-    limit(limits)
-  );
+  let q;
+  if (!options.lq) {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      limit(limits)
+    );
+  } else {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      startAfter(options.lq),
+      limit(limits)
+    );
+  }
 
   const snapshot = await getDocs(q);
-  const resultData = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    docId: doc.id,
-  }));
-  return resultData;
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
+  console.log(lastQuery);
+  const resultData = docs.map(function (doc) {
+    return { ...doc.data(), docId: doc.id };
+  });
+  return { resultData, lastQuery };
 }
 
 async function deleteDatas(collectionName, docId, imgUrl) {
-  // 스토리이지에 있는 이미지를 삭제할 때 필요한 것 ==> 파일명(경로포함) or 파일 url
+  // 스토리이제 있는 이미지를 삭제할 때 필요한 것 ==> 파일명(경로포함) or 파일 url
   // 스토리지 객체 생성
   const storage = getStorage();
   let message;
   try {
+    message = "이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.";
     // 삭제할 파일의 참조객체 생성(ref 함수 사용)
     const deleteRef = ref(storage, imgUrl);
-    message = "이미지 삭제에 실패했습니다. \n 관리자에게 문의하세요!";
     // 파일 삭제
     await deleteObject(deleteRef);
-    // database에 있는 문서 삭제
-    message = "문서 삭제에 실패했습니다. \n 관리자에게 문의하세요!";
-    const deleteDocRef = await doc(db, collectionName, docId);
+
+    message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
+    // 삭제할 문서의 참조객체 생성(doc 함수 사용)
+    const deleteDocRef = doc(db, collectionName, docId);
+    // 문서 삭제
     await deleteDoc(deleteDocRef);
-    // deleteDoc(삭제할 문서);
+
     return { result: true, message: message };
   } catch (error) {
     return { result: false, message: message };
@@ -171,28 +144,31 @@ async function deleteDatas(collectionName, docId, imgUrl) {
 
 async function updateDatas(collectionName, docId, updateObj, imgUrl) {
   const docRef = await doc(db, collectionName, docId);
-  const time = new Date().getTime(); // 저장되어있는 시간 관련 필드들의 값이 밀리세컨드로 getTime()함수 사용
-  // 사진파일을 변경하지 않았을 때
+  // 저장되어있는 시간 관련 필드들의 값이 밀리세컨드로 되어있기 때문에 getTime() 함수 사용
+  const time = new Date().getTime();
+
+  // 사진 파일을 변경하지 않았을 때
   if (updateObj.imgUrl === null) {
-    //사진이 변경되지 않았을 때, imgUrl 값이 null로 넘어오기 때문에
-    // 그상태로 문서를 update 해버리면 imgUrl 값이 null로 바뀐다.
-    // 그렇기 때문에 updateObj에서 imgUrl 프로퍼티를 삭제해준다.
+    // 사진이 변경되지 않았을 때 imgUrl 값이 null 로 넘어오기 때문에
+    // 그 상태로 문서를 update 해버리면 imgUrl 값이 null 로 바뀐다.
+    // 그렇기 때문에 updateObj 에서 imgUrl 프로퍼티를 삭제해준다.
     delete updateObj["imgUrl"];
   } else {
-    // 사진 파일을 변경
-    // 기존사진 사제
+    // 사진 파일을 변경했을 때
+    // 기존 사진 삭제
     const storage = getStorage();
     const deleteRef = ref(storage, imgUrl);
     await deleteObject(deleteRef);
 
     // 변경한 사진을 스토리지에 저장
     const url = await uploadImage(createPath("food/"), updateObj.imgUrl);
-    // 스토리지에 저장하고 그 파일의 url을 가져와서 updateObj의  imgUrl 값을 변경
-    // why? 기존 updateObj에 있는 imgUrl은 "file"객체이고,
-    // 우리가 데이터베이스에
+    // 스토리지에 저장하고 그 파일의 url 을 가져와서 updateObj 의 imgUrl 값을 변경해준다.
+    // 왜? 기존 updateObj에 있는 imgUrl 은 'File' 객체이고,
+    // 우리가 데이터베이스에 저장해야 할 imgUrl 은 문자열 url 이기 때문에
     updateObj.imgUrl = url;
   }
-  //  updatedAt 필드에 넣어줄 시간 데이터를 updateObj에 넣어준다.
+
+  // updatedAt 필드에 넣어줄 시간 데이터를 updateObj 에 넣어준다.
   updateObj.updatedAt = time;
 
   // 문서 필드 데이터 수정
@@ -211,15 +187,12 @@ async function getSearchDatas(collectionName, options) {
   );
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
-  const resultData = docs.map((doc) => ({
-    ...doc.data(),
-    docId: doc.id,
-  }));
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
 }
+
 export {
   addDatas,
-  getDatas,
   getDatasOrderByLimit,
   deleteDatas,
   updateDatas,
