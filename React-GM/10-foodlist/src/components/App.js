@@ -18,6 +18,7 @@ import {
 import { useSetLocale } from "../contexts/LocalContext";
 import useTranslate from "../hooks/useTranslate";
 import LocalSelect from "./LocalSelect";
+import useAsync from "../hooks/useAsync";
 
 const LIMIT = 5;
 
@@ -38,7 +39,10 @@ function App(props) {
   const [itemCount, setItemCount] = useState(5);
   const [order, setOrder] = useState("createdAt");
   const [search, setSearch] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
   // const [locale, setLocale] = useState("ko");
+  const [isLoading, loadingError, getDatasAsync] =
+    useAsync(getDatasOrderByLimit);
   const t = useTranslate();
 
   const handleNewestClick = () => {
@@ -59,10 +63,17 @@ function App(props) {
   };
 
   const handleLoad = async (options) => {
-    const resultData = await getDatasOrderByLimit("food", {
+    // setIsLoading(true);
+    // const resultData = await getDatasOrderByLimit("food", {
+    //   fieldName: order,
+    //   limits: itemCount,
+    // });
+    // setIsLoading(false);
+    const resultData = await getDatasAsync("food", {
       fieldName: order,
       limits: itemCount,
     });
+
     setItems(resultData);
   };
 
@@ -165,7 +176,11 @@ function App(props) {
         {itemCount >= dataLength ? (
           ""
         ) : (
-          <button className="App-load-more-button" onClick={countOnClick}>
+          <button
+            className="App-load-more-button"
+            onClick={countOnClick}
+            disabled={isLoading}
+          >
             {t("load more")}
           </button>
         )}
