@@ -2,12 +2,14 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React from "react";
 import * as FcIcons from "react-icons/fc";
 
-function SignIn({ auth }) {
-  const signInWithGoogle = () => {
+function SignIn({ auth, login }) {
+  const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     // 로그인 과정 함수
-    signInWithPopup(auth, provider);
+    const loginResult = await signInWithPopup(auth, provider);
+    console.log(loginResult);
   };
+
   return (
     <>
       <button className="sign-in" onClick={signInWithGoogle}>
