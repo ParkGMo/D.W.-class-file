@@ -241,6 +241,9 @@ npm install dompurify
       * dangerouslySetInnerHTML={}이것만 작성하면 태그안의 내용과 이벤트가 실행됨으로 
         -> {DOMPurify.sanitize(**)}로 작성하여 악성 코드를 막아준다.
 
+npm install react-icons
+ https://react-icons.github.io/react-icons/
+
  * react 배포
  git 
  (https://git-scm.com/download/win)
@@ -272,3 +275,5 @@ npm install dompurify
  * setting -> Pages -> Branch -> gh-pages선택
 
 -> npm run deploy 로 실행  -> <BrowserRouter  basename={process.env.PUBLIC_URL}>( =="homepage"주소) 작성
+
+* 페이지 이동 후 새로고침 404오류 --> 09 폴더에 404.html과 index.html을 가져온다.
