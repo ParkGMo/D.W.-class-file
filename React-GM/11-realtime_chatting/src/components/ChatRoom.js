@@ -35,17 +35,25 @@ function ChatRoom({ auth }) {
   useEffect(() => {
     const collect = collection(db, "message");
     const q = query(collect, orderBy("createdAt"), limit(100));
+    // onSnapshot은 구독을 취소하는 역할을 하여 서버의 과부화를 막는다.
+    // collection의 변경이 있으면 getDocs를 실행한다.
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      setMessages(snapshot.docs);
+      const resultData = snapshot.docs.map((doc) => doc.data());
+      setMessages(resultData);
       // snapshot.forEach((doc) => {
       //   setMessages(doc.data());
       // });
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
   return (
     <>
       <main>
-        <ChatMessage messages={messages} />
+        {messages.map((message, idx) => {
+          return <ChatMessage message={message} key={idx} auth={auth} />;
+        })}
         {/* <div>
           <img />
           <p>채팅내용</p>

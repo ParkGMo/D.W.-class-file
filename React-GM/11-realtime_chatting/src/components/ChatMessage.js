@@ -1,18 +1,16 @@
 import React from "react";
 import tempImg from "../assets/ralo-profile.png";
 
-function ChatMessage({ messages }) {
+function ChatMessage({ message, auth }) {
+  const user = auth?.currentUser.uid;
+  const { photoUrl, text, uid } = message;
+  const messageClass = uid === user ? "sent" : "received";
   return (
     <>
-      {messages.map((message) => {
-        const { photoUrl, text } = message.data();
-        return (
-          <div className="message sent">
-            <img src={photoUrl} />
-            <p>{text}</p>
-          </div>
-        );
-      })}
+      <div className={`message ${messageClass}`}>
+        <img src={photoUrl} />
+        <p>{text}</p>
+      </div>
     </>
   );
 }
