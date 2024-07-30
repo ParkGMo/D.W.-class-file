@@ -39,4 +39,8 @@ function getUserAuth() {
   return auth;
 }
 
-export { getUserAuth };
+async function addDatas(collectionName, addObj) {
+  await addDoc(getCollection(collectionName), addObj);
+}
+
+export { db, getUserAuth, addDatas };

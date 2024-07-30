@@ -32,28 +32,20 @@ body {
   overflow: hidden;
 }
 main {
-  flex: 1 1;
   padding: 10px;
+  flex: 1 1;
   overflow-y: auto;
 }
 main::-webkit-scrollbar {
   width: 0.6rem;
-  background-color: transparent;
-}
-main::-webkit-scrollbar-track {
-  background-color: #b2c7d9;
-}
-main::-webkit-scrollbar-thumb {
-  width: 8px;
-  background-color: #8b9aa6;
 }
 
 form {
   background-color: #ffec42;
   width: 100%;
-  height: 8vh;
   max-width: 450px;
   font-size: 1.5rem;
+  height: 8vh;
   flex: none;
   display: flex;
 }
@@ -63,40 +55,12 @@ form button {
 }
 button {
   border: none;
-  border-radius: 9999px;
   color: gray;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 5px 5px;
+  text-align: center;
   font-size: 1rem;
   outline: none;
   cursor: pointer;
-}
-
-.sign-in {
-  color: gray;
-  background-color: white;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 15px;
-  border-radius: 25px;
-}
-.notice {
-  margin-top: 20px;
-  color: #72808b;
-}
-.sign-out {
-  border: none;
-  padding: 8px 15px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 0.8rem;
-  border-radius: 25px;
-}
-.sign-out:hover {
-  color: #fff;
-  background-color: gray;
 }
 form input {
   width: 100%;
@@ -107,7 +71,6 @@ form input {
   border: none;
   padding: 0 15px;
 }
-
 .message {
   display: flex;
   align-items: center;
@@ -128,7 +91,7 @@ form input {
   flex-direction: row-reverse;
 }
 .message.sent p {
-  background-color: #ffec4e;
+  background-color: #ffec42;
 }
 .message.received p {
   background-color: #fff;

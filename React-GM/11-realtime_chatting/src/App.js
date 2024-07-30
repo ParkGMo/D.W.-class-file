@@ -22,10 +22,16 @@ function App() {
     <div className="App">
       <header>
         <h4>🙏 소원을 빌어주세요!</h4>
-        <button onClick={handleLogout}>로그아웃</button>
+        <button onClick={handleLogout} className="sign-out">
+          로그아웃
+        </button>
       </header>
       <section>
-        {loginUser ? <ChatRoom /> : <SignIn auth={auth} login={setLoginUser} />}
+        {loginUser ? (
+          <ChatRoom auth={auth} />
+        ) : (
+          <SignIn auth={auth} login={setLoginUser} />
+        )}
       </section>
     </div>
   );

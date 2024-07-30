@@ -97,6 +97,7 @@ array-contains함수 : 문자열을 단계적으로 저장! ex) 블루베리 -->
    WHERE title = search
     ORDER BY createdAt, title
 
+* serverTimestamp -> 파이어 베이스 서버시간
 
 
 service cloud.firestore {
