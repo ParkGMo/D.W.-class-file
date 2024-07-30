@@ -67,6 +67,12 @@ html,body {width: 100%; height: 100%;}
     <div id="footer"></div>
 </div>
 
+노마드 코더 --> 무료강의(NEXT.js)
+https://nomadcoders.co/courses
+
+---> 어플래케이션: Flutter 
+---> 풀스택 : node, redux
+
 https://boxicons.com/아이콘 사이트
 lorem ipsum: test용 문구
 lorem picsum: test용 이미지
@@ -167,6 +173,8 @@ React
   </div>
   </body>
 
+  *next.js 공부! or typeScript 
+
 
 ctrl+`  --> 노드설치
 1 node -v 확인
@@ -204,7 +212,7 @@ ctrl+`  --> 노드설치
                                            // 2. 디펜던시 리스트에 들어있는 값이 변경될 때
                                            // 3. 컴포넌트가 unmount 될때
  - useEffect(함수, []) // 비동기로 실행, (함수  , [] ): 함수실행 --> [] 변경확인 --> 다시 함수 실행
- - useRef()
+ - useRef() : 자바스크립트의 순수 요소를 사용하기위해
  - useContext() : 파라미터에 context객체를 넣어주어야한다. , createContext()를 전역에서 가져옴
      --> 전역으로 사용할 수 있도록 한다. ex)const { locale } = useContext(LocaleContext); 여러 파일에서 사용가능
  - useParams() : route의 path=:*** 과 , 컴포넌트의 to={***}을 가져온다.
@@ -278,3 +286,6 @@ npm install react-icons
 -> npm run deploy 로 실행  -> <BrowserRouter  basename={process.env.PUBLIC_URL}>( =="homepage"주소) 작성
 
 * 페이지 이동 후 새로고침 404오류 --> 09 폴더에 404.html과 index.html을 가져온다.
+
+*react-firebase-hook --> https://www.npmjs.com/package/react-firebase-hooks (버전확인 필수!!)
+ -> npm install react-firebase-hooks

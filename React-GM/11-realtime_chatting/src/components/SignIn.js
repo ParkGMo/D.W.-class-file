@@ -7,7 +7,6 @@ function SignIn({ auth, login }) {
     const provider = new GoogleAuthProvider();
     // 로그인 과정 함수
     const loginResult = await signInWithPopup(auth, provider);
-    console.log(loginResult);
   };
 
   return (

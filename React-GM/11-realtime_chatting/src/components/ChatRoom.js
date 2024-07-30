@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import ChatMessage from "./ChatMessage";
 import {
@@ -9,11 +9,28 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
-import { addDatas, db } from "../api/firebase_GM";
+import {
+  addDatas,
+  db,
+  getQuery,
+  getRealTimeMessages,
+} from "../api/firebase_GM";
+import { ref } from "firebase/storage";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function ChatRoom({ auth }) {
   const [inputValue, setInputValue] = useState("");
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
+  const conditions = [];
+  const orderBys = [{ field: "createdAt", direction: "asc" }];
+  const LIMITS = 100;
+  const q = getQuery("message", {
+    conditions,
+    orderBys,
+    limit: LIMITS,
+  });
+  const [messages] = useCollectionData(q);
+  const dummy = useRef();
   const sendMessage = (e) => {
     e.preventDefault();
     // 저장할 데이터 객체를 생성한다. {text, createdAt, photoUrl, uid}
@@ -33,6 +50,7 @@ function ChatRoom({ auth }) {
     setInputValue("");
   };
   useEffect(() => {
+    /*
     const collect = collection(db, "message");
     const q = query(collect, orderBy("createdAt"), limit(100));
     // onSnapshot은 구독을 취소하는 역할을 하여 서버의 과부화를 막는다.
@@ -40,24 +58,30 @@ function ChatRoom({ auth }) {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const resultData = snapshot.docs.map((doc) => doc.data());
       setMessages(resultData);
-      // snapshot.forEach((doc) => {
-      //   setMessages(doc.data());
-      // });
     });
     return () => {
       unsubscribe();
-    };
+    };*/
+    // const unsubscribe = getRealTimeMessages("message", setMessages);
+    // return () => {
+    //   unsubscribe();
+    // };
   }, []);
+  useEffect(() => {
+    // scrollIntoView() 함수는 자신이 호출된 요소가 사용자에게 표시되도록
+    // 상위 컨테이너를 스크롤한다.
+    // () --> boolean과 속성 중 하나만 작성 가능 , boolean -> false는 젤밑 / true는 젤위
+    // dummy.current.scrollIntoView({ behavior: "smooth",block : "start, center, end, nearest"});
+    dummy.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [messages]);
+
   return (
     <>
       <main>
-        {messages.map((message, idx) => {
+        {messages?.map((message, idx) => {
           return <ChatMessage message={message} key={idx} auth={auth} />;
         })}
-        {/* <div>
-          <img />
-          <p>채팅내용</p>
-        </div> */}
+        <span ref={dummy}></span>
       </main>
       <form onSubmit={sendMessage}>
         <input
