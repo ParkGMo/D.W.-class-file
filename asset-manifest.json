@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/D.W.-class-file/static/css/main.719beba4.css",
-    "main.js": "/D.W.-class-file/static/js/main.8227500d.js",
+    "main.js": "/D.W.-class-file/static/js/main.8da13339.js",
     "static/media/ralo-profile.png": "/D.W.-class-file/static/media/ralo-profile.0a90755a62f7b2880897.png",
     "index.html": "/D.W.-class-file/index.html",
     "main.719beba4.css.map": "/D.W.-class-file/static/css/main.719beba4.css.map",
-    "main.8227500d.js.map": "/D.W.-class-file/static/js/main.8227500d.js.map"
+    "main.8da13339.js.map": "/D.W.-class-file/static/js/main.8da13339.js.map"
   },
   "entrypoints": [
     "static/css/main.719beba4.css",
-    "static/js/main.8227500d.js"
+    "static/js/main.8da13339.js"
   ]
 }
