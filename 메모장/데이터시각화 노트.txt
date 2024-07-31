@@ -45,7 +45,7 @@ font-family: SBAggroB;
 
 스타일 적용 우선순위
         1. important(9999999999999점)
-        2. inling style(1000점)
+        2. inline style(1000점)
         3. ID 선택자(100점)
         4. class 선택자 (10점)
         5. Tag 선택자(1점)
@@ -152,13 +152,16 @@ D : delete
 
 
 React
- - frameWorek : 만들어진 틀에 맞추어 사용 ex)집 - 인테리어
+ - frameWork : 만들어진 틀에 맞추어 사용 ex)집 - 인테리어
  - Library(API) : 개발자가 직접 사용 ex) 집 설계
  - Class(=Interface) -> 프로그램의 기본 개념
  - 17~18은 현재 쓰고 있는거! 이전버젼은 공식문서 확인
 
-  특정 레이이아웃 headers나 footer와 같은 모든페이지에 똑같이 들어감 
-   --> Header.js, Footer.js (앞 대문자!) <태그>형식으로 불러옴 = shadow DOM (real DOM, vritual DOM)
+ react order!
+ index.html --> index.js --> root.render(<App />) --> App component --> App.js
+
+ 특정 레이이아웃 headers나 footer와 같은 모든페이지에 똑같이 들어감 
+   --> Header.js, Footer.js (앞 대문자!) <태그>형식으로 불러옴 = shadow DOM (real DOM, virtual DOM)
 
   MPA(Multi Page Application) : 기본 구성
   SPA(Single Page Application) : React
@@ -178,7 +181,7 @@ React
 
 ctrl+`  --> 노드설치
 1 node -v 확인
-2 cd: chage direct  // cd .. : 뒤로가기
+2 cd: change direct  // cd .. : 뒤로가기
   PS C:\Users\user1\Desktop\테스트> cd .\D.W.-class-file\
   PS C:\Users\user1\Desktop\테스트\D.W.-class-file> cd .\React-GM\
   *경로 자동완성 'Tab key'
@@ -191,7 +194,7 @@ ctrl+`  --> 노드설치
 8 ctrl+c, y  -> 서버끝내기
 
 
-*childern : 기본적인 prop으로 태그사이의 있는 것을 전달해준다.
+*children : 기본적인 prop으로 태그사이의 있는 것을 전달해준다.
 
 *서비스로직은 최상위 폴더에 작성!!
 
@@ -219,6 +222,12 @@ ctrl+`  --> 노드설치
  - useLocation() : prop으로 받을 수 없는 간단한 정보들을 가져온다. 중요 정보가 없을 때 사용
  - useNavigate() : 원하는 곳으로 이동하는 함수, 
     --> ("/" -> 원하는 경로, /가 없으면 주소 끝에 변경, {replace: true} -> 뒤로가기 불가) 
+ - useReducer() : const [state, dispatch] = useReducer(reducer함수,  state함수), 여러 개의 조건으로 useState역할을 한다,
+                   -> 이점 : 예측 가능하게 해준다. 상태 변경이 예측 가능하고 일관성 있게 이루어진다.
+                   -> 중앙 집중화된 관리 : 여러 상태를 하나의 리듀서에서 관리하거나 , 여러 리듀서를 조합 -> 관리
+                   -> 모든 상태 변경이 하나의 통로(dispatch를 통한 action에 전달 )로 관리
+                   -> 상태 관리의 복잡성이 줄어들고, 상태 변경이 어디에서 이루어지는지를 쉽게 추적할 수 있다.
+                   -> 코드 모듈화 , 재사용 ....
 
 
 npm install firebase --> firebase npm 방식 설치!
