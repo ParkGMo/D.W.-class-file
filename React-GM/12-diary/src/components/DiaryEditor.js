@@ -5,51 +5,55 @@ import EmotionItem from "./EmotionItem";
 import { emotionList } from "../util/emotion.js";
 import "./DiaryEditor.css";
 
-const INITIAL_VALUE = {
-  date: new Date(),
-  emotion: emotionList[0],
-  text: "",
+const INITIAL_VALUES = {
+  createdAt: "",
+  content: "",
+  emotion: 3,
 };
 
 function DiaryEditor(props) {
-  //  날짜, 감정, 텍스트, 관리할 상태를 만들어야한다.
-  // emotion을 클릭했을 때 감정을 관리하는 상태의 값을 변경
-  // 변경된 상태의 값과 emotion의 id가 같으면 isSelected라는 props을 전달해서
-  // emotionItem_on_${id} 클래스가 적용될 수 있도록 만든다.
-  const [diary, setDiary] = useState(INITIAL_VALUE);
-  const [isSelected, setIsSelected] = useState(0);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
+  // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
+  const [values, setValues] = useState(INITIAL_VALUES);
+  // 2. 각각의 emotionItem을 클릭했을 때 콘솔창에 emotion_id 를 출력해본다.
+  // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자도구의 components 탭에서 확인
+  const handleChange = (name, value) => {
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
+  // 4. 상태 변경 함수를 emotionItem의 onClick에 전달
+  // 5. emotionItem_on_${id} 클래스가 적용될 수 있도록 만든다.
   return (
     <div className="diaryEditor">
       <Header
         headText={"새 일기 작성하기"}
-        leftChild={<Button text={"<뒤로가기"} />}
+        leftChild={<Button text={"< 뒤로가기"} />}
       />
-      <div onChange={handleChange}>
+      <div>
         <section>
-          <h4> 오늘은 언제인가요?</h4>
+          <h4>오늘은 언제인가요?</h4>
           <div className="input_box">
             <input
               className="input_date"
               type="date"
-              // onChange={handDateChange}
+              name="createdAt"
+              onChange={handleInputChange}
             />
           </div>
         </section>
         <section>
           <h4>오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
-            {emotionList.map((emotion, idx) => {
+            {emotionList.map((emotion) => {
               return (
                 <EmotionItem
-                  key={idx}
+                  key={emotion.emotion_id}
                   {...emotion}
-                  select={setIsSelected}
-                  isSelect={isSelected}
-                  idx={idx}
+                  name="emotion"
+                  onChange={handleChange}
+                  isSelected={emotion.emotion_id === values.emotion}
                 />
               );
             })}
@@ -58,11 +62,15 @@ function DiaryEditor(props) {
         <section>
           <h4>오늘의 일기</h4>
           <div className="input_box text_wrapper">
-            <textarea placeholder="오늘은 어땠나요?" />
+            <textarea
+              placeholder="오늘은 어땠나요"
+              name="content"
+              onChange={handleInputChange}
+            />
           </div>
         </section>
         <section>
-          <div className="controlBox">
+          <div className="control_box">
             <Button text={"취소하기"} />
             <Button text={"작성완료"} type={"positive"} />
           </div>
