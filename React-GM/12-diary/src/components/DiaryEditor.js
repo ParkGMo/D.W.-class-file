@@ -50,7 +50,7 @@ function DiaryEditor(props) {
     <div className="diaryEditor">
       <Header
         headText={"새 일기 작성하기"}
-        leftChild={<Button text={"< 뒤로가기"} />}
+        leftChild={<Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />}
       />
       <div>
         <section>

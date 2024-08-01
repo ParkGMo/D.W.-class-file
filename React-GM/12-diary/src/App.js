@@ -18,6 +18,7 @@ function App() {
       date: new Date(values.date).getTime(),
       content: values.content,
       emotion: values.emotion,
+      userEmail: "iwn01801@gmail.com",
     };
     await addItems("diary", addObj, dispatch);
   };
