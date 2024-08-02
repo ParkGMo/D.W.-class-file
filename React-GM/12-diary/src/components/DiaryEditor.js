@@ -15,7 +15,7 @@ const INITIAL_VALUES = {
 };
 
 function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
-  const { onCreate } = useContext(DiaryDispatchContext);
+  const { onCreate, onUpdate } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const Navigate = useNavigate();
   const [values, setValues] = useState(selectData);
@@ -43,10 +43,18 @@ function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
       return;
     }
     // react는 그냥 confirm을 한다면 가상DOM에서 실행됨으로  앞에 window.을 붙여준다.
-    if (window.confirm("새로운 일기를 저장하시겠습니까?")) {
-      onCreate(values);
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 저장하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(values);
+      } else {
+        onUpdate(values);
+      }
+      Navigate("/", { replace: true });
     }
-    Navigate("/", { replace: true });
   };
   useEffect(() => {
     if (isEdit) {

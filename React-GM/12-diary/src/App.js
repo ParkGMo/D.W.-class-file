@@ -3,7 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
-import { addItems, fetchItems, initialState, reducer } from "./api/itemReducer";
+import {
+  addItems,
+  deleteItems,
+  fetchItems,
+  initialState,
+  reducer,
+  updateItems,
+} from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
 
@@ -26,7 +33,20 @@ function App() {
   };
   // READ
   // UPDATE
+  // value에 docId 가 포함되어 파라미터에 포함하지 않아도 된다.
+  const onUpdate = async (values) => {
+    const updateObj = {
+      updateAt: new Date().getTime(),
+      date: new Date(values.date).getTime(),
+      content: values.content,
+      emotion: values.emotion,
+    };
+    await updateItems("diary", values.docId, updateObj, dispatch);
+  };
   // DELETE
+  const onDelete = async (values) => {
+    await deleteItems("diary", values.docId, dispatch);
+  };
   useEffect(() => {
     fetchItems(
       "diary",
@@ -41,7 +61,7 @@ function App() {
   }, []);
   return (
     <DiaryStateContext.Provider value={state.items}>
-      <DiaryDispatchContext.Provider value={{ onCreate }}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate }}>
         <BrowserRouter>
           <div className="App">
             <Routes>
