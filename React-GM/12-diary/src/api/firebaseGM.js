@@ -108,6 +108,16 @@ async function getDatas(collectionName, queryOptions) {
   return resultData;
 }
 
+async function updateDatas(collectionName, dataObj, docId) {
+  const docRef = await doc(db, collectionName, docId);
+  const time = new Date().getTime();
+  dataObj.updatedAt = time;
+  await updateDoc(docRef, dataObj);
+  const updateData = await getDoc(docRef);
+  const resultData = { docId: updateData.id, ...updateData.data() };
+  return resultData;
+}
+
 async function deleteDatas(collectionName, docId, imgUrl) {
   try {
     // 3. 컬렉션에 문서 삭제
@@ -120,4 +130,4 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   }
 }
 
-export { addDatas, getDatas };
+export { addDatas, getDatas, updateDatas };

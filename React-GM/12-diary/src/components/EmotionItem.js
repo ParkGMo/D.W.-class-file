@@ -15,6 +15,7 @@ function EmotionItem({
   const emotionClass = `emotionItem ${
     isSelected ? "emotionItem_on_" + emotion_id : "emotionItem_off"
   }`;
+
   return (
     <div className={emotionClass} onClick={handleClick}>
       <img src={emotion_img} />

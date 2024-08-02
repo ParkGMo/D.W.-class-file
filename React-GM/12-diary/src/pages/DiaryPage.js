@@ -37,7 +37,6 @@ function DiaryPage() {
       }
     });
   };
-  console.log(diaryList);
 
   useEffect(() => {
     changeTitle(`감정 일기장  ${id}번 일기`);
@@ -68,7 +67,12 @@ function DiaryPage() {
           leftChild={
             <Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />
           }
-          rightChild={<Button text={"수정하기"} />}
+          rightChild={
+            <Button
+              text={"수정하기"}
+              onClick={() => Navigate(`/edit/${data.id}`)}
+            />
+          }
         />
         <article>
           <section>

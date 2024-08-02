@@ -5,6 +5,7 @@ import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
 import { addItems, fetchItems, initialState, reducer } from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
+import EditPage from "./pages/EditPage";
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
@@ -47,7 +48,7 @@ function App() {
               <Route path="/">
                 <Route index element={<Homepage />} />
                 <Route path="new" element={<NewPage />} />
-                {/* <Route path="edit" element={< />} /> */}
+                <Route path="edit/:id" element={<EditPage />} />
                 {/*동적 주소 경로 : path="diary/:id  */}
                 <Route path="diary/:id" element={<DiaryPage />} />
               </Route>

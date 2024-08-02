@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
 import EmotionItem from "./EmotionItem";
@@ -14,18 +14,21 @@ const INITIAL_VALUES = {
   emotion: 3,
 };
 
-function DiaryEditor(props) {
+function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
   const { onCreate } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const Navigate = useNavigate();
-
+  const [values, setValues] = useState(selectData);
+  // const selectDate = selectData
+  //   ? new Date(selectData.date).toISOString().split("T")[0]
+  //   : "";
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
-  const [values, setValues] = useState(INITIAL_VALUES);
+
   // 2. 각각의 emotionItem을 클릭했을 때 콘솔창에 emotion_id 를 출력해본다.
-  // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자도구의 components 탭에서 확인
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
+  // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자도구의 components 탭에서 확인
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     handleChange(name, value);
@@ -45,12 +48,22 @@ function DiaryEditor(props) {
     }
     Navigate("/", { replace: true });
   };
+  useEffect(() => {
+    if (isEdit) {
+      // yyyy-mm-dd
+      handleChange(
+        "date",
+        new Date(selectData.date).toISOString().split("T")[0]
+      );
+    }
+  }, []);
 
   return (
     <div className="diaryEditor">
       <Header
-        headText={"새 일기 작성하기"}
+        headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />}
+        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} />}
       />
       <div>
         <section>
@@ -94,10 +107,10 @@ function DiaryEditor(props) {
           </div>
         </section>
         <section>
-          <div className="control_box">
-            <Button text={"취소하기"} />
+          <div className="control_Box">
+            <Button text={"취소하기"} onClick={() => Navigate(-1)} />
             <Button
-              text={"작성완료"}
+              text={selectData ? "수정하기" : "작성완료"}
               type={"positive"}
               onClick={handleSubmit}
             />

@@ -10,6 +10,9 @@ function DiaryItem({ diaryList }) {
   const goDetail = () => {
     Navigate(`/diary/${id}`);
   };
+  const goEdit = () => {
+    Navigate(`/edit/${id}`);
+  };
   return (
     <div className="diaryItem">
       <div
@@ -25,7 +28,7 @@ function DiaryItem({ diaryList }) {
         </div>
       </div>
       <div className="btn_wrapper">
-        <Button text={"수정하기"} />
+        <Button text={"수정하기"} onClick={goEdit} />
       </div>
     </div>
   );
