@@ -108,4 +108,16 @@ async function getDatas(collectionName, queryOptions) {
   return resultData;
 }
 
+async function deleteDatas(collectionName, docId, imgUrl) {
+  try {
+    // 3. 컬렉션에 문서 삭제
+    const docRef = await doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    // deleteDoc(삭제할 문서);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export { addDatas, getDatas };

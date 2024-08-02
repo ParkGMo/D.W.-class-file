@@ -1,0 +1,93 @@
+import React, { useContext, useEffect, useState } from "react";
+import Header from "../components/Header";
+import Button from "../components/Button";
+import { useNavigate, useParams } from "react-router-dom";
+import DiaryList from "./../components/DiaryList";
+import { DiaryStateContext } from "../App";
+import { emotionList } from "../util/emotion.js";
+import "./DiaryPage.css";
+import { changeTitle } from "./../util/changeTitle";
+
+function DiaryPage() {
+  const { id } = useParams();
+  const Navigate = useNavigate();
+  const [data, setData] = useState({});
+  const [description, setDescription] = useState("");
+  const diaryList = useContext(DiaryStateContext);
+
+  const targetDiary = () => {
+    const diary = diaryList.find((diary) => diary.id === parseInt(id));
+    if (diary) {
+      setData(diary);
+    } else {
+      alert("No diary found");
+      Navigate("/", { replace: true });
+    }
+  };
+  const { content, date, emotion } = data;
+
+  const newDate = date ? new Date(date).toISOString().split("T")[0] : "";
+  //   const emotionItem = emotionList.find(
+  //     (item) => emotion === item[`emotion_id`]
+  //   );
+  const emotionText = () => {
+    emotionList.map((emotionItem) => {
+      if (emotion === emotionItem[`emotion_id`]) {
+        setDescription(emotionItem[`emotion_description`]);
+      }
+    });
+  };
+  console.log(diaryList);
+
+  useEffect(() => {
+    changeTitle(`감정 일기장  ${id}번 일기`);
+  }, []);
+  /* 
+  filter() --> 배열반환
+  findIndex() --> index 반환
+  find() --> 객체반환
+  */
+  useEffect(() => {
+    // targetDiary를 찾는 방법
+    // 전체 diaryList 를 확인해서  useParams로 가져온 id 와 같은 diary data를 뽑아서
+    // data state에 set 해준다.
+    if (diaryList.length > 1) {
+      targetDiary();
+      emotionText();
+    }
+  }, [data, diaryList]);
+
+  if (!data) {
+    return <div className="diaryPage">로딩중입니다.</div>;
+  } else {
+    return (
+      <div className="diaryPage">
+        <Header
+          // headText={new Date(date).toISOString().split("T")[0]}
+          headText={`${newDate} 기록`}
+          leftChild={
+            <Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />
+          }
+          rightChild={<Button text={"수정하기"} />}
+        />
+        <article>
+          <section>
+            <h4>오늘의 감정</h4>
+            <div className={`diary_img_wrapper diary_img_wrapper_${emotion}`}>
+              <img src={`/assets/emotion${emotion}.png`} />
+              <div className="emotion_description">{`${description}`}</div>
+            </div>
+          </section>
+          <section>
+            <h4>오늘의 일기</h4>
+            <div className="diary_content_wrapper">
+              <p>{`${content}`}</p>
+            </div>
+          </section>
+        </article>
+      </div>
+    );
+  }
+}
+
+export default DiaryPage;

@@ -47,27 +47,34 @@ function DiaryList({ diaryList }) {
       } else if (filter === "bad") {
         return diary.emotion > 3;
       }
-      return true;
+      return diary;
     };
+    // const filteredList =
+    //   filter === "all"
+    //     ? diaryList
+    //     : diaryList.filter(function (diary) {
+    //         if (filter === "good") {
+    //           return diary.emotion <= 3;
+    //         } else if (filter === "bad") {
+    //           return diary.emotion > 3;
+    //         }
+    //       });
 
     // 정렬 함수
     const getOrderedList = (a, b) => {
       // order state 가  latest이면 b-a
       if (order === "latest") {
-        return b - a;
+        return b.date - a.date;
         // order state 가  oldest이면 a-b
       } else if (order === "oldest") {
-        return a - b;
+        return a.date - b.date;
       }
       return 0;
-      const filteredList = diaryList.filter(getFilteredList);
-      const sortedList = filteredList.sort((a, b) => getOrderedList(a, b));
-      return sortedList;
     };
+    const filteredList = diaryList.filter((diary) => getFilteredList(diary));
+    const sortedList = filteredList.sort(getOrderedList);
+    return sortedList;
   };
-  useEffect(() => {
-    getSortedDiaryList();
-  }, [order, filter]);
 
   return (
     <div className="diaryList">
@@ -92,7 +99,7 @@ function DiaryList({ diaryList }) {
           />
         </div>
       </div>
-      {diaryList.map((diary) => {
+      {getSortedDiaryList().map((diary) => {
         return <DiaryItem diaryList={diary} key={diary.id} {...diary} />;
       })}
     </div>

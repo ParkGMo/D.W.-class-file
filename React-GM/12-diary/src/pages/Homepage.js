@@ -59,7 +59,7 @@ function Homepage(props) {
     //     setSortedItem([]);
     //   }
     // });
-  }, [curDate]);
+  }, [curDate, diaryList]); // 빈배열에 호출 --> 첫화면 없음 --> diaryList 가 들어오면 랜더링!
   return (
     <div>
       <Header
