@@ -1,0 +1,19 @@
+초기 세팅
+[1] 명령 프롬프트 
+ 1. 원하는 폴더 이동
+ 2. mkdir 파일이름
+ 3. cd 파일이름
+ 4. code . ---> vscode 이동
+
+[2] vscode 터미널
+ 1. npm init    -> package.json생성  ->  package.json에서 "license": "MIT"로 변경
+ 2. npm install react@latest next@latest react-dom@latest  ---> react, next, react-dom 설치
+  --> react: UI, react-dom: 브라우저의 랜더링 역할 ex)ios, android
+ 3. package.json에서 "script": {"dev":"next dev"} 변경 ---> dev 명령을 하면 NEXT JS를 실행한다.
+ * NEXT JS는 app안에 있는 page라는 폴더를 찾는다.
+ 4. 파일생성 app/page.tsx, app/page.jsx *파일 이름이 바뀌면 NEXT JS가 못찾는다.
+  * .jsx 는 자바스크립트 , tsx는 타입스크립트
+ 5. 기본적인 컴포넌트를 export 한다. ex) export default function Tomato (){return <h1>Hello NextJS!</h1>}
+ 6. npm run dev --> NEXT JS실행
+ 7. 터미널에 주소를 찾아서 실행 ex) http://localhost:3000/
+ 8. layout.js 가 자동 생성된다. --> 화면에 띄울 기본 레이아웃을 위해
