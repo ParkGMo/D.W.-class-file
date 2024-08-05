@@ -64,3 +64,62 @@
     export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
     export default counterSlice.reducer
+
+* store ------------------ slice ------------------ useSelector/useDispatch
+
+ - store 
+   const store = configureStore({
+  reducer: { 
+    A: Slice이름1.reducer, 
+    B: Slice이름2.reducer, 
+    C: Slice이름3.reducer, ...
+    },
+});
+
+ - slice 
+    const Slice이름1 = createSlice({
+  name:"##"
+  initialState: {...}
+  동기-->reducer: X => {return X`}, Y => {return Y`}, Z => {return Z`}
+ })
+    const Slice이름2 = createSlice({
+  name:"##"
+  initialState: {...}
+  비동기 --> extraReducers: (builder) => {builder.addCase(1).addCase(2).addCase(3)}
+ })
+    const Slice이름3 = createSlice({
+  name:"##"
+  initialState: {...}
+  동기 -->reducer: I => {return I`}, J => {return J`}, K => {return K`}
+ })
+
+ - useDispatch()  
+    const dispatch = useDispatch()
+    --> dispatch(X(value)) or dispatch(Y(value)) or dispatch(Z(value)) : 필요한 값 하나를 가져온다.
+    --> dispatch(비동기함수({className: "", query: {...}})) : 값과 조건이 2가지 이상이면 하나의 파라미터에 객체로 넣어준다.
+    --> dispatch(I(value)) or dispatch(J(value)) or dispatch(K(value)) : 필요한 값 하나를 가져온다.
+ 
+ - useSelector()
+ const 변수명 = useSelector((state) => state.A.객체 key값)  
+             = useSelector((state) => state.B.객체 key값)  
+             = useSelector((state) => state.C.객체 key값) 
+
+  --- 결과 
+  useDispatch 값 전달
+  --> store에 맞는 slice 찾음 
+   --> 해당 slice에 조건에 맞는 값은 return 
+    --> useSelector의 변수명으로 값을 받는다.
+
+
+???? 
+
+1. 동기함수의 여러 조건들로 원하는 조건의 값을 가져올 수있다.
+   그런데 비동기함수는 여러 개의 조건들로 값들을 가져올 수 있나??
+ 
+ answer) addCase()를 더 추가하여 조건을 추가한다.
+
+2. 여러 개의 store를 둘 수 있나? 그리고 이들끼리 상호 작용이 가능한가?
+  ex 예약과 날짜를 따로store를 두고 같이 관리 가능한가?
+
+  answer) 하나의 어플안에서는 하나가 효율적이다. 
+          다른 어플이랑 연결한다면 다른 store를 사용하기도한다.
