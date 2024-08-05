@@ -5,10 +5,9 @@ import DiaryList from "../components/DiaryList";
 import { DiaryStateContext } from "../App";
 
 function Homepage(props) {
-  const diaryList = useContext(DiaryStateContext);
+  const { diaryList, auth } = useContext(DiaryStateContext);
   const [curDate, setCurDate] = useState(new Date());
   const [sortedItem, setSortedItem] = useState([]);
-  const dateItem = useContext(DiaryStateContext);
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
   const increaseMonth = () => {
     setCurDate(new Date(curDate.getFullYear(), curDate.getMonth() + 1));
@@ -68,7 +67,7 @@ function Homepage(props) {
         rightChild={<Button text={">"} onClick={increaseMonth} />}
       />
 
-      <DiaryList diaryList={sortedItem} />
+      <DiaryList diaryList={sortedItem} auth={auth} />
     </div>
   );
 }

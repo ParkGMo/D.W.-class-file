@@ -36,7 +36,7 @@ export function reducer(state, action) {
     case DELETE_ITEM:
       return {
         ...state,
-        item: state.items.filter((item) => item.id !== action.payload.id),
+        items: state.items.filter((item) => item.docId !== action.payload),
         error: null,
       };
     case SET_ERROR:
@@ -47,11 +47,11 @@ export function reducer(state, action) {
 }
 // Actions(실제 reducer가 state를 변경하기 전에 수행해야 할 작업들)
 export const fetchItems = async (collectionName, queryOptions, dispatch) => {
-  const resultDate = await getDatas(collectionName, queryOptions);
-  if (!resultDate) {
+  const resultData = await getDatas(collectionName, queryOptions);
+  if (!resultData) {
     dispatch({ type: SET_ERROR, payload: "Fetch Data 에러!!" });
   } else {
-    dispatch({ type: FETCH_ITEMS, payload: resultDate });
+    dispatch({ type: FETCH_ITEMS, payload: resultData });
   }
 };
 export const addItems = async (collectionName, addObj, dispatch) => {
@@ -79,11 +79,13 @@ export const updateItems = async (
   // dispatch할때 type을 바꾸어주어야한다.
   dispatch({ type: UPDATE_ITEM, payload: resultData }); // dispatch할 action type, payload
 };
-export const deleteItems = async (collectionName, addObj, dispatch) => {
-  const resultData = await deleteDatas(collectionName, addObj);
+export const deleteItems = async (collectionName, docId, dispatch) => {
+  const resultData = await deleteDatas(collectionName, docId);
   if (!resultData) {
     dispatch({ type: SET_ERROR, payload: "DELETE Data 에러!!" });
     return;
+  } else {
+    dispatch({ type: DELETE_ITEM, payload: docId });
   }
 };
 

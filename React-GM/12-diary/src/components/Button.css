@@ -17,3 +17,16 @@
   background-color: #fd565f;
   color: #fff;
 }
+.btn_login {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+@media (max-width: 900px) {
+  .btn_login {
+    /* position: relative; */
+    top: 95%;
+    right: 12%;
+    left: 12%;
+  }
+}

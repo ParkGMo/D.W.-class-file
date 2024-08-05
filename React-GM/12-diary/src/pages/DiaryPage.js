@@ -13,7 +13,7 @@ function DiaryPage() {
   const Navigate = useNavigate();
   const [data, setData] = useState({});
   const [description, setDescription] = useState("");
-  const diaryList = useContext(DiaryStateContext);
+  const { diaryList } = useContext(DiaryStateContext);
 
   const targetDiary = () => {
     const diary = diaryList.find((diary) => diary.id === parseInt(id));

@@ -126,11 +126,10 @@ async function deleteDatas(collectionName, docId) {
   try {
     const docRef = await doc(db, collectionName, docId);
     await deleteDoc(docRef);
-    // deleteDoc(삭제할 문서);
     return true;
   } catch (error) {
-    return false;
+    console.log("error Delete", error);
   }
 }
 
-export { addDatas, getDatas, updateDatas, deleteDatas };
+export { addDatas, getDatas, updateDatas, deleteDatas, getUserAuth };

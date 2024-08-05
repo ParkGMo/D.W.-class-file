@@ -8,7 +8,7 @@ function EditPage() {
   const { id } = useParams();
   const [selectData, setSelectData] = useState();
   const Navigate = useNavigate();
-  const diaryList = useContext(DiaryStateContext);
+  const { diaryList } = useContext(DiaryStateContext);
   const targetDatas = () => {
     const selected = diaryList.find((diary) => diary.id === parseInt(id));
     if (selected) {

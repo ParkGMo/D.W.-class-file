@@ -15,7 +15,7 @@ const INITIAL_VALUES = {
 };
 
 function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
-  const { onCreate, onUpdate } = useContext(DiaryDispatchContext);
+  const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const Navigate = useNavigate();
   const [values, setValues] = useState(selectData);
@@ -56,6 +56,13 @@ function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
       Navigate("/", { replace: true });
     }
   };
+  const handleDelete = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onDelete(selectData.docId);
+      Navigate("/", { replace: true });
+    }
+  };
+
   useEffect(() => {
     if (isEdit) {
       // yyyy-mm-dd
@@ -71,7 +78,15 @@ function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
       <Header
         headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />}
-        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} />}
+        rightChild={
+          isEdit && (
+            <Button
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleDelete}
+            />
+          )
+        }
       />
       <div>
         <section>
@@ -118,7 +133,7 @@ function DiaryEditor({ selectData = INITIAL_VALUES, isEdit }) {
           <div className="control_Box">
             <Button text={"취소하기"} onClick={() => Navigate(-1)} />
             <Button
-              text={selectData ? "수정하기" : "작성완료"}
+              text={isEdit ? "수정하기" : "작성완료"}
               type={"positive"}
               onClick={handleSubmit}
             />

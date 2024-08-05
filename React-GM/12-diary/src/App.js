@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
@@ -13,12 +13,24 @@ import {
 } from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
+import Button from "./components/Button";
+import LoginPage from "./pages/LoginPage";
+import { getUserAuth } from "./api/firebaseGM";
+import { userInitialState, userReducer } from "./api/userReducer";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const auth = getUserAuth();
+  const [userState, LoginDispatch] = useReducer(userReducer, userInitialState);
+  const [user] = useAuthState(auth);
+  // const Navigate = useNavigate();
+  // const goLogin = () => {
+  //   Navigate("./login");
+  // };
   // CREATE
   const onCreate = async (values) => {
     const addObj = {
@@ -27,7 +39,7 @@ function App() {
       date: new Date(values.date).getTime(),
       content: values.content,
       emotion: values.emotion,
-      userEmail: "iwn01801@gmail.com",
+      userEmail: user.email,
     };
     await addItems("diary", addObj, dispatch);
   };
@@ -44,26 +56,32 @@ function App() {
     await updateItems("diary", values.docId, updateObj, dispatch);
   };
   // DELETE
-  const onDelete = async (values) => {
-    await deleteItems("diary", values.docId, dispatch);
+  const onDelete = async (docId) => {
+    await deleteItems("diary", docId, dispatch);
   };
+
   useEffect(() => {
     fetchItems(
       "diary",
       {
         conditions: [
-          { field: "userEmail", operator: "==", value: "iwn01801@gmail.com" },
+          {
+            field: "userEmail",
+            operator: "==",
+            value: user ? user.email : "admin@gmail.com",
+          },
         ],
         orderBys: [{ field: "date", direction: "desc" }],
       },
       dispatch
     );
-  }, []);
+  }, [user]);
   return (
-    <DiaryStateContext.Provider value={state.items}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate }}>
+    <DiaryStateContext.Provider value={{ diaryList: state.items, auth }}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
         <BrowserRouter>
           <div className="App">
+            {/* <Button text={"로그인"} className="btn_login" /> */}
             <Routes>
               <Route path="/">
                 <Route index element={<Homepage />} />
@@ -71,6 +89,7 @@ function App() {
                 <Route path="edit/:id" element={<EditPage />} />
                 {/*동적 주소 경로 : path="diary/:id  */}
                 <Route path="diary/:id" element={<DiaryPage />} />
+                <Route path="login" element={<LoginPage />} />
               </Route>
             </Routes>
           </div>
