@@ -1,5 +1,6 @@
 import { addDatas, deleteDatas, getDatas, updateDatas } from "./firebaseGM";
 
+//?  기본 reducer
 // action types
 const FETCH_ITEMS = "FETCH_ITEMS";
 const ADD_ITEM = "ADD_ITEM";
@@ -90,3 +91,5 @@ export const deleteItems = async (collectionName, docId, dispatch) => {
 };
 
 // dispatch함수 ---> reducer함수로 !
+
+//?  redux + store.js
