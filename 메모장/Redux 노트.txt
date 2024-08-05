@@ -1,0 +1,66 @@
+--Redux--
+(https://redux.js.org/)
+(https://redux-toolkit.js.org/) -- API  참고
+ 모든 컴포넌트에서 바로 꺼낼 수 있도록 한다. ( = context)  *context 는 최상위에서만 작성 
+ 그러나  Redux 는 하위 컴포넌트 랜더링 없이 모든 프롬프트에서 사용가능
+ - 모든 바닐라js를 위해 만들어진 라이브러리
+ - 그냥 사용하기에는 어려움 --> React-Redux!로 
+                          --> 그러나 불필요한 코드 증가(보일러플레이트 코드 증가, ex const FETCH_ITEM="FETCH_ITEM")
+                          --> state의 불변성 유지를 위해서 복잡한 방법으로 state를 변경해야 했다. (ex ...state)
+ - 따라서 Redux Toolkit 으로 ...state와 같은 작업을 줄여준다.
+ - store 안에 여러 개의 slice가 있다. 하나의 slice에는 하나의 reduce를 관리한다.
+ - Redux Toolkit을 사용하려면 Redux와 React-Redux 모두 필요
+
+ * npx create-react-app --template redux 파일명(파일 생성시에 Redux 함께 생성!)
+ * npm install @reduxjs/toolkit  +  npm install react-redux (기존파일에 추가할 때) or npm install @reduxjs/toolkit react-redux
+
+ - hook : useSelector(), useDispatch()로 모든 컴포넌트에서 사용가능
+ - 컴포넌트끼리 전달할 필요가 없다.
+
+ *index.html
+    import React from 'react'
+    import { createRoot } from 'react-dom/client'
+    import './index.css'
+    import App from './App'
+    import store from './app/store'
+    import { Provider } from 'react-redux'
+
+    const root = createRoot(document.getElementById('root')!)
+
+    root.render(
+      <React.StrictMode>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </React.StrictMode>,
+    )
+
+ * slice 예시  (reducers == reducer함수)
+    import { createSlice } from '@reduxjs/toolkit'
+
+    export const counterSlice = createSlice({
+      name: 'counter',
+      initialState: {
+        value: 0
+      },
+      reducers: {
+        increment: state => {
+          // Redux Toolkit allows us to write "mutating" logic in reducers. It
+          // doesn't actually mutate the state because it uses the Immer library,
+          // which detects changes to a "draft state" and produces a brand new
+          // immutable state based off those changes
+          state.value += 1
+        },
+        decrement: state => {
+          state.value -= 1
+        },
+        incrementByAmount: (state, action) => {
+          state.value += action.payload
+        }
+      }
+    })
+
+    // Action creators are generated for each case reducer function
+    export const { increment, decrement, incrementByAmount } = counterSlice.actions
+
+    export default counterSlice.reducer
