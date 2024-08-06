@@ -1,9 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { getUserAuth } from "../api/firebaseGM";
-
-// const auth = getUserAuth();
-// const [user] = useAuthState(auth);
 
 const userSlice = createSlice({
   name: "user",
@@ -14,21 +9,37 @@ const userSlice = createSlice({
   },
   reducers: {
     // 로그인성공
-    logIn: (state, action) => {
-      state.user = action.payload.user;
-      state.isAuthenticated = true;
+    loginSuccess(state, action) {
+      setUserState(state, action);
+      //   Object.keys(state).forEach((key, index) => {
+      //     state[key] = action[index];
+      //   });
+      //   state.user = action.payload;
+      //   state.isAuthenticated = true;
+      //   state.error = null;
     },
     // 로그인실패
-    logOut: (state, action) => {
-      state.user = null;
-      state.isAuthenticated = false;
+    loginFailure(state, action) {
+      setUserState(state, action);
+      //   state.user = null;
+      //   state.isAuthenticated = false;
+      //   state.error = action.payload;
     },
     // 로그아웃
-    logInError: (state, action) => {
-      state.error = "Log In ERROR";
+    logOut(state, action) {
+      setUserState(state, action);
+      //   state.user = null;
+      //   state.isAuthenticated = false;
+      //   state.error = "null";
     },
   },
 });
 
+function setUserState(state, action) {
+  Object.keys(state).forEach((key, idx) => {
+    state[key] = action.payload[idx];
+  });
+}
+
 export default userSlice;
-export const { logIn, logOut, logInError } = userSlice.actions;
+export const { loginSuccess, loginFailure, logOut } = userSlice.actions;

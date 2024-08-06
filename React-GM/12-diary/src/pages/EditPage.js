@@ -3,12 +3,14 @@ import DiaryEditor from "../components/DiaryEditor";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
 import { changeTitle } from "../util/changeTitle";
+import { useSelector } from "react-redux";
 
 function EditPage() {
   const { id } = useParams();
   const [selectData, setSelectData] = useState();
   const Navigate = useNavigate();
-  const { diaryList } = useContext(DiaryStateContext);
+  // const { diaryList } = useContext(DiaryStateContext);
+  const diaryList = useSelector((state) => state.diary.items);
   const targetDatas = () => {
     const selected = diaryList.find((diary) => diary.id === parseInt(id));
     if (selected) {

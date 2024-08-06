@@ -25,7 +25,7 @@ import {
   updateItems,
   deleteItems,
 } from "./store/diarySlice";
-import { logIn } from "./store/userSlice";
+import { loginSuccess, logOut } from "./store/userSlice";
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
@@ -43,6 +43,15 @@ function App() {
   // const goLogin = () => {
   //   Navigate("./login");
   // };
+  useEffect(() => {
+    // serialize(직렬화) : 데이터를 저장할 때 저장할 수 있응 형태로 변환하는 것
+    // serialize가 안되는 타입: Promise, Symbol, Map, Set, function, class
+    if (user) {
+      dispatch(loginSuccess([user.email, true, null]));
+    } else {
+      dispatch(logOut([null, false, null]));
+    }
+  }, [user]);
   // CREATE
   const onCreate = async (values) => {
     const addObj = {
@@ -117,33 +126,28 @@ function App() {
         orderBys: [{ field: "date", direction: "desc" }],
       },
     };
-    const param1 = {
-      user: user,
-      isAuthenticated: true,
-    };
     dispatch(fetchItems(param));
-    dispatch(logIn(param1));
   }, [user]);
   return (
-    <DiaryStateContext.Provider value={{ diaryList: items, auth }}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
-        <BrowserRouter>
-          <div className="App">
-            {/* <Button text={"로그인"} className="btn_login" /> */}
-            <Routes>
-              <Route path="/">
-                <Route index element={<Homepage />} />
-                <Route path="new" element={<NewPage />} />
-                <Route path="edit/:id" element={<EditPage />} />
-                {/*동적 주소 경로 : path="diary/:id  */}
-                <Route path="diary/:id" element={<DiaryPage />} />
-                <Route path="login" element={<LoginPage />} />
-              </Route>
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </DiaryDispatchContext.Provider>
-    </DiaryStateContext.Provider>
+    // <DiaryStateContext.Provider value={{ diaryList: items, auth }}>
+    <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+      <BrowserRouter>
+        <div className="App">
+          {/* <Button text={"로그인"} className="btn_login" /> */}
+          <Routes>
+            <Route path="/">
+              <Route index element={<Homepage />} />
+              <Route path="new" element={<NewPage />} />
+              <Route path="edit/:id" element={<EditPage />} />
+              {/*동적 주소 경로 : path="diary/:id  */}
+              <Route path="diary/:id" element={<DiaryPage />} />
+              <Route path="login" element={<LoginPage />} />
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </DiaryDispatchContext.Provider>
+    // </DiaryStateContext.Provider>
   );
 }
 

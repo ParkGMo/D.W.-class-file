@@ -3,7 +3,7 @@ import "./DiaryItem.css";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
-function DiaryItem({ diaryList }) {
+function DiaryItem({ diaryList, isAuthenticated }) {
   const { content, date, emotion, id } = diaryList;
   const newDate = new Date(date).toLocaleDateString("ko-KR");
   const Navigate = useNavigate();
@@ -28,7 +28,7 @@ function DiaryItem({ diaryList }) {
         </div>
       </div>
       <div className="btn_wrapper">
-        <Button text={"수정하기"} onClick={goEdit} />
+        {isAuthenticated && <Button text={"수정하기"} onClick={goEdit} />}
       </div>
     </div>
   );

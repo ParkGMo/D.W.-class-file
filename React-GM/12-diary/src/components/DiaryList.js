@@ -3,6 +3,8 @@ import "./DiaryList.css";
 import Button from "./Button";
 import DiaryItem from "./DiaryItem";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getUserAuth } from "../api/firebaseGM";
 
 const sortOptionList = [
   { name: "최신순", value: "latest" },
@@ -32,13 +34,16 @@ function ControlMenu({ optionList, value, onChange }) {
   );
 }
 
-function DiaryList({ diaryList, auth }) {
+function DiaryList({ diaryList }) {
   const [order, setOrder] = useState("latest");
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  // const diaryList = useSelector((state) => state.diary.items);
+  const auth = getUserAuth();
 
   const checkLogin = () => {
-    if (!auth.currentUser) {
+    if (!isAuthenticated) {
       alert("로그인을 해주세요.");
       navigate("/login");
     } else {
@@ -118,7 +123,14 @@ function DiaryList({ diaryList, auth }) {
         )}
       </div>
       {getSortedDiaryList().map((diary) => {
-        return <DiaryItem diaryList={diary} key={diary.id} {...diary} />;
+        return (
+          <DiaryItem
+            diaryList={diary}
+            key={diary.id}
+            {...diary}
+            isAuthenticated={isAuthenticated}
+          />
+        );
       })}
     </div>
   );
