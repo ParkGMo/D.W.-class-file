@@ -19,6 +19,7 @@ import { useSetLocale } from "../contexts/LocalContext";
 import useTranslate from "../hooks/useTranslate";
 import LocalSelect from "./LocalSelect";
 import useAsync from "../hooks/useAsync";
+import { useDispatch, useSelector } from "react-redux";
 
 const LIMIT = 5;
 
@@ -39,6 +40,12 @@ function App(props) {
   const [itemCount, setItemCount] = useState(5);
   const [order, setOrder] = useState("createdAt");
   const [search, setSearch] = useState("");
+
+  const dispatch = useDispatch();
+  const sortOrder = useSelector((state) => state.sort.sortOrder);
+  const sortCount = useSelector((state) => state.sort.sortCount);
+  console.log(sortCount, sortOrder);
+
   // const [isLoading, setIsLoading] = useState(false);
   // const [locale, setLocale] = useState("ko");
   const [isLoading, loadingError, getDatasAsync] =
@@ -47,13 +54,15 @@ function App(props) {
 
   const handleNewestClick = () => {
     handleLoad();
-    setOrder("createdAt");
-    setItemCount(5);
+    // setOrder("createdAt");
+    // setItemCount(5);
+    dispatch(sortOrder("createdAt"));
   };
   const handleCalorieClick = () => {
     handleLoad();
-    setOrder("calorie");
-    setItemCount(5);
+    // setOrder("calorie");
+    // setItemCount(5);
+    dispatch(sortOrder("calorie"));
   };
 
   const [dataLength, setDataLength] = useState(0);
@@ -70,8 +79,10 @@ function App(props) {
     // });
     // setIsLoading(false);
     const resultData = await getDatasAsync("food", {
-      fieldName: order,
-      limits: itemCount,
+      fieldName: sortOrder,
+      limits: sortCount,
+      //? fieldName: order,
+      //? limits: itemCount,
     });
 
     setItems(resultData);
@@ -96,10 +107,12 @@ function App(props) {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (search === "") {
-      handleLoad({ fieldName: order, limits: itemCount });
+      handleLoad({ fieldName: sortOrder, limits: sortCount });
+      //? handleLoad({ fieldName: order, limits: itemCount });
     } else {
       const resultData = await getSearchDatas("food", {
-        limits: itemCount,
+        limits: sortCount,
+        //? limits: itemCount,
         search: search,
       });
       setItems(resultData);
@@ -121,13 +134,16 @@ function App(props) {
   };
 
   const countOnClick = () => {
-    setItemCount((prevCount) => prevCount + LIMIT);
+    dispatch(sortCount(5));
+    //? setItemCount((prevCount) => prevCount + LIMIT);
     // handleLoad();
   };
   useEffect(() => {
-    handleLoad({ fieldName: order, limits: itemCount });
+    handleLoad({ fieldName: sortOrder, limits: sortCount });
+    //? handleLoad({ fieldName: order, limits: itemCount });
     listData();
-  }, [order, itemCount]);
+  }, [sortOrder, sortCount]);
+  //? }, [order, itemCount]);
 
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
@@ -151,14 +167,16 @@ function App(props) {
           </form>
           <div className="App-orders">
             <AppSortButton
-              selected={order == "createdAt" ? true : false}
+              selected={sortOrder == "createdAt" ? true : false}
+              //? selected={order == "createdAt" ? true : false}
               onClick={handleNewestClick}
             >
               {t("newest")}
               {/* {최신순} */}
             </AppSortButton>
             <AppSortButton
-              selected={order == "calorie" ? true : false}
+              selected={sortOrder == "calorie" ? true : false}
+              //? selected={order == "calorie" ? true : false}
               onClick={handleCalorieClick}
             >
               {t("calorie")}
@@ -173,7 +191,8 @@ function App(props) {
           onUpdateSuccess={handleUpdateSuccess}
           search={search}
         />
-        {itemCount >= dataLength ? (
+        {sortCount >= dataLength ? (
+          //? {itemCount >= dataLength ? (
           ""
         ) : (
           <button

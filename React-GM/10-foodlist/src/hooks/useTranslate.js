@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useLocale } from "../contexts/LocalContext";
 
 const dict = {
@@ -30,8 +31,11 @@ const dict = {
 };
 
 function useTranslate() {
-  const locale = useLocale();
-  const translate = (key) => dict[locale][key] || "";
+  // const locale = useLocale();
+  // const translate = (key) => dict[locale][key] || "";
+  const language = useSelector((state) => state.local.language);
+
+  const translate = (key) => dict[language][key] || "";
   return translate;
 }
 
