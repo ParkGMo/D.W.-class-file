@@ -112,9 +112,9 @@ async function updateDatas(collectionName, docId, updateObj) {
   try {
     const docRef = await doc(db, collectionName, docId);
     await updateDoc(docRef, updateObj);
-    const snapshot = await getDocs(docRef);
-    const time = new Date().getTime();
-    updateObj.updatedAt = time;
+    const snapshot = await getDoc(docRef);
+    // const time = new Date().getTime();
+    // updateObj.updatedAt = time;
     const resultData = { ...snapshot.data(), docId: snapshot.id };
     return resultData;
   } catch (error) {

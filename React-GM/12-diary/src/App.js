@@ -4,12 +4,12 @@ import Homepage from "./pages/Homepage";
 import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
 import {
-  addItems,
-  deleteItems,
+  // addItems,
+  // deleteItems,
   // fetchItems,
   initialState,
   reducer,
-  updateItems,
+  // updateItems,
 } from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
@@ -19,7 +19,13 @@ import { getUserAuth } from "./api/firebaseGM";
 import { userInitialState, userReducer } from "./api/userReducer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchItems } from "./store/diarySlice";
+import {
+  addItem,
+  fetchItems,
+  updateItems,
+  deleteItems,
+} from "./store/diarySlice";
+import { logIn } from "./store/userSlice";
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
@@ -32,6 +38,7 @@ function App() {
   const [userState, LoginDispatch] = useReducer(userReducer, userInitialState);
   const auth = getUserAuth();
   const [user] = useAuthState(auth);
+
   // const Navigate = useNavigate();
   // const goLogin = () => {
   //   Navigate("./login");
@@ -46,7 +53,12 @@ function App() {
       emotion: values.emotion,
       userEmail: user.email,
     };
-    await addItems("diary", addObj, dispatch);
+    const param = {
+      collectionName: "diary",
+      addObj,
+    };
+    // await addItems("diary", addObj, dispatch);
+    dispatch(addItem(param));
   };
   // READ
   // UPDATE
@@ -58,11 +70,22 @@ function App() {
       content: values.content,
       emotion: values.emotion,
     };
-    await updateItems("diary", values.docId, updateObj, dispatch);
+    const param = {
+      collectionName: "diary",
+      docId: values.docId,
+      updateObj,
+    };
+    // await updateItems("diary", values.docId, updateObj, dispatch);
+    dispatch(updateItems(param));
   };
   // DELETE
   const onDelete = async (docId) => {
-    await deleteItems("diary", docId, dispatch);
+    const param = {
+      collectionName: "diary",
+      docId,
+    };
+    // await deleteItems("diary", docId, dispatch);
+    dispatch(deleteItems(param));
   };
 
   useEffect(() => {
@@ -94,8 +117,12 @@ function App() {
         orderBys: [{ field: "date", direction: "desc" }],
       },
     };
-
+    const param1 = {
+      user: user,
+      isAuthenticated: true,
+    };
     dispatch(fetchItems(param));
+    dispatch(logIn(param1));
   }, [user]);
   return (
     <DiaryStateContext.Provider value={{ diaryList: items, auth }}>

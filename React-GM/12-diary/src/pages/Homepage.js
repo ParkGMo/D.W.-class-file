@@ -7,7 +7,9 @@ import { useSelector } from "react-redux";
 
 function Homepage(props) {
   // const { diaryList, auth } = useContext(DiaryStateContext);
-  const { auth } = useContext(DiaryStateContext);
+  // const { auth } = useContext(DiaryStateContext);
+  const auth = useSelector((state) => state.user);
+  // console.log(auth);
   const diaryList = useSelector((state) => state.diary.items);
   const [curDate, setCurDate] = useState(new Date());
   const [sortedItem, setSortedItem] = useState([]);

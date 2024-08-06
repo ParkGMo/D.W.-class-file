@@ -1,0 +1,31 @@
+--firebase-- (비관계형 데이터베이스)
+: https://firebase.google.com/?hl=ko
+모듈식 : 함수를 사용하여 간단히 연결 : function느낌!
+네임스페이스식 (직접기입) : 스크립트를 직접 가져와서 활용 -> 간단한 작업에 용이하나 복잡하면 ...
+규칙 : \uf8ff --> freefix검색(단어 앞에 맞는 문자부터 검색, 중간은 X)
+array-contains함수 : 문자열을 단계적으로 저장! ex) 블루베리 --> 블, 블루, 블루베, 블루베리, 루베리, 베리, 리
+* SQL문 (관계형 데이터베이스): 
+  SELECT*
+   FROM food
+   WHERE title = search
+    ORDER BY createdAt, title
+
+* serverTimestamp -> 파이어 베이스 서버시간
+
+
+service cloud.firestore {
+  match /databases/{database: 데이터베이스 제목}/documents {
+    match /{document=**} {
+      allow read, write: if true; -> 다른사람이 일고 쓰기 가능 (true)
+    }
+  }
+}
+
+* Database >> Collection >> Document >> Field
+firebase의 규칙에서 read,wirte --> true
+https://refiapp.io/  --> firebase Tool(파일을 한번에 DB에 넣기)
+
+ firebase의 storage --> 이미지를 따로 저장하여 경로를 가져온다.
+
+*getDoc == 하나의 객체만 가져온다,.
+ getDocs == 여러개의 객체를 가져온다. ex)collection객체들, query객체

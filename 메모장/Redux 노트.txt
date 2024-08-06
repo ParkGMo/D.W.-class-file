@@ -10,6 +10,8 @@
  - 따라서 Redux Toolkit 으로 ...state와 같은 작업을 줄여준다.
  - store 안에 여러 개의 slice가 있다. 하나의 slice에는 하나의 reduce를 관리한다.
  - Redux Toolkit을 사용하려면 Redux와 React-Redux 모두 필요
+ - redux 의 state는 알아서 만들어준다. 
+ - redux 의 action는 직접 넣어준다.  
 
  * npx create-react-app --template redux 파일명(파일 생성시에 Redux 함께 생성!)
  * npm install @reduxjs/toolkit  +  npm install react-redux (기존파일에 추가할 때) or npm install @reduxjs/toolkit react-redux
@@ -123,3 +125,5 @@
 
   answer) 하나의 어플안에서는 하나가 효율적이다. 
           다른 어플이랑 연결한다면 다른 store를 사용하기도한다.
+
+* createAsyncThunk() == { type: , payload: "결과" }로 만들어준다.
