@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 import { addDatas } from "../api/firebase";
-import useTranslate from "../hooks/useTranslate";
+import { useTranslate } from "../hooks/useTranslate";
 import useAsync from "../hooks/useAsync";
 
 const INITIAL_VALUES = {
@@ -31,7 +31,7 @@ function FoodForm({
 }) {
   const [values, setValues] = useState(initialValues);
   // const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitting, submittingError, onSubmitAsync] = useAsync(false);
+  const [isSubmitting, submittingError, onSubmitAsync] = useAsync(onSubmit);
   const t = useTranslate();
 
   const handleChange = (name, value) => {
@@ -46,8 +46,8 @@ function FoodForm({
     // setIsSubmitting(true);
     const resultData = await onSubmitAsync("food", values);
     // setIsSubmitting(false);
-    onSubmitSuccess(resultData);
     setValues(INITIAL_VALUES);
+    onSubmitSuccess(resultData);
   };
 
   const handleUpdatedSuccess = (resultData) => {

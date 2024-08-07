@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLocale } from "../contexts/LocalContext";
 
-const dict = {
+export const dict = {
   ko: {
     "confirm button": "확인",
     "cancel button": "취소",
@@ -30,7 +30,7 @@ const dict = {
   },
 };
 
-function useTranslate() {
+export function useTranslate() {
   // const locale = useLocale();
   // const translate = (key) => dict[locale][key] || "";
   const language = useSelector((state) => state.local.language);
@@ -39,4 +39,4 @@ function useTranslate() {
   return translate;
 }
 
-export default useTranslate;
+// export default useTranslate;

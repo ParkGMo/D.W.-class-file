@@ -16,7 +16,7 @@ import {
   updateDatas,
 } from "../api/firebase";
 import { useSetLocale } from "../contexts/LocalContext";
-import useTranslate from "../hooks/useTranslate";
+import { useTranslate } from "../hooks/useTranslate";
 import LocalSelect from "./LocalSelect";
 import useAsync from "../hooks/useAsync";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,6 +45,10 @@ function AppSortButton({ children, selected, onClick }) {
 function App(props) {
   const dispatch = useDispatch();
   const { items, order, itemCount } = useSelector((state) => state.food);
+  // const trans = useSelector((state) => state.local.dict);
+  // const lang = useSelector((state) => state.local.language);
+  const { dict, language } = useSelector((state) => state.local);
+  // console.log(dict[language]);
 
   // const [items, setItems] = useState([]);
   // const [order, setOrder] = useState("createdAt");
@@ -60,6 +64,18 @@ function App(props) {
     useAsync(getDatasOrderByLimit);
 
   const t = useTranslate();
+
+  const queryOptions = {
+    conditions: [],
+    orderBys: [
+      {
+        field: order,
+        direction: "desc",
+      },
+    ],
+    lastQuery: undefined,
+    limits: itemCount,
+  };
 
   const handleLoad = async (options) => {
     dispatch(fetchItems({ collectionName: "food", queryOptions: options }));
@@ -112,6 +128,7 @@ function App(props) {
       return false;
     }
     //? setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+    handleLoad(queryOptions);
   };
   const handleSearchChange = (e) => {
     const searchValue = e.target.value;
@@ -133,6 +150,7 @@ function App(props) {
   };
 
   const handleAddSuccess = (resultData) => {
+    handleLoad(queryOptions);
     //? setItems((prevItems) => [resultData, ...prevItems]);
   };
 
@@ -158,17 +176,17 @@ function App(props) {
   useEffect(() => {
     // handleLoad({ fieldName: sortOrder, limits: sortCount });
     //? handleLoad({ fieldName: order, limits: itemCount });
-    const queryOptions = {
-      conditions: [],
-      orderBys: [
-        {
-          field: order,
-          direction: "desc",
-        },
-      ],
-      lastQuery: undefined,
-      limits: itemCount,
-    };
+    // const queryOptions = {
+    //   conditions: [],
+    //   orderBys: [
+    //     {
+    //       field: order,
+    //       direction: "desc",
+    //     },
+    //   ],
+    //   lastQuery: undefined,
+    //   limits: itemCount,
+    // };
     listData();
     // dispatch(fetchItems({ collectionName: "food", queryOptions }));
     handleLoad(queryOptions);
@@ -201,7 +219,8 @@ function App(props) {
               selected={order == "createdAt" ? true : false}
               onClick={handleNewestClick}
             >
-              {t("newest")}
+              {dict[language]["newest"]}
+              {/* {t("newest")} */}
               {/* {최신순} */}
             </AppSortButton>
             <AppSortButton
@@ -209,7 +228,8 @@ function App(props) {
               selected={order == "calorie" ? true : false}
               onClick={handleCalorieClick}
             >
-              {t("calorie")}
+              {dict[language]["calorie"]}
+              {/* {t("calorie")} */}
               {/* 칼로리순 */}
             </AppSortButton>
           </div>
@@ -232,7 +252,8 @@ function App(props) {
             onClick={countOnClick}
             disabled={isLoading}
           >
-            {t("load more")}
+            {dict[language]["load more"]}
+            {/* {t("load more")} */}
           </button>
         )}
         {/* <button onClick={countOnClick}>더보기</button> */}
@@ -244,9 +265,11 @@ function App(props) {
           {/* <select onChange={() => handleTranslate}>
             <option value={"ko"}>한국어</option>
             <option value={"en"}>English</option>
-          </select> */}
+            </select> */}
           <div className="App-footer-menu">
-            {t("terms of service")} | {t("private policy")}
+            {/* {t("terms of service")} | {t("private policy")} */}
+            {dict[language]["terms of service"]} |{" "}
+            {dict[language]["private policy"]}
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ const foodSlice = createSlice({
   initialState: {
     items: [],
     lq: undefined,
-    isLoading: "false",
+    isLoading: false,
     loadingError: "",
     order: "createdAt",
     itemCount: 5,
@@ -27,15 +27,15 @@ const foodSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchItems.pending, (state, action) => {
-        state.isLoading = "true";
+        state.isLoading = true;
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.items = action.payload.resultData;
         // state.lq = action.payload.lastQuery;
-        state.isLoading = "false";
+        state.isLoading = false;
       })
       .addCase(fetchItems.rejected, (state, action) => {
-        state.isLoading = "false";
+        state.isLoading = false;
         state.loadingError = action.payload;
       })
       .addCase(updateItem.fulfilled, (state, action) => {
@@ -43,7 +43,7 @@ const foodSlice = createSlice({
           (item) => item.id === action.payload.id
         );
         state.items[index] = action.payload;
-        state.isLoading = "false";
+        state.isLoading = false;
       });
   },
 });

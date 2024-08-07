@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { getDatas } from "../api/firebase";
 import "./FoodList.css";
 import FoodForm from "./FoodForm";
-import useTranslate from "../hooks/useTranslate";
+import { useTranslate } from "../hooks/useTranslate";
 
 function FoodListItem({ item, onDelete, onEdit }) {
   const { title, imgUrl, content, createdAt, calorie, id } = item;

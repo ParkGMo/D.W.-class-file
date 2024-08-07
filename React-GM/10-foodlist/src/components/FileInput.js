@@ -4,6 +4,9 @@ import resetImg from "../assets/ic-reset-white.png";
 import "./FileInput.css";
 
 function FileInput({ name, value, onChange, initialPreview }) {
+  if (typeof value === "string") {
+    value = null;
+  }
   // value는 문자열로 넘어온다. -> createObjectURL()에는 미디어소스 블록타입 형태로 들어와야한다.
   const [preview, setPreview] = useState(initialPreview);
 
