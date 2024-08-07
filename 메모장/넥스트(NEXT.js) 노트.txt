@@ -17,3 +17,11 @@
  6. npm run dev --> NEXT JS실행
  7. 터미널에 주소를 찾아서 실행 ex) http://localhost:3000/
  8. layout.js 가 자동 생성된다. --> 화면에 띄울 기본 레이아웃을 위해
+
+ route
+-폴더명 : route
+  == /폴더명 : 주소입력 --> 출력!
+- 반드시 폴더안에 page.jsx 또는 page.tsx 가 있어야한다.
+
+* Hook
+usePathname() : 유저가 머물고 있는 url
