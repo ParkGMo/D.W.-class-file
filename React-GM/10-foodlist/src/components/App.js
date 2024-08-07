@@ -20,6 +20,13 @@ import useTranslate from "../hooks/useTranslate";
 import LocalSelect from "./LocalSelect";
 import useAsync from "../hooks/useAsync";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchItems,
+  resetItemCount,
+  setItemCount,
+  setOrder,
+  updateItem,
+} from "../store/foodSlice";
 
 const LIMIT = 5;
 
@@ -36,42 +43,26 @@ function AppSortButton({ children, selected, onClick }) {
 }
 
 function App(props) {
-  const [items, setItems] = useState([]);
-  const [itemCount, setItemCount] = useState(5);
-  const [order, setOrder] = useState("createdAt");
+  const dispatch = useDispatch();
+  const { items, order, itemCount } = useSelector((state) => state.food);
+
+  // const [items, setItems] = useState([]);
+  // const [order, setOrder] = useState("createdAt");
+  // const [itemCount, setItemCount] = useState(5);
   const [search, setSearch] = useState("");
 
-  const dispatch = useDispatch();
-  const sortOrder = useSelector((state) => state.sort.sortOrder);
-  const sortCount = useSelector((state) => state.sort.sortCount);
-  console.log(sortCount, sortOrder);
+  // const sortOrder = useSelector((state) => state.sort.sortOrder);
+  // const sortCount = useSelector((state) => state.sort.sortCount);
 
   // const [isLoading, setIsLoading] = useState(false);
   // const [locale, setLocale] = useState("ko");
   const [isLoading, loadingError, getDatasAsync] =
     useAsync(getDatasOrderByLimit);
+
   const t = useTranslate();
 
-  const handleNewestClick = () => {
-    handleLoad();
-    // setOrder("createdAt");
-    // setItemCount(5);
-    dispatch(sortOrder("createdAt"));
-  };
-  const handleCalorieClick = () => {
-    handleLoad();
-    // setOrder("calorie");
-    // setItemCount(5);
-    dispatch(sortOrder("calorie"));
-  };
-
-  const [dataLength, setDataLength] = useState(0);
-  const listData = async () => {
-    const listDataLength = (await getDatas("food")).length;
-    setDataLength(listDataLength);
-  };
-
   const handleLoad = async (options) => {
+    dispatch(fetchItems({ collectionName: "food", queryOptions: options }));
     // setIsLoading(true);
     // const resultData = await getDatasOrderByLimit("food", {
     //   fieldName: order,
@@ -79,15 +70,37 @@ function App(props) {
     // });
     // setIsLoading(false);
     const resultData = await getDatasAsync("food", {
-      fieldName: sortOrder,
-      limits: sortCount,
-      //? fieldName: order,
-      //? limits: itemCount,
+      // fieldName: sortOrder,
+      // limits: sortCount,
+      fieldName: order,
+      limits: itemCount,
     });
 
-    setItems(resultData);
+    //? setItems(resultData);
+    // dispatch(setItemCount(5));
+  };
+  const [dataLength, setDataLength] = useState(0);
+  const listData = async () => {
+    const listDataLength = (await getDatas("food")).length;
+    setDataLength(listDataLength);
   };
 
+  const handleNewestClick = () => {
+    // handleLoad();
+    dispatch(setOrder("createdAt"));
+    dispatch(resetItemCount(5));
+    //? setOrder("createdAt");
+    //? setItemCount(5);
+    // dispatch(sortOrder("createdAt"));
+  };
+  const handleCalorieClick = () => {
+    // handleLoad();
+    dispatch(setOrder("calorie"));
+    dispatch(resetItemCount(5));
+    //? setOrder("calorie");
+    //? setItemCount(5);
+    // dispatch(sortOrder("calorie"));
+  };
   const handleDelete = async (docId, imgUrl) => {
     // items 에서 docId 를 받아온다.
     // db에서 데이터 삭제(스토리지에 있는 사진파일 삭제, database에 있는 데이터 삭제)
@@ -98,7 +111,7 @@ function App(props) {
       alert(message);
       return false;
     }
-    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+    //? setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
   };
   const handleSearchChange = (e) => {
     const searchValue = e.target.value;
@@ -107,43 +120,60 @@ function App(props) {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (search === "") {
-      handleLoad({ fieldName: sortOrder, limits: sortCount });
-      //? handleLoad({ fieldName: order, limits: itemCount });
+      // handleLoad({ fieldName: sortOrder, limits: sortCount });
+      handleLoad({ fieldName: order, limits: itemCount });
     } else {
       const resultData = await getSearchDatas("food", {
-        limits: sortCount,
-        //? limits: itemCount,
+        // limits: sortCount,
+        limits: itemCount,
         search: search,
       });
-      setItems(resultData);
+      //? setItems(resultData);
     }
   };
 
   const handleAddSuccess = (resultData) => {
-    setItems((prevItems) => [resultData, ...prevItems]);
+    //? setItems((prevItems) => [resultData, ...prevItems]);
+  };
+
+  const handleUpdate = (collectionName, docId, updateObj, imgUrl) => {
+    dispatch(updateItem({ collectionName, docId, updateObj, imgUrl }));
   };
   const handleUpdateSuccess = (result) => {
-    setItems((prevItems) => {
-      const splitIdx = prevItems.findIndex((item) => {
-        return item.id === result.id;
-      });
-      const beforeArr = prevItems.slice(0, splitIdx);
-      const afterArr = prevItems.slice(splitIdx + 1);
-      return [...beforeArr, result, ...afterArr];
-    });
+    //? setItems((prevItems) => {
+    //   const splitIdx = prevItems.findIndex((item) => {
+    //     return item.id === result.id;
+    //   });
+    //   const beforeArr = prevItems.slice(0, splitIdx);
+    //   const afterArr = prevItems.slice(splitIdx + 1);
+    //   return [...beforeArr, result, ...afterArr];
+    // });
   };
 
   const countOnClick = () => {
-    dispatch(sortCount(5));
+    dispatch(setItemCount(5));
     //? setItemCount((prevCount) => prevCount + LIMIT);
     // handleLoad();
   };
   useEffect(() => {
-    handleLoad({ fieldName: sortOrder, limits: sortCount });
+    // handleLoad({ fieldName: sortOrder, limits: sortCount });
     //? handleLoad({ fieldName: order, limits: itemCount });
+    const queryOptions = {
+      conditions: [],
+      orderBys: [
+        {
+          field: order,
+          direction: "desc",
+        },
+      ],
+      lastQuery: undefined,
+      limits: itemCount,
+    };
     listData();
-  }, [sortOrder, sortCount]);
-  //? }, [order, itemCount]);
+    // dispatch(fetchItems({ collectionName: "food", queryOptions }));
+    handleLoad(queryOptions);
+    // }, [sortOrder, sortCount]);
+  }, [order, itemCount]);
 
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
@@ -167,16 +197,16 @@ function App(props) {
           </form>
           <div className="App-orders">
             <AppSortButton
-              selected={sortOrder == "createdAt" ? true : false}
-              //? selected={order == "createdAt" ? true : false}
+              // selected={sortOrder == "createdAt" ? true : false}
+              selected={order == "createdAt" ? true : false}
               onClick={handleNewestClick}
             >
               {t("newest")}
               {/* {최신순} */}
             </AppSortButton>
             <AppSortButton
-              selected={sortOrder == "calorie" ? true : false}
-              //? selected={order == "calorie" ? true : false}
+              // selected={sortOrder == "calorie" ? true : false}
+              selected={order == "calorie" ? true : false}
               onClick={handleCalorieClick}
             >
               {t("calorie")}
@@ -187,12 +217,14 @@ function App(props) {
         <FoodList
           items={items}
           onDelete={handleDelete}
-          onUpdate={updateDatas}
+          // onUpdate={updateDatas}
+          onUpdate={handleUpdate}
           onUpdateSuccess={handleUpdateSuccess}
           search={search}
         />
-        {sortCount >= dataLength ? (
-          //? {itemCount >= dataLength ? (
+        {/* {sortCount >= dataLength ? ( */}
+
+        {itemCount >= dataLength ? (
           ""
         ) : (
           <button

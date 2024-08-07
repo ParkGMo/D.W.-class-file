@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
   getDocs,
@@ -14,40 +14,27 @@ import {
   limit,
   startAfter,
   where,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 import {
   deleteObject,
   getDownloadURL,
   getStorage,
   ref,
   uploadBytes,
-} from "firebase/storage";
+} from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCJtntIKLytLGdJblTmqsbQvUUHbpGULcw",
-  authDomain: "foodlist02.firebaseapp.com",
-  projectId: "foodlist02",
-  storageBucket: "foodlist02.appspot.com",
-  messagingSenderId: "789185922817",
-  appId: "1:789185922817:web:a38e2fd6dcbc5cf4063d00",
-  measurementId: "G-3N2VCH6PK7",
+  apiKey: 'AIzaSyAdHy-PY5GiXz7B73eiyeL8FT0udOmhBkM',
+  authDomain: 'moviepedia-c1462.firebaseapp.com',
+  projectId: 'moviepedia-c1462',
+  storageBucket: 'moviepedia-c1462.appspot.com',
+  messagingSenderId: '452125101812',
+  appId: '1:452125101812:web:40b9aedb70d1e7e97e98a1',
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const store = getStorage(app);
-
-async function getDatas(collectionName) {
-  const collect = await collection(db, collectionName);
-  const snapshot = await getDocs(collect);
-  // return snapshot;
-  const resultData = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    docId: doc.id,
-  }));
-  return resultData;
-}
 
 function getCollection(collectionName) {
   return collection(db, collectionName);
@@ -71,8 +58,8 @@ function getQuery(collectionName, queryOption) {
   let q = query(collect);
 
   const condition = [
-    { field: "text", operator: "==", value: "test" },
-    { field: "uid", operator: "==", value: "xjdiwjKDJ2jdkxJND2J" },
+    { field: 'text', operator: '==', value: 'test' },
+    { field: 'uid', operator: '==', value: 'xjdiwjKDJ2jdkxJND2J' },
   ];
 
   // where 조건
@@ -82,29 +69,18 @@ function getQuery(collectionName, queryOption) {
 
   // orderBy 조건
   orderBys.forEach((order) => {
-    q = query(q, orderBy(order.field, order.direction || "asc"));
+    q = query(q, orderBy(order.field, order.direction || 'asc'));
   });
 
   // startAfter 조건
-  // if (lastQuery) {
-  //   q = query(q, startAfter(lastQuery));
-  // }
+  if (lastQuery) {
+    q = query(q, startAfter(lastQuery));
+  }
 
   // limit 조건
   q = query(q, limit(limits));
 
   return q;
-}
-async function getDatasOrderByLimit(collectionName, options) {
-  const q = getQuery(collectionName, options);
-  const snapshot = await getDocs(q);
-  const docs = snapshot.docs;
-  // const lastQuery = docs[docs.length - 1];
-  const resultData = docs.map(function (doc) {
-    return { ...doc.data(), docId: doc.id };
-  });
-  return { resultData };
-  // return { resultData, lastQuery };
 }
 
 function createPath(path) {
@@ -114,12 +90,12 @@ function createPath(path) {
 
 async function addDatas(collectionName, addObj) {
   // 파일 저장 ==> 스토리지의 이미지 url을 addObj의 imgUrl 값으로 변경
-  const path = createPath("food/");
+  const path = createPath('food/');
   const url = await uploadImage(path, addObj.imgUrl);
   addObj.imgUrl = url;
 
   // id 생성
-  const lastId = (await getLastNum(collectionName, "id")) + 1;
+  const lastId = (await getLastNum(collectionName, 'id')) + 1;
   addObj.id = lastId;
 
   // 시간 정보 생성
@@ -149,12 +125,23 @@ async function uploadImage(path, file) {
 async function getLastNum(collectionName, field) {
   const q = query(
     getCollection(collectionName), // collection
-    orderBy(field, "desc"), // 정렬할 필드로 내림차순
+    orderBy(field, 'desc'), // 정렬할 필드로 내림차순
     limit(1) // 1개만 가져온다
   );
   const lastDoc = await getDocs(q);
   const lastId = lastDoc.docs[0].data()[field];
   return lastId;
+}
+
+async function getDatasOrderByLimit(collectionName, options) {
+  const q = getQuery(collectionName, options);
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
+  const resultData = docs.map(function (doc) {
+    return { ...doc.data(), docId: doc.id };
+  });
+  return { resultData, lastQuery };
 }
 
 async function deleteDatas(collectionName, docId, imgUrl) {
@@ -163,13 +150,13 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   const storage = getStorage();
   let message;
   try {
-    message = "이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.";
+    message = '이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.';
     // 삭제할 파일의 참조객체 생성(ref 함수 사용)
     const deleteRef = ref(storage, imgUrl);
     // 파일 삭제
     await deleteObject(deleteRef);
 
-    message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
+    message = '문서 삭제에 실패했습니다. \n관리자에게 문의하세요.';
     // 삭제할 문서의 참조객체 생성(doc 함수 사용)
     const deleteDocRef = doc(db, collectionName, docId);
     // 문서 삭제
@@ -191,7 +178,7 @@ async function updateDatas(collectionName, docId, updateObj, imgUrl) {
     // 사진이 변경되지 않았을 때 imgUrl 값이 null 로 넘어오기 때문에
     // 그 상태로 문서를 update 해버리면 imgUrl 값이 null 로 바뀐다.
     // 그렇기 때문에 updateObj 에서 imgUrl 프로퍼티를 삭제해준다.
-    delete updateObj["imgUrl"];
+    delete updateObj['imgUrl'];
   } else {
     // 사진 파일을 변경했을 때
     // 기존 사진 삭제
@@ -200,7 +187,7 @@ async function updateDatas(collectionName, docId, updateObj, imgUrl) {
     await deleteObject(deleteRef);
 
     // 변경한 사진을 스토리지에 저장
-    const url = await uploadImage(createPath("food/"), updateObj.imgUrl);
+    const url = await uploadImage(createPath('food/'), updateObj.imgUrl);
     // 스토리지에 저장하고 그 파일의 url 을 가져와서 updateObj 의 imgUrl 값을 변경해준다.
     // 왜? 기존 updateObj에 있는 imgUrl 은 'File' 객체이고,
     // 우리가 데이터베이스에 저장해야 할 imgUrl 은 문자열 url 이기 때문에
@@ -220,8 +207,8 @@ async function updateDatas(collectionName, docId, updateObj, imgUrl) {
 async function getSearchDatas(collectionName, options) {
   const q = query(
     getCollection(collectionName),
-    where("title", ">=", options.search),
-    where("title", "<=", options.search + "\uf8ff"),
+    where('title', '>=', options.search),
+    where('title', '<=', options.search + '\uf8ff'),
     limit(options.limits)
   );
   const snapshot = await getDocs(q);
@@ -232,7 +219,6 @@ async function getSearchDatas(collectionName, options) {
 
 export {
   addDatas,
-  getDatas,
   getDatasOrderByLimit,
   deleteDatas,
   updateDatas,
