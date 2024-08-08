@@ -110,6 +110,12 @@ R : read
 U : update
 D : delete
 
+CSS : Cascading Style Sheet
+sass: Syntactical Awesome Style Sheet
+scss: Sassy Cascading Style Sheet  
+
+ npm i sass  --> scss사용 가능
+scss파일--> rfce : 처음스닛펫 약어
 
 중간 프로젝트 (6/12: 조편성 ~ 6/17: 초안 ~ 6/24: 중간 ~ 7/1:최종)
 
