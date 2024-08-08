@@ -5,6 +5,7 @@
   align-items: center;
   gap: 20px;
   width: 80%;
+  height: 550px;
   padding: 30px;
   border: 1px solid #b6b2b2;
   transition: 0.2s all ease-in-out;
@@ -15,9 +16,12 @@
   }
   a {
     width: 100%;
-    img {
-      width: 100%;
-    }
+    overflow: hidden;
+    object-fit: cover;
+  }
+  img {
+    height: 100%;
+    width: 100%;
   }
   p {
     margin: 0;
