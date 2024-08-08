@@ -107,7 +107,7 @@
              = useSelector((state) => state.C.객체 key값) 
 
   --- 결과 
-  useDispatch 값 전달
+  useDispatch(==action, state상태 변화를 위해) 값을 전달 
   --> store에 맞는 slice 찾음 
    --> 해당 slice에 조건에 맞는 값은 return 
     --> useSelector의 변수명으로 값을 받는다.
