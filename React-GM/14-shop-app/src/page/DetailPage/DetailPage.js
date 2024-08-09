@@ -12,7 +12,6 @@ function DetailPage() {
   const productId = Number(id);
   const dispatch = useDispatch();
   const { product, isLoading } = useSelector((state) => state.productSlice);
-  console.log(product);
 
   //   const { products } = useSelector((state) => state.productsSlice);
   //   const productItem = products[0];
@@ -49,8 +48,8 @@ function DetailPage() {
             <p>{product && product.description}</p>
 
             <div>
-              <button>장바구니에 담기 제품</button>
-              <Link>방바구니로 이동</Link>
+              <button>장바구니에 제품 담기</button>
+              <Link>장바구니로 이동</Link>
             </div>
           </div>
         </div>
