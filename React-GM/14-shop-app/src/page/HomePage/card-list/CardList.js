@@ -4,6 +4,7 @@ import CardItem from "./Card-item/CardItem";
 import { useDispatch, useSelector } from "react-redux";
 import { FieldPath, orderBy } from "firebase/firestore";
 import { fetchProducts } from "../../../store/products/productsSlice";
+import CardSkeleton from "../card/skeleton/CardSkeleton";
 
 // const products = [
 //   {
@@ -23,8 +24,8 @@ import { fetchProducts } from "../../../store/products/productsSlice";
 
 function CardList() {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.productsSlice);
-  const category = "";
+  const { products, isLoading } = useSelector((state) => state.productsSlice);
+  const category = useSelector((state) => state.categoriesSlice);
 
   useEffect(() => {
     const queryOptions = {
@@ -43,6 +44,10 @@ function CardList() {
       fetchProducts({ collectionName: "products", queryOptions: queryOptions })
     );
   }, [category]);
+
+  if (isLoading) return <CardSkeleton />;
+  // if (isLoading) return "Loading...";
+
   return (
     <ul className={styles.card_list}>
       {products.map((product, idx) => {

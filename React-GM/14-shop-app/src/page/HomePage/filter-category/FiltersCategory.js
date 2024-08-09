@@ -6,19 +6,19 @@ import styles from "./FiltersCategory.module.scss";
 function FiltersCategory() {
   return (
     <div className={styles.filter_category}>
-      <CategoryTab text={"모두"} CategoriesName={CategoriesName.All} />
+      <CategoryTab text={"모두"} categoryName={CategoriesName.All} />
       <CategoryTab
         text={"전자기기"}
-        CategoriesName={CategoriesName.Electronics}
+        categoryName={CategoriesName.Electronics}
       />
-      <CategoryTab text={"쥬얼리"} CategoriesName={CategoriesName.Jewelry} />
+      <CategoryTab text={"쥬얼리"} categoryName={CategoriesName.Jewelry} />
       <CategoryTab
         text={"남성의류"}
-        CategoriesName={CategoriesName.MensClothing}
+        categoryName={CategoriesName.MensClothing}
       />
       <CategoryTab
         text={"여성의류"}
-        CategoriesName={CategoriesName.WomenClothing}
+        categoryName={CategoriesName.WomenClothing}
       />
     </div>
   );

@@ -122,6 +122,9 @@ npm install react-icons
 
 * 페이지 이동 후 새로고침 404오류 --> 09 폴더에 404.html과 index.html을 가져온다.
 
+-> npm i react-loading-skeleton: 로딩 중일 때를 알려고(pending 중 일때 ) 창을 표시하는 역할
+(https://www.npmjs.com/package/react-loading-skeleton)
+
 
 ** export <--> import
   : default가 없으면 중괄호{} 안에 작성해야한다. 

@@ -99,5 +99,13 @@ async function getDatas(collectionName, queryOptions) {
   const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
 }
+async function getData(collectionName, queryOptions) {
+  const q = getQuery(collectionName, queryOptions);
+  const snapshot = await getDocs(q);
+  const doc = snapshot.docs[0];
+  // 한개의 배열만 있는 결과만 추출가능
+  const resultData = { ...doc.data(), docId: doc.id };
+  return resultData;
+}
 
-export { getUserAuth, getDatas, addDatas };
+export { getUserAuth, getDatas, addDatas, getData };
