@@ -175,4 +175,26 @@ Q?
 
 
 * 멘토
-(, elevisor comp)
+(이서구 대표, elevisor comp)
+email: acacia@elevisor.com 
+취미, 꿈 
+IT는 단순반복작업이 없다. == 지속적인 배움
+
+pc -- Internet -- F/W(침입차단) -- IDS/IPS/WAF -- WEB(WAS와 통일) -- WAS(개발한거 적용) -- Database(오라클)
+
+IT 직업군
+프로그래머(타고난 사람), *엔지니어,*영업 ==> 관리자, 기획, 설계 ... (범위가 넓다.)
+
+생성형 AI(모든 지식 학습하여 새로운 걸 생성)
+chatGPT, Grok, 라마(오픈소스) (TextToImage, ImageToImage, TextToVideo...)
+
+이미지AI사이트
+(stable diffusion)
+
+끌어당김의 법칙
+
+자신을 과거나 미래에 두지말고 현재로 가져와라!
+
+? 
+프론트앤드는 어떤일을 하는가? 범위?
+AI 따른 인간의 필요성은??..
