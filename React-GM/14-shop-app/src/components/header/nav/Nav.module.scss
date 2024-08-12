@@ -11,18 +11,60 @@
       @include hover-effect(blue);
     }
   }
-  .count {
+  @media (min-width: 768px) {
+    li {
+      font-size: 25px;
+    }
+  }
+  // .count {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   font-size: 8px;
+  //   color: #fff;
+  //   width: 15px;
+  //   height: 15px;
+  //   position: absolute;
+  //   top: -10px;
+  //   right: 65%;
+  //   background-color: darkred;
+  //   border-radius: 10px;
+  // }
+}
+.counter {
+  position: relative;
+  b {
+    background-color: #997878;
+    color: #fff;
+    font-size: 9px;
+    width: 18px;
+    height: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 8px;
-    color: #fff;
-    width: 15px;
-    height: 15px;
+    border-radius: 50%;
     position: absolute;
-    top: -10px;
-    right: 65%;
-    background-color: darkred;
-    border-radius: 10px;
+    top: -11px;
+    right: -14px;
   }
+}
+.nav_hover_cart {
+  display: none;
+  @media (min-width: 990px) {
+    width: 450px;
+    min-height: 100px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s all ease-in-out;
+  }
+}
+.nav li:hover .nav_hover_cart {
+  visibility: visible;
+  opacity: 1;
 }
