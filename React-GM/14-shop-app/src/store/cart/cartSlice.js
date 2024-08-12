@@ -35,8 +35,32 @@ const cartSlice = createSlice({
         0
       );
     },
+    incrementProduct: (state, action) => {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload.id
+      );
+      state.products[index].quantity += 1;
+      state.products[index].total =
+        state.products[index].total + state.products[index].price;
+    },
+    decrementProduct: (state, action) => {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload.id
+      );
+      if (index > 1) {
+        state.products[index].quantity -= 1;
+        state.products[index].total =
+          state.products[index].total - state.products[index].price;
+      }
+    },
   },
 });
 
 export default cartSlice.reducer;
-export const { addToCart, deleteToCart, getTotalPrice } = cartSlice.actions;
+export const {
+  addToCart,
+  deleteToCart,
+  getTotalPrice,
+  incrementProduct,
+  decrementProduct,
+} = cartSlice.actions;
