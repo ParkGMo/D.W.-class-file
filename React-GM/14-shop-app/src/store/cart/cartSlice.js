@@ -22,10 +22,10 @@ const cartSlice = createSlice({
     },
     deleteToCart: (state, action) => {
       const index = state.products.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product.id === action.payload
       );
       if (index !== -1) {
-        state.products.filter((product) => product.id !== action.payload.id);
+        state.products.filter((product) => product.id !== action.payload);
       }
       localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
@@ -37,7 +37,7 @@ const cartSlice = createSlice({
     },
     incrementProduct: (state, action) => {
       const index = state.products.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product.id === action.payload
       );
       state.products[index].quantity += 1;
       state.products[index].total =
@@ -45,12 +45,11 @@ const cartSlice = createSlice({
     },
     decrementProduct: (state, action) => {
       const index = state.products.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product.id === action.payload
       );
       if (index > 1) {
         state.products[index].quantity -= 1;
-        state.products[index].total =
-          state.products[index].total - state.products[index].price;
+        state.products[index].total -= state.products[index].price;
       }
     },
   },

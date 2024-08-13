@@ -11,7 +11,7 @@ function NavCartItem({ product }) {
   //   const { products } = useSelector((state) => state.cartSlice);
   //   const productsMatching = products.some((product) => product.id === id);
   const deleteItemToCart = () => {
-    dispatch(deleteToCart(product));
+    dispatch(deleteToCart(id));
   };
 
   return (

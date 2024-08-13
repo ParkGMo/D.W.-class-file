@@ -16,6 +16,7 @@ import {
   where,
   onSnapshot,
   runTransaction,
+  writeBatch,
 } from "firebase/firestore";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -32,8 +33,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-function getCollection(collectionName) {
-  return collection(db, collectionName);
+function getCollection(...path) {
+  // getCollection의 ...path는 파라미터를 전부 가져와서 배열로 반환
+  return collection(db, ...path);
+  // collection의 ...path는 파라미터를 전부 가져와서 하나씩 풀어해친다.(스프레트 함수)
 }
 function getUserAuth() {
   return auth;
@@ -108,4 +111,21 @@ async function getData(collectionName, queryOptions) {
   return resultData;
 }
 
-export { getUserAuth, getDatas, addDatas, getData };
+async function joinUser(uid, email) {
+  await setDoc(doc(db, "users", uid), { email: email });
+}
+
+// 문서Id를 uid롤 지정 , 하위 컬렉션에 cartArr저장 --> collection(db, 2번 접근)
+async function asyncCart(uid, cartArr) {
+  // const cartRef = collection(db, "users", uid, "cart", cartDocId);
+  const cartRef = getCollection("users", uid, "cart");
+  // 여러개 작업을 한번에 가져와서 추가해주는 것
+  const batch = writeBatch(db);
+  cartArr.forEach((item) => {
+    const itemRef = doc(cartRef, new Date().getTime().toString() + item.id);
+    batch.set(itemRef, item);
+  });
+  await batch.commit();
+}
+
+export { getUserAuth, getDatas, addDatas, getData, joinUser, asyncCart };

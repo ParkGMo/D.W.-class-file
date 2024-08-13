@@ -125,6 +125,9 @@ npm install react-icons
 -> npm i react-loading-skeleton: 로딩 중일 때를 알려고(pending 중 일때 ) 창을 표시하는 역할
 (https://www.npmjs.com/package/react-loading-skeleton)
 
+-> npm i react-hook-form  -> useForm : formState, handleSubmit, reset 등등 기본적인 form함수를 사용할 수 있다. --> 회원가입할때 유용! ex) react/ 14-shop-app/ Form.js 참고
+(https://react-hook-form.com/)
+
 
 ** export <--> import
   : default가 없으면 중괄호{} 안에 작성해야한다. 

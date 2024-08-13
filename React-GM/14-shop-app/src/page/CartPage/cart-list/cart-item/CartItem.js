@@ -38,9 +38,13 @@ function CartItem({ product }) {
       </div>
       <div className={styles.cart_count}>
         <div>
-          <button onClick={decrementCount}>-</button>
+          <button disabled={quantity === 1} onClick={decrementCount}>
+            -
+          </button>
           <span>{quantity}</span>
-          <button onClick={incrementCount}>+</button>
+          <button disabled={quantity === 10} onClick={incrementCount}>
+            +
+          </button>
         </div>
       </div>
       <button className={styles.cart_delete}>
