@@ -2,16 +2,24 @@ import React from "react";
 import styles from "./CardItem.module.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../../store/cart/cartSlice";
+import { addToCart, addToCartItem } from "../../../../store/cart/cartSlice";
 import cartSlice from "./../../../../store/cart/cartSlice";
+import { collection } from "firebase/firestore";
 
 function CardItem({ item }) {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.cartSlice);
   const productsMatching = products.some((product) => product.id === item.id);
+  const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
 
   const addItemToCart = () => {
-    dispatch(addToCart(item));
+    if (isAuthenticated) {
+      dispatch(
+        addToCartItem({ collectionName: ["users", uid, "cart"], product: item })
+      );
+    } else {
+      dispatch(addToCart(item));
+    }
   };
   return (
     <li className={styles.card_item}>

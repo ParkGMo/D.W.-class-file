@@ -3,15 +3,28 @@ import styles from "./NavCartItem.module.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteToCart } from "../../../../../../store/cart/cartSlice";
+import {
+  deleteCartItem,
+  deleteFromCart,
+} from "../../../../../../store/cart/cartSlice";
 
 function NavCartItem({ product }) {
   const { category, image, price, title, id, quantity, total } = product;
   const dispatch = useDispatch();
+  const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
   //   const { products } = useSelector((state) => state.cartSlice);
   //   const productsMatching = products.some((product) => product.id === id);
-  const deleteItemToCart = () => {
-    dispatch(deleteToCart(id));
+  const deleteProduct = () => {
+    if (isAuthenticated) {
+      dispatch(
+        deleteCartItem({
+          collectionName: ["users", uid, "cart"],
+          productId: id,
+        })
+      );
+    } else {
+      dispatch(deleteFromCart(id));
+    }
   };
 
   return (
@@ -27,8 +40,8 @@ function NavCartItem({ product }) {
           {total.toFixed(2)}
         </span>
       </div>
-      <button className={styles.nav_cart_delete}>
-        <AiOutlineDelete onClick={deleteItemToCart} />
+      <button className={styles.nav_cart_delete} onClick={deleteProduct}>
+        <AiOutlineDelete />
       </button>
     </div>
   );

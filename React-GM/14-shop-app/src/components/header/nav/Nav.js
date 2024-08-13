@@ -4,11 +4,27 @@ import { FiShoppingCart, FiUser, FiLogIn } from "react-icons/fi";
 import { GoSignOut } from "react-icons/go";
 import styles from "./Nav.module.scss";
 import NavCartBlock from "./nav-cart-block/NavCartBlock";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { removeUser } from "../../../store/user/userSlice";
+import { getUserAuth } from "../../../api/firebaseGM";
 
 function Nav() {
   const listCount = JSON.parse(localStorage.getItem("cartProducts"));
   const { products } = useSelector((state) => state.cartSlice);
+  const { isAuthenticated } = useSelector((state) => state.userSlice);
+  const auth = getUserAuth();
+  const dispatch = useDispatch();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      dispatch(removeUser());
+      // window.location.href = "/";
+    } catch (error) {
+      console.error("Log-out error :" + error);
+    }
+  };
 
   return (
     <nav className={styles.nav}>
@@ -35,11 +51,21 @@ function Nav() {
           </div>
         </li>
         <li>
-          <div>
-            <Link to={"/login"}>
-              <FiLogIn />
-            </Link>
-          </div>
+          {isAuthenticated ? (
+            <div>
+              <GoSignOut
+                className={styles.nav_sign_out}
+                title="로그아웃"
+                onClick={handleSignOut}
+              />
+            </div>
+          ) : (
+            <div>
+              <Link to={"/login"}>
+                <FiLogIn title="로그인" />
+              </Link>
+            </div>
+          )}
         </li>
       </ul>
     </nav>

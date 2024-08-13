@@ -3,11 +3,14 @@ import Form from "../../../components/form/Form";
 import { useDispatch } from "react-redux";
 import { asyncCart, getUserAuth, joinUser } from "../../../api/firebaseGM";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Navigate, useNavigate } from "react-router-dom";
+import { setUser } from "../../../store/user/userSlice";
 
 function SignUp() {
   const [firebaseError, setFirebaseError] = useState("");
   const dispatch = useDispatch();
   const auth = getUserAuth();
+  const navigate = useNavigate();
 
   const handleSignupAndLogin = async (email, password) => {
     try {
@@ -24,7 +27,14 @@ function SignUp() {
       const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
       await joinUser(user.uid, user.email);
       await asyncCart(user.uid, cartItems);
-    } catch (error) {}
+      dispatch(
+        setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
+      );
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      setFirebaseError("이메일 또는 비밀번호가 잘못되었습니다.");
+    }
   };
 
   return (

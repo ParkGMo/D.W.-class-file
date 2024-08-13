@@ -2,15 +2,18 @@ import React from "react";
 import styles from "./CartItem.module.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   decrementProduct,
+  deleteCartItem,
+  deleteFromCart,
   incrementProduct,
 } from "../../../../store/cart/cartSlice";
 
 function CartItem({ product }) {
   //   const { products } = useSelector((state) => state.cartSlice);
   const { category, image, price, title, id, quantity, total } = product;
+  const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
 
   const dispatch = useDispatch();
   //   const productsMatching = products.some((product) => product.id === id);
@@ -22,6 +25,18 @@ function CartItem({ product }) {
   };
   const decrementCount = () => {
     dispatch(decrementProduct(id));
+  };
+  const deleteProduct = () => {
+    if (isAuthenticated) {
+      dispatch(
+        deleteCartItem({
+          collectionName: ["users", uid, "cart"],
+          productId: id,
+        })
+      );
+    } else {
+      dispatch(deleteFromCart(id));
+    }
   };
   return (
     <div className={styles.cart_item}>
@@ -47,7 +62,7 @@ function CartItem({ product }) {
           </button>
         </div>
       </div>
-      <button className={styles.cart_delete}>
+      <button className={styles.cart_delete} onClick={deleteProduct}>
         <AiOutlineDelete />
       </button>
     </div>

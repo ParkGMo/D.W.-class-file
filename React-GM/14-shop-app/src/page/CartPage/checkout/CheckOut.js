@@ -6,6 +6,7 @@ import { getTotalPrice } from "../../../store/cart/cartSlice";
 
 function CheckOut() {
   const { totalPrice } = useSelector((state) => state.cartSlice);
+  const { isAuthenticated } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,9 +17,14 @@ function CheckOut() {
       <div>
         <p>
           <span>합계 : $ {totalPrice.toFixed(2)}</span>
-          {/* <button className={styles.checkout_button}>계산하기</button> */}
         </p>
-        <Link className={styles.checkout_button}>로그인하기</Link>
+        {isAuthenticated ? (
+          <button className={styles.checkout_button}>계산하기</button>
+        ) : (
+          <Link to={"/login"} className={styles.checkout_button}>
+            로그인하기
+          </Link>
+        )}
       </div>
     </div>
   );

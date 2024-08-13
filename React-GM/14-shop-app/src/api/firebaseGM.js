@@ -34,8 +34,15 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 function getCollection(...path) {
+  let newPath = path;
+  if (typeof path[0] !== "string") {
+    // [newPath] = path;
+    newPath = path.flat();
+    // flat() : 벚겨낸다. 배열을 한단계 내려서 합친다.ex) flat(1) 한번, flat(2) 두번, flat(infinity) 다풀어해치고 마지막 배열만 남는다.
+    // flatMap(조건) : map 함수 후에 벚겨낸다. 배열이나 객체등을 하나씩 풀어서 조건을 적용 후 한단계 내려서 합친다.
+  }
   // getCollection의 ...path는 파라미터를 전부 가져와서 배열로 반환
-  return collection(db, ...path);
+  return collection(db, ...newPath);
   // collection의 ...path는 파라미터를 전부 가져와서 하나씩 풀어해친다.(스프레트 함수)
 }
 function getUserAuth() {
@@ -121,11 +128,56 @@ async function asyncCart(uid, cartArr) {
   const cartRef = getCollection("users", uid, "cart");
   // 여러개 작업을 한번에 가져와서 추가해주는 것
   const batch = writeBatch(db);
-  cartArr.forEach((item) => {
-    const itemRef = doc(cartRef, new Date().getTime().toString() + item.id);
-    batch.set(itemRef, item);
-  });
+  for (const item of cartArr) {
+    const result = await updateQuantity(uid, item);
+    if (!result) {
+      const itemRef = doc(cartRef, item.id.toString());
+      batch.set(itemRef, item);
+    }
+  }
+
   await batch.commit();
 }
 
-export { getUserAuth, getDatas, addDatas, getData, joinUser, asyncCart };
+export async function updateQuantity(uid, cartItem) {
+  const cartRef = getCollection("users", uid, "cart");
+  const itemRef = doc(cartRef, cartItem.toString());
+  // 문서가 존재하는지 확인
+  const itemDoc = await getDoc(itemRef);
+  if (itemDoc.exists()) {
+    const currentData = itemDoc.data();
+    const updatedQuantity = (currentData.quantity || 0) + 1;
+    await updateDoc(itemRef, { quantity: updatedQuantity });
+    return true;
+  } else {
+    return false;
+  }
+}
+
+async function deleteDatas(collectionName, docId) {
+  try {
+    const cartRef = getCollection(collectionName);
+    const docRef = await doc(cartRef, docId.toString());
+    await deleteDoc(docRef);
+    return true;
+  } catch (error) {
+    console.log("error Delete", error);
+  }
+}
+
+async function addCart(collectionName, addObj) {
+  const collectionRef = getCollection(collectionName);
+  const cartRef = doc(collectionRef, addObj.id.toString());
+  await setDoc(cartRef, addObj);
+}
+
+export {
+  getUserAuth,
+  getDatas,
+  addDatas,
+  addCart,
+  getData,
+  joinUser,
+  asyncCart,
+  deleteDatas,
+};
