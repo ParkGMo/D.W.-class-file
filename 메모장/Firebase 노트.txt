@@ -33,3 +33,8 @@ https://refiapp.io/  --> firebase Tool(파일을 한번에 DB에 넣기)
  * 컬렉션 내에 문서에서 또 컬렉션을 추가하는 이유
   - 한 문서에 1메가가 최대 용량때문
   - 문서내의 컬랙션 문서로 따로 분류(비효율적, 많은 정보를 저장가능)
+
+*batch 함수
+ 여러개를 서버에 요청할때 writeBatch(db)를 통해 서버의 과부화를 막는다.
+ 1. 선언:  const batch = writeBatch(db)
+ 2. 담기/ 삭제... : set()/ delete()

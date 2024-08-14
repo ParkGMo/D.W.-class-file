@@ -2,14 +2,10 @@ import React from "react";
 import styles from "./OrderItem.module.scss";
 import { Link } from "react-router-dom";
 
-function OrderItem({ product }) {
-  const { category, description, image, price, title, quantity, total } =
-    product;
-  //   console.log(category, description, image, price, title, total);
-
+function OrderItem({ category, image, price, title, quantity, total, id }) {
   return (
     <div className={styles.order_item}>
-      <Link>
+      <Link to={`/product/${id}`}>
         <img src={image} />
       </Link>
       <div className={styles.order_description}>

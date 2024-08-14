@@ -1,27 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./OrdersList.module.scss";
 import OrderItem from "./order-item/OrderItem";
+import mockData from "../../../orderMock.json";
+import { getISODate } from "../../../utils/getFormatted";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrder } from "../../../store/order/orderSlice";
+import userSlice from "./../../../store/user/userSlice";
+import CartEmpty from "../../../components/cart-empty/CartEmpty";
 
-function OrdersList({ Items }) {
-  const { cancelYn, createdAt, products, totalPrice, updatedAt } = Items;
-  //   console.log(cancelYn, createdAt, products, totalPrice, updatedAt);
+function OrdersList() {
+  const { order } = useSelector((state) => state.orderSlice);
+  const { uid } = useSelector((state) => state.userSlice);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      fetchOrder({ collectionName: ["users", uid, "orders"], queryOptions: {} })
+    );
+  }, []);
+
+  if (order.length == 0) return <CartEmpty />;
 
   return (
     <div className={styles.orders}>
-      <div>
-        <div className={styles.order_header}>
-          <h3>주문 번호_{createdAt}</h3>
-          <h3>주문 날짜_{new Date(createdAt).toLocaleDateString()}</h3>
-          {/* <h3>주문 날짜_{new Date(createdAt).toLocaleString("ko-KR")}</h3> */}
-          <p>합계 : $ {totalPrice}</p>
-        </div>
-        <ul>
-          {products.map((product, idx) => (
-            <OrderItem product={product} key={idx} />
-          ))}
-          {/* <OrderItem /> */}
-        </ul>
-      </div>
+      {order.map((item, idx) => {
+        const { cancelYn, createdAt, products, totalPrice, updatedAt, id } =
+          item;
+        return (
+          <div key={idx}>
+            <div className={styles.order_header}>
+              <h3>주문 번호_{createdAt}</h3>
+              <h3>
+                주문 날짜_{getISODate(createdAt).yyyymmdd}{" "}
+                {getISODate(createdAt).hhmmss}
+              </h3>
+              {/* <h3>주문 날짜_{new Date(createdAt).toLocaleDateString()}</h3> */}
+              <p>합계 : $ {totalPrice.toFixed(2)}</p>
+            </div>
+            <ul className={styles.orders_list}>
+              {products.map((product) => (
+                <OrderItem {...product} key={product.id} />
+                // <OrderItem product={product} key={id} />
+              ))}
+              {/* <OrderItem /> */}
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }

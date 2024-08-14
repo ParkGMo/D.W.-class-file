@@ -109,6 +109,7 @@ async function getDatas(collectionName, queryOptions) {
   const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
 }
+
 async function getData(collectionName, queryOptions) {
   const q = getQuery(collectionName, queryOptions);
   const snapshot = await getDocs(q);
@@ -192,6 +193,42 @@ async function addCart(collectionName, addObj) {
   await setDoc(cartRef, addObj);
 }
 
+async function createOrder(uid, orderObj) {
+  try {
+    // 1. orders 컬렉션에 데이터 추가
+    //  -1 orderRef 객체 생성("users", uid, "orders")
+    const orderRef = getCollection("users", uid, "orders");
+    //  -2 생성할 객체를 만들어준다.
+    //     createdObj = {cancelYn, createdAt, updatedAt, 기존 orderObj 프로퍼티들}
+    const createdObj = {
+      cancelYn: "N",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      ...orderObj,
+    };
+    //  -3 await addDoc
+    const docRef = await addDoc(orderRef, createdObj);
+    // const docRef = await setDoc(orderRef, createdObj); doc(orderRef)가 필요
+
+    // 2. cart 문서 삭제
+    //  -1  batch  객체를 생성. writeBatch(db)
+    const batch = writeBatch(db);
+    //  -2  orderObj.products. foreach() 를 사용하여 삭제할  deleteRef 생성
+    const cartRef = getCollection("users", uid, "cart");
+    orderObj.products.forEach((product) => {
+      const itemRef = doc(cartRef, product.id.toString());
+      //  -3  batch.delete(deleteRef)
+      batch.delete(itemRef);
+    });
+    //  -4  batch.commit()
+    await batch.commit();
+
+    return docRef.id;
+  } catch (error) {
+    console.error("error createOrder", error);
+  }
+}
+
 export {
   getUserAuth,
   getDatas,
@@ -202,4 +239,5 @@ export {
   syncCart,
   updateTotalAndQuantity,
   deleteDatas,
+  createOrder,
 };
