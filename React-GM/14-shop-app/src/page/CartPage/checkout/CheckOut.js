@@ -6,7 +6,7 @@ import { getTotalPrice } from "../../../store/cart/cartSlice";
 
 function CheckOut() {
   const { totalPrice } = useSelector((state) => state.cartSlice);
-  const { isAuthenticated } = useSelector((state) => state.userSlice);
+  const { isAuthenticated, uid } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {

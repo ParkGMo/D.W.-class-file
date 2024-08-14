@@ -1,0 +1,15 @@
+.orders {
+  margin-bottom: 50px;
+}
+.order_header {
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 22px;
+    font-weight: bold;
+  }
+}

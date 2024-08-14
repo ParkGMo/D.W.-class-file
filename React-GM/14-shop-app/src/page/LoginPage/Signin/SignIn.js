@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Form from "../../../components/form/Form";
 import { useDispatch } from "react-redux";
-import { asyncCart, getUserAuth } from "../../../api/firebaseGM";
+import { syncCart, getUserAuth } from "../../../api/firebaseGM";
 import { useNavigate } from "react-router";
 import { setUser } from "../../../store/user/userSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { syncCartAndStorage } from "../../../store/cart/cartSlice";
 
 function SignIn() {
   const [firebaseError, setFirebaseError] = useState("");
@@ -22,7 +23,8 @@ function SignIn() {
 
       const { user } = userCredentials;
       const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-      await asyncCart(user.uid, cartItems);
+      await syncCart(user.uid, cartItems);
+      dispatch(syncCartAndStorage({ uid: user.uid, cartItems }));
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
       );

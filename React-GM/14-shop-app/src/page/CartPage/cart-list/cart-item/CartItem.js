@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  calculateTotalAndQuantity,
   decrementProduct,
   deleteCartItem,
   deleteFromCart,
@@ -21,10 +22,30 @@ function CartItem({ product }) {
   //     dispatch(deleteToCart(product));
   //   };
   const incrementCount = () => {
-    dispatch(incrementProduct(id));
+    if (isAuthenticated) {
+      dispatch(
+        calculateTotalAndQuantity({
+          uid,
+          productId: id,
+          operator: "increment",
+        })
+      );
+    } else {
+      dispatch(incrementProduct(id));
+    }
   };
   const decrementCount = () => {
-    dispatch(decrementProduct(id));
+    if (isAuthenticated) {
+      dispatch(
+        calculateTotalAndQuantity({
+          uid,
+          productId: id,
+          operator: "decrement",
+        })
+      );
+    } else {
+      dispatch(decrementProduct(id));
+    }
   };
   const deleteProduct = () => {
     if (isAuthenticated) {
@@ -47,7 +68,7 @@ function CartItem({ product }) {
         <h3>{category}</h3>
         <h2>{title}</h2>
         <span>
-          {/* toFixed() -> 소주점 자리 지정!*/}${price} x ${quantity} = $
+          {/* toFixed() -> 소주점 자리 지정!*/}${price} x {quantity} = $
           {total.toFixed(2)}
         </span>
       </div>
