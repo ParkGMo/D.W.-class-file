@@ -202,8 +202,8 @@ async function createOrder(uid, orderObj) {
     //     createdObj = {cancelYn, createdAt, updatedAt, 기존 orderObj 프로퍼티들}
     const createdObj = {
       cancelYn: "N",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date().getTime(),
+      updatedAt: new Date().getTime(),
       ...orderObj,
     };
     //  -3 await addDoc

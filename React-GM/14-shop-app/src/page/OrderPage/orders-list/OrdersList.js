@@ -17,13 +17,18 @@ function OrdersList() {
     dispatch(
       fetchOrder({ collectionName: ["users", uid, "orders"], queryOptions: {} })
     );
-  }, []);
+  }, [uid]);
 
-  if (order.length == 0) return <CartEmpty />;
+  if (order.length == 0) {
+    return <CartEmpty title="주문내역" />;
+  }
+  console.log(order);
 
   return (
     <div className={styles.orders}>
       {order.map((item, idx) => {
+        console.log(item);
+
         const { cancelYn, createdAt, products, totalPrice, updatedAt, id } =
           item;
         return (
