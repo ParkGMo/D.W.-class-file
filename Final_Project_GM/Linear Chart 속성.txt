@@ -1,0 +1,78 @@
+import { LineChart } from '@mui/x-charts';
+
+** colors**
+Array<string>| func
+
+** dataset **
+Array<object>
+
+** grid **
+{ horizontal?: bool, vertical?: bool }
+
+** loading **
+bool
+
+** tooltip **
+{ axisContent?: elementType, 
+classes?: object, 
+itemContent?: elementType, 
+slotProps?: object, 
+slots?: object, 
+trigger?: 'axis' | 'item' | 'none' }
+
+** xAxis, yAxis **
+Array<
+{ classes?: object, 
+
+colorMap?: { 
+colors: Array<string>, 
+type: 'ordinal', 
+unknownColor?: string, 
+values?: Array<Date| number| string> 
+} | {
+color: Array<string> | func, 
+max?: Date| number, 
+min?: Date | number, 
+type: 'continuous' 
+} | { 
+colors: Array<string>, 
+thresholds: Array<Date| number>, 
+type: 'piecewise' 
+}, 
+
+data?: array, 
+dataKey?: string, 
+disableLine?: bool, 
+disableTicks?: bool, 
+fill?: string, 
+hideTooltip?: bool, 
+id?: number| string, 
+label?: string, 
+labelFontSize?: number, 
+labelStyle?: object, 
+max?: Date| number, 
+min?: Date| number, 
+position?: 'left'| 'right',
+reverse?: bool, 
+scaleType?: 'band' | 'linear' | 'log' | 'point' | 'pow' | 'sqrt' | 'time' | 'utc', 
+slotProps?: object, 
+slots?: object, 
+stroke?: string, 
+sx?: Array<func | object | bool> | func | object, 
+tickFontSize?: number, 
+tickInterval?: 'auto' | array | func, 
+tickLabelInterval?: 'auto' | func, 
+tickLabelPlacement?: 'middle' | 'tick', 
+tickLabelStyle?: object, 
+tickMaxStep?: number, 
+tickMinStep?: number, 
+tickNumber?: number, 
+tickPlacement?: 'end'| 'extremities'| 'middle'| 'start', 
+tickSize?: number, 
+valueFormatter?: func }
+>
+
+
+
+**  **
+**  **

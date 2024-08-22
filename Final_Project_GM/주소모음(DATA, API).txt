@@ -1,0 +1,10 @@
+data
+https://data.smartfarmkorea.net/
+축산 과학원 : https://www.nias.go.kr/front/contlist.do?mainCategoryCode=LP&middleCategoryCode=LP04&subCategoryCode=LP044150&mainTechCode=GG&subTechCode=GG01&cmCode=M130319105542263
+축산업 시세 : https://www.ekapepia.com/priceStat/realTimePrice.do?menuId=menu100003
+
+API
+엑셀API : https://learn.microsoft.com/ja-jp/javascript/api/overview?view=excel-js-preview
+한글주소 -> 위도경도 : https://www.vworld.kr/dev/v4dv_geocoderguide2_s001.do
+영어주소 -> 위도경도 : https://developers.google.com/maps/documentation/javascript/geocoding?hl=ko&_gl=1*12vqi06*_up*MQ..*_ga*NTI2NjI5MTE4LjE3MjQzMTM3Njg.*_ga_NRWSTWS78N*MTcyNDMxMzc2Ny4xLjAuMTcyNDMxMzc2Ny4wLjAuMA..
+국토 : https://www.vworld.kr/v4po_openapi_s001.do
