@@ -10,3 +10,4 @@ API
 국토 : https://www.vworld.kr/v4po_openapi_s001.do
 기상특보 : https://apihub.kma.go.kr/
 지도 데이터 시각화(SGIS) : https://sgis.kostat.go.kr/developer/html/newOpenApi/api/mapApi/applicationSample.html#8
+농림축산업 :  https://data.mafra.go.kr/datadream/indexDataDreamList.do(가축 질병 발생 정보)
