@@ -206,3 +206,21 @@ AI 따른 인간의 필요성은??..
 -- 최종 프로젝트 --
 
 수행중 문제나 에러에 대한 해결책을 메모나 기입!!!   ---> 포트폴리오나 이력서에 추가가능
+
+
+XISOM (https://www.xisom.com/en-us/php/home.php)
+
+digital Transformation(DT) ex) 스마트 공장, 클라우드, ICT...   ==> smart Farm
+DB: MSask 포스렉? AWS
+MES, SCADA, PLC
+
+XSCADA
+
+digital Tag - on/off
+analog Tag - number
+string Tag - text
+
+태그로 텍스트와 레이블(값을 표현), 장치를 연결
+
+장치 : 장치추가 -> 기타연결추가 -> 속성창 Http:Url(RSS주소 추가) 
+               -> 태그 속성 장치내 주소 기입 ex)#rss/channel/item/description/body/data/temp;
