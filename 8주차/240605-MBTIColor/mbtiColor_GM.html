@@ -55,11 +55,8 @@
       const datas = await getDatas("MBTI-Colour");
       let idx = 1;
       const arr = [];
-      // datas.forEach((doc, idx) => idx 사용 불가
       datas.forEach((doc) => {
         const timeStamp = doc._document.createTime.timestamp.seconds;
-        // console.log(doc.data());
-        // console.log(idx);
         const info = doc.data();
         const newObj = { ...info, timeStamp: timeStamp };
         arr.push(newObj);
@@ -72,6 +69,7 @@
           "afterbegin",
           `<li class="item">
             <div class="item-id">${idx}</div>
+            <div class="item-id">${info.name}</div>
             <div class="item-mbti">${info.mbti}</div>
             <div class="item-arrow">
               <img src="resources/img/arrow.svg" class="item-arrow-icon" />

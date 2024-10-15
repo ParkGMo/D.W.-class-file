@@ -184,13 +184,10 @@
       // user 이름 가져오기
       const userName = document.querySelector(".userName");
       const userNameVal = userName.value;
-      console.log(userNameVal);
       // 객체형태로 만들기
-      const addObj = { mbti: mbtiVal, code: colorCode };
-      console.log(addObj);
-
+      const addObj = { mbti: mbtiVal, code: colorCode, name: userNameVal };
       // addDatas() 함수 호출하기
-      const result = await addDatas("MBTI-Colour", addObj, `${userNameVal}`);
+      const result = await addDatas("MBTI-Colour", addObj);
       if (result) {
         alert("MBTI 등록하였습니다!");
         window.location.reload();
