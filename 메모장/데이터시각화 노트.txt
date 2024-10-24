@@ -120,6 +120,9 @@ scss: Sassy Cascading Style Sheet
  npm i sass  --> scss사용 가능
 scss파일--> rfce : 처음스닛펫 약어
 
+XML --> JSON : 다크테마 예시 참고
+
+
 중간 프로젝트 (6/12: 조편성 ~ 6/17: 초안 ~ 6/24: 중간 ~ 7/1:최종)
 
 6/12: 조편성 및 주제선정

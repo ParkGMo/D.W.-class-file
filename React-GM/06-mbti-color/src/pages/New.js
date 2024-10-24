@@ -54,6 +54,10 @@ function New(props) {
         </Link>
       </header>
       <section className={styles.section}>
+        <h2 className={styles.sectionHeading}>이름</h2>
+        <input type="text" className={styles.userName} />
+      </section>
+      <section className={styles.section}>
         <h2 className={styles.sectionHeading}>MBTI</h2>
         <MBTISelect
           mbtiValue={formValue.mbti}

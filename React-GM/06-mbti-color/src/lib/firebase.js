@@ -43,6 +43,13 @@ async function getAllDatas(collectionName, order, lq) {
   return { resultData, lastQuery };
 }
 
+async function getDatas(collectionName) {
+  const collect = await collection(db, collectionName);
+  const snapshot = await getDocs(collect);
+
+  return snapshot;
+}
+
 async function addDatas(collectionName, dataObj) {
   const collect = collection(db, collectionName);
   // id 값 생성
@@ -69,4 +76,4 @@ async function getLastNum(collectionName, field) {
   const lastNum = lastDoc.docs[0].data()[field];
   return lastNum;
 }
-export { getAllDatas, addDatas };
+export { getAllDatas, getDatas, addDatas };

@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 import ColorSurvey from "../components/ColorSurvey";
 import mockItems from "../lib/mock.json";
-import { getAllDatas } from "../lib/firebase";
+import { getAllDatas, getDatas } from "../lib/firebase";
 
 // css가 겹칠 수 있기 때문에 module css 파일을 만든다. ex)파일명.module.css
 
@@ -17,6 +17,7 @@ function Home(props) {
     // items state에 셋팅
     setItems(resultData);
     nextPageRef.current = lastQuery;
+    console.log(resultData, lastQuery);
   };
   const handleLoadNext = async () => {
     const { resultData, lastQuery } = await getAllDatas(
@@ -24,7 +25,6 @@ function Home(props) {
       "id",
       nextPageRef.current
     );
-    console.log(resultData);
     if (resultData.length != 0) {
       setItems((prevItems) => [...prevItems, ...resultData]);
       nextPageRef.current = lastQuery;
@@ -89,7 +89,7 @@ function Home(props) {
           + 새 컬러 등록하기
         </Link>
         <ul className={styles.items}>
-          {items.map((item, idx) => {
+          {items?.map((item, idx) => {
             return <ColorSurvey key={idx} mbtiData={item} />;
           })}
         </ul>
