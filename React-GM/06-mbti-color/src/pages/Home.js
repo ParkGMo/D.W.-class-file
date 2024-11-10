@@ -17,7 +17,6 @@ function Home(props) {
     // items state에 셋팅
     setItems(resultData);
     nextPageRef.current = lastQuery;
-    console.log(resultData, lastQuery);
   };
   const handleLoadNext = async () => {
     const { resultData, lastQuery } = await getAllDatas(
@@ -90,7 +89,7 @@ function Home(props) {
         </Link>
         <ul className={styles.items}>
           {items?.map((item, idx) => {
-            return <ColorSurvey key={idx} mbtiData={item} />;
+            return <ColorSurvey key={idx} mbtiData={item} idx={idx} />;
           })}
         </ul>
       </main>

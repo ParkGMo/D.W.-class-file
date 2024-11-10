@@ -19,7 +19,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyC73hlucfd0FfI4rVC2gW-DoFcSRVhNaIA",
   authDomain: "mbti-project-gm.firebaseapp.com",
   projectId: "mbti-project-gm",
-  storageBucket: "mbti-project-gm.appspot.com",
+  storageBucket: "mbti-project-gm.firebasestorage.app",
   messagingSenderId: "131798657318",
   appId: "1:131798657318:web:e70f6ac43f196d23d0b9e7",
 };
